@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    min-height: 70px;
+    padding: 10px 0;
+    background-color: var(--dark);
+    box-shadow: rgb(31, 31, 31) 0px 12px 20px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    z-index: 100;
+    
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 35px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('./../../assets/logo-back.svg');
+    width: 250px;
+    height: 70px;
+}
+
+.navBlock {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 40px;
+    align-items: center;
+}
+
+.listNav {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 25px;
+    align-items: center;
+}
+
+.itemText {
+
+    font-size: 17px;
+    line-height: 120%;
+    color: var(--white);
+
+}
+
+
+.authBlock {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 20px;
+    align-items: center;
+}
+
+
+.favorites {
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('./../../assets/fav.svg');
+    width: 20px;
+    height: 25px;
+
+}
+
+
+.profileAuth {
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('./../../assets/person-img.svg');
+    width: 40px;
+    height: 40px;
+}
+
+.searchBlock {
+    width: 280px;
+
+}

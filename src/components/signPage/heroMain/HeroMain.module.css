@@ -1,0 +1,166 @@
+
+
+/* :root .back {
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll) * -1s);
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+} */
+
+
+.section {
+    position: absolute;
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+  pointer-events: all;
+
+}
+
+.back {
+    position: fixed;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url('./../../../assets/hero-back.jpg');
+    height: 100vh;
+    width: 100%;
+}
+
+
+
+.activeAnimation {
+  position: relative;
+  pointer-events: none;
+} 
+
+.activeAnimation  .back {
+   animation: back alternate 2s cubic-bezier(0,.59,.66,1.17)  forwards;
+}
+
+
+.activeAnimation .logo {
+   animation: logo alternate 2s cubic-bezier(.78,-0.01,.52,1.5)  forwards;
+    
+}
+.activeAnimation .title {
+   animation: title alternate 2.2s cubic-bezier(.78,-0.01,.52,1.5)  forwards;
+    
+}
+.activeAnimation  .btnsBlock{
+   animation: btns alternate 2.5s cubic-bezier(.78,-0.01,.52,1.5)  forwards;
+    
+}
+
+.section {
+    position: relative;
+    display: flex;
+    justify-content: center;align-items: center;
+    height: 100vh;
+  
+}
+
+
+
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(-3vw);
+}
+
+.logo {
+    display: inline-block;
+    width: 29vw;
+    height: 24vw;
+    margin-bottom: 1vw;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image: url('./../../../assets/vert-logo.svg');
+}
+.btnLink {
+    width: 22vw;
+}
+
+.btnsBlock {
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    gap: 3.5vw;
+}
+
+
+.btnSignIn {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 1.2vw;
+    font-weight: 700;
+    transition: all .3s ease-in-out;
+    color: var(--red);
+    cursor: pointer;
+    border-radius: 1vw;
+}
+
+.btn {
+    width: 27.5vw !important;
+    min-height: 4vw;
+    text-transform: uppercase;
+    font-size: 1.4vw !important;
+    transition: all .3s ease-in-out;
+    border-radius: 1vw;
+}
+
+.btn span {
+    font-size: .9vw;
+    letter-spacing: 0.07vw;
+
+}
+
+.title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2vw;
+    margin-bottom: 3.2vw;
+    line-height: 2.7vw;
+    /* or 129% */
+    text-align: center;
+    color: #FFFFFF;
+}
+
+
+@keyframes back {
+    to {    
+        opacity: 0;
+    }
+}
+
+
+@keyframes logo {
+    to {    
+        transform: translateY(-60vh);
+    }
+}
+
+
+@keyframes title {
+    to {    
+        transform: translateY(-65vh);
+
+    }
+}
+
+
+@keyframes btns {
+    to {    
+        transform: translateY(-80vh);
+
+    }
+}
+
+

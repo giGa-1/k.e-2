@@ -1,0 +1,31 @@
+
+
+.block {
+    position: relative;
+}
+
+.title {
+    display: flex;
+    align-items: end;
+    position: relative;
+    max-width: 80%;    
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--white);
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+.svgTitle {
+    margin-left: 15px;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.arrow {
+    background-image: url('./../../../assets/arrow-red.svg');
+}

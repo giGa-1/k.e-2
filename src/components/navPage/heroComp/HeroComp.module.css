@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat');
+
+.hero {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+
+.content {
+    height: 100%;
+    padding-top: 80px;
+}
+
+.swiper {
+    height: 100%;
+}
+.slide {
+    height: 100%;
+}
+
+.itemWrapper {
+    position: relative;
+    height: 100%;
+    z-index: 2;
+
+}
+
+.itemContent {
+    padding: 100px 0 50px 150px;
+}
+
+.itemBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+
+.heroItem {
+    position: relative;
+    height: 100%;
+}
+
+.itemGradient {
+    position: absolute;
+    height: 100%;
+    width: 60%;
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg,rgba(0,0,0,0) 1%, rgba(0,0,0,1) 40%, rgba(9,9,121,0) 100%);
+
+}
+
+.itemPoster {
+    margin-bottom: 30px;
+    max-width: 300px;
+    border-radius: 15px;
+}
+
+.nameEng {
+    margin-bottom: 5px;
+}
+
+
+
+.itemName {
+    margin-bottom: 20px;
+    font-size: 40px;
+    max-width: 50%;
+    color:var(--white);
+    font-weight: 600;
+}
+
+.bottomTitle {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 10px;
+    align-items: center;
+}
+
+.nameEng {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    align-items: center;
+    color: var(--white);
+}
+
+.nameEng * {
+    color: var(--grey);
+}
+
+.bottomTitle * {
+    font-size: 17px;
+    font-family: 'Montserrat';
+    color: var(--grey);
+}
+
+

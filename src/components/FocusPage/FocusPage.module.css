@@ -1,0 +1,30 @@
+
+
+.section {
+    padding-top: 150px;
+    padding-bottom: 100px;
+}
+
+.title {
+    margin: 0 auto;
+
+    font-size: 36px;
+    line-height: 120%;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 40px;
+    max-width: 80%;
+
+
+}
+
+
+.descr {
+    margin: 0 auto;
+    font-size: 20px;
+    color: #999;
+    line-height: 180%;
+    max-width: 80%;
+    text-align: start;
+}
