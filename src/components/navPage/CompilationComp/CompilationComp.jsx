@@ -11,16 +11,19 @@ export default function CompilationComp() {
     
   return (
     <section className={cl.section}>
+        <div className={cl.back}>
+            
+        </div>
         <div className="container">
             <div className={cl.content}>
-            <MyTitleComp classTitle={cl.title} additionlySvg={''}>Интересные подборки</MyTitleComp>
+            <MyTitleComp classTitle={cl.title} isCenter={true} additionlySvg={''}>Интересные подборки</MyTitleComp>
             <div className={cl.listBlock}>
                 <ul className={cl.list}>
                     {
                         stateComp.map((e,i)=>{
                             return (
                                 <Link href={'/compilations/'+e.id}>
-                                    <CompilationItem top={e.compilation} id={e.id} title={e.title}/>
+                                    <CompilationItem top={e.top} id={e.id} title={e.title}/>
                                 </Link>
                             )
                         })

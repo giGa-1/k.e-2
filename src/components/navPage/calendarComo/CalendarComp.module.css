@@ -1,0 +1,149 @@
+
+
+
+.blockCalendar {
+    max-width: 70%;
+    margin: 0 auto;
+    box-shadow: rgba(87, 87, 93, 0.2) 0px 7px 29px 0px;
+    border-radius: 25px;
+    padding: 40px;
+}
+.calendarDates,
+.calendarDayName {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendarDates {
+    gap: 20px;
+    row-gap: 35px;
+}
+
+.calendar {
+    width: 100%;
+}
+
+
+.calendarDayName {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 7px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.calendarTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.calendarTitleText {
+    font-size: 26px;
+    color: var(--white);
+    font-weight: 500;
+    padding: 8px 20px;
+    box-shadow: rgba(87, 87, 93, 0.2) 0px 7px 29px 0px;
+    border-radius: 8px;
+
+}
+
+
+.calendarButtonGroup {
+    display: grid;
+    grid-template-columns: 30px auto 30px;
+    gap: 15px;
+    justify-content: space-between;
+    border: 2px solid var(--white);
+    box-shadow: rgba(87, 87, 93, 0.064) 0px 7px 29px 0px;
+
+    padding: 8px 20px;
+    border-radius: 6px;
+}
+
+.today {
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffffffd2;
+    line-height: 1;
+}
+
+.prevMonth, .nextMonth {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image: url('../../../assets/arrow-bolc.svg');
+    transition: all .35s ease-in-out;
+}
+
+.prevMonth {
+    transform: rotate(180deg) translateX(3px);
+}
+
+.calendarTitle {
+    margin-bottom: 40px;
+}
+
+
+.calendarDayName {
+    border: 2px solid var(--white);
+    padding: 10px 0;
+    border-radius: 8px;
+}
+
+.calendarDayName div{
+    display: flex;
+    justify-content: center;align-items: center;
+    color: #f9f9f9;
+    font-size: 18px;
+}
+
+
+
+.dates {
+    min-height: 150px;
+
+}
+
+.calendarDatesDay {
+    display: flex;
+    flex-direction: row;
+    align-items: start;justify-content: space-between;
+    padding: 15px;
+    box-sizing: border-box;
+    box-shadow: rgba(74, 74, 74, 0.2) 0px 0px 15px 0px;
+    border-radius: 8px;
+    border: 1px solid #333 ;
+}
+
+.calendarDatesDay span {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+}
+
+.dateRelease {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    gap: 5px;
+}
+
+.datimg {
+    display: inline-block;
+    width: 80px;
+    height: 100px;
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('./../../../assets/hero-back.jpg');
+}
+
+.dataText {
+    font-size: 13px;
+    color: #f1f1f1;
+}

@@ -8,8 +8,8 @@ import {focusCompReducer} from './focusComp-reduder';
 import {newsCompReducer} from './NewsComp-reducer';
 import {serialsCompReducer} from './serialsComp-reducer';
 import {moviesCompReducer} from './moviesComp-reducer';
-
-
+import {complilationCompReducer} from './compilationComp-reducer';
+import {monthsReducer} from './months-reducer';
 
 
 
@@ -25,7 +25,8 @@ const makeStore = () => configureStore({
         [newsCompReducer.name]: newsCompReducer.reducer,
         [serialsCompReducer.name]: serialsCompReducer.reducer,
         [moviesCompReducer.name]: moviesCompReducer.reducer,
-
+        [complilationCompReducer.name]: complilationCompReducer.reducer,
+        [monthsReducer.name]: monthsReducer.reducer,
 
 
 

@@ -1,0 +1,13 @@
+
+.section {
+    padding: 50px 0 100px;
+}
+
+.descr {
+    max-width: 80%;
+    margin: 0 auto;
+    font-size: 17px;
+    color: var(--white);
+    line-height: 200%;
+
+}

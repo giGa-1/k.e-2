@@ -16,6 +16,10 @@
     margin-bottom: 40px;
 }
 
+.center h2 {
+    justify-content: center;
+}
+
 .svgTitle {
     margin-left: 15px;
     display: inline-block;

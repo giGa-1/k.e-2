@@ -1,0 +1,76 @@
+
+
+.section {
+    position: relative;
+    padding: 60px 0;
+}
+
+
+.listBlock {
+    margin: 35px auto 0;
+  max-width: 1200px;
+
+}
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap:35px;
+    row-gap: 35px;
+    grid-template-rows: repeat(2, auto);
+}
+
+.list a {
+    height: 100%;
+}
+
+
+.itemComlp {
+    min-height: 420px;
+    border-radius: 20px;
+    padding: 35px 25px 25px 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transition: all .35s ease-in-out;
+    background-image: url('./../../../assets/back-comp-items.png');
+}
+
+.itemComlp * {
+    transition: all .35s ease-in-out;
+    
+}
+
+.itemComlp:hover {
+    transform: translateY(-5px) ;
+}
+
+.top {
+    font-size: 45px;
+    font-weight: 600;
+    color: var(--white);
+}
+
+.titleItem {
+    font-size: 18px;
+    color: #ffffffaf;
+    text-align: right;
+}
+
+.back {
+    position: absolute;
+    z-index: -1;
+    top: 0;bottom: 0;right: 0;left: 0;
+    margin: auto;
+    width:750px;
+    height: 750px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: .1;
+    background-image: url('./../../../assets/camera-back-big.svg');
+}
