@@ -14,9 +14,9 @@ export default function HeroComp() {
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        const officialHeroData = getOfficialYandexMovies('field=rating.kp&search=7-10&field=year&search=2022-2023&field=typeNumber&search=1&sortField=year&sortType=1&sortField=votes.imdb&sortType=-1&limit=5', setStateOfficialHero, dispatch);
+        const officialHeroData = getOfficialYandexMovies('/v1/movie?field=rating.kp&search=7-10&field=year&search=2022-2023&field=typeNumber&search=1&sortField=year&sortType=1&sortField=votes.imdb&sortType=-1&limit=5', setStateOfficialHero, dispatch);
         
-        const unofficialHeroData = getUnofficialYandexMovies('/top?type=TOP_250_BEST_FILMS&page=1', setStateUnofficialHero, dispatch);
+        const unofficialHeroData = getUnofficialYandexMovies('?countries=1&order=NUM_VOTE&type=FILM&ratingFrom=7&ratingTo=8&yearFrom=2021&yearTo=2023&page=1', setStateUnofficialHero, dispatch);
     },[])   
 
     const {unofficialState,officialState} = useSelector(state=>state['Hero']);

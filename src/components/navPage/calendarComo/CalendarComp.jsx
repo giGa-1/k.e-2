@@ -31,15 +31,7 @@ export default function CalendarComp() {
         setCurrentDate(dayjs())
     }
 
-    console.log(242423423432)
-    console.log(242423423432)
-    console.log(242423423432)
-    console.log(242423423432)
-    console.log(242423423432)
-    console.log(242423423432)
-    console.log(242423423432)
-    console.log(242423423432)
-    console.log(242423423432)
+
 
 
 

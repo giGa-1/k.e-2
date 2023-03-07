@@ -10,7 +10,7 @@
 
 export const getUnofficialYandexMovies = async (getUrl = '', actionFunc, dispatch, dataValue = 0)=>{
 
-    const response = fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films?page=2', {
+    const response = fetch('https://kinopoiskapiunofficial.tech/api/v2.2/films'+getUrl, {
         method: 'GET',
         headers: {
             'X-API-KEY': 'eb2b25d1-cff2-447a-b471-9f49da564eef',
