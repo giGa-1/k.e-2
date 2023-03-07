@@ -8,17 +8,17 @@ import MoviesComp from 'src/components/navPage/MoviesComp/MoviesComp';
 import CompilationComp from 'src/components/navPage/CompilationComp/CompilationComp';
 import AboutComp from 'src/components/navPage/AboutComp/AboutComp';
 import CalendarComp from 'src/components/navPage/calendarComo/calendarComp';
+import Footer from 'src/components/Footer/Footer';
 
 import { useRouter } from 'next/router';
 
 
 
 export default function Home() {
-  // const router = useRouter()
-  // useEffect(()=>{
-  //   const isAuth = localStorage.getItem('isAuth');
-  //   !isAuth&&router.push('/sign')
-  // },[])
+  useEffect(()=>{
+    const isAuth = localStorage.getItem('isAuth');
+    console.log(window.location.href)
+  },[])
   return (
     <main>
       <HeaderComp/>
@@ -30,6 +30,7 @@ export default function Home() {
       <CompilationComp />
       <AboutComp />
       <CalendarComp />
+      <Footer />
     </main>
   )
 }

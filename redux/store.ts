@@ -10,10 +10,15 @@ import {serialsCompReducer} from './serialsComp-reducer';
 import {moviesCompReducer} from './moviesComp-reducer';
 import {complilationCompReducer} from './compilationComp-reducer';
 import {monthsReducer} from './months-reducer';
-
-
-
-
+import {footerInfoReducer} from './footerInfo-reducer';
+import {moviePage} from './moviePage-reducer';
+import {btnsCardReducer} from './btnsCard-reducer';
+import {FilterCountriesReducer} from './filterCountries-reducer';
+import {FilterGenresReducer} from './filterGenres-reducer';
+import {FilterYearsReducer} from './filterYears-reducer';
+import {moviePageReducer} from './pageMovie-reducer';
+import {favStateReducer} from './favState-reducer';
+import {ActorStateReducer} from './ActorState-reducer';
 
 const makeStore = () => configureStore({
     reducer: {
@@ -27,9 +32,15 @@ const makeStore = () => configureStore({
         [moviesCompReducer.name]: moviesCompReducer.reducer,
         [complilationCompReducer.name]: complilationCompReducer.reducer,
         [monthsReducer.name]: monthsReducer.reducer,
-
-
-
+        [footerInfoReducer.name]: footerInfoReducer.reducer,
+        [moviePage.name]: moviePage.reducer,
+        [btnsCardReducer.name]: btnsCardReducer.reducer,
+        [FilterCountriesReducer.name]: FilterCountriesReducer.reducer,
+        [FilterGenresReducer.name]:FilterGenresReducer.reducer,
+        [FilterYearsReducer.name]: FilterYearsReducer.reducer,
+        [moviePageReducer.name]:moviePageReducer.reducer,
+        [favStateReducer.name]:favStateReducer.reducer,
+        [ActorStateReducer.name]:ActorStateReducer.reducer,
     },
     devTools: true
 })

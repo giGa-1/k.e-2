@@ -1,0 +1,114 @@
+.footer {
+    box-sizing: border-box;
+    padding-bottom: 30px;
+    margin-top: 100px;
+    background: rgb(34,34,34);
+    background: linear-gradient(180deg, rgba(34,34,34,1) 0%, rgba(87,5,15,0.3883053221288515) 100%);
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    
+    justify-content: space-around;
+    max-width: 80%;
+}
+
+.logoBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    display: inline-block;
+    margin-bottom: 30px;
+    width: 270px;
+    height:80px;
+    background-position:  center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('./../../assets/logos-text.svg');
+}
+
+.linkLogo {    
+    display: inline-block;
+    margin-bottom: 10px;
+    max-width: max-content;
+    font-size: 18px;
+    font-weight: 500;
+    color: #f5f5f5;
+    text-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.contact {
+    display: flex;
+    justify-content: start;
+}
+
+.sendText {
+    color: #f5f5f5d9;
+    font-size: 16px;
+}
+
+.wp, .tg {
+    display: inline-block;
+    background-position:  center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 8px;
+    width: 20px;
+    height: 20px;
+    background-image: url('./../../assets/tg.svg');
+    transition: all .25s ease-in-out;
+    cursor: pointer;
+}
+
+.wp:hover, .tg:hover {
+    opacity: .7;
+}
+
+.wp {
+    background-image: url('./../../assets/wp.svg');
+}
+
+.navblock {
+   display: flex;
+   flex-direction: column;
+   justify-content: start;
+   gap: 35px;
+}
+
+.title {
+    font-size: 19px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    line-height: 120%;
+    color: var(--white);
+}
+
+.list {
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    gap: 12px;
+}
+
+.link {
+    color: #f5f5f5c0;
+    font-size: 16px;
+}
+
+.foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50px 25px 0;
+    background-color: #333;
+    box-shadow: rgba(80, 82, 84, 0.2) 0px 8px 24px;
+    padding: 30px 40px;
+    border-radius: 20px;
+
+}
+
+.foot p {
+    color: #f5f5f5;
+}

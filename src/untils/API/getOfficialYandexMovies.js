@@ -7,12 +7,12 @@
 
 
 
-export const getOfficialYandexMovies = async (getUrl = '', actionFunc, dispatch)=>{
-
-    const response = await fetch('https://api.kinopoisk.dev/movie?'+getUrl+'&token=KD2CA23-KVKMK2V-KD4Q376-97Z1YVW');
+export const getOfficialYandexMovies = async (getUrl = '', actionFunc, dispatch, isDocs=false)=>{
+  
+    const response = await fetch('https://api.kinopoisk.dev'+getUrl+'&token=V26YNBD-WSK43E2-NBSHTSG-5WS5CKK');
     const data =  response.json();
     data.then((data)=>{
-        dispatch(actionFunc(data.docs))
+        dispatch(actionFunc(isDocs ? data : data.docs))
     })
     return data
 }

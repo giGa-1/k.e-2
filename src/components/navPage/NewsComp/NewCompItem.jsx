@@ -23,7 +23,7 @@ export default function NewCompItem({title, descr, id, active}) {
         <div className={id%2===0 ? [cl.itemContent, cl.itemRight].join` ` :cl.itemContent}>
             <div className={cl.itemBlock}>
                 <div className={cl.itemImg}>
-                    <img className={cl.img} src={'/img/news-test.png'}/>
+                    <img className={cl.img} src={'/img/back-news.jpg'}/>
                 </div>
                 <div className={cl.itemTexts}>
                     <h2 className={cl.itemTitle}>

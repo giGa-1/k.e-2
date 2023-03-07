@@ -1,0 +1,39 @@
+
+
+.block {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top:0;left: 0;right: 0;bottom: 0;
+    margin: auto;
+    background-color: #0000003c;
+    z-index: 200;
+    overflow-y: scroll;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .35s ease-in-out;
+
+}
+
+.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.block::-webkit-scrollbar {
+    width: 0px;
+}
+
+.modal {
+    width: 350px;
+    height: 400px;
+    border-radius:20px;
+    background-color: #333;
+    transition: all .6s ease-in-out;
+    transform: translateX(10vw);
+}
+
+.active .modal{
+    transform: translateX(0);
+}

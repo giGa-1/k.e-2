@@ -1,0 +1,354 @@
+
+.block {
+    margin: 110px 0 50px;
+}
+
+.fitlersBlock {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.sortWrap {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    align-items: center;
+    gap: 20px;
+    min-width: 260px;
+    height: 50px;
+}
+
+.sortText {
+    font-size: 19px;
+    font-weight: 500;
+    color:var(--white);
+}
+
+.filtersWrap {
+    width:300px;
+}
+
+.title {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+align-items: center;    
+    justify-content: start;
+    gap: 10px;
+}
+
+.sortBlock {
+    width: 260px;
+}
+
+.titleLink {
+    opacity: .5;
+    transition: all .3s ease-in-out;
+}
+.titleLink:hover {
+    opacity: 1;
+}
+
+.fitlersBlock {
+  padding: 25px 45px;
+  border-radius: 20px;
+  box-shadow: inset rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+
+.headFilters {
+    position: absolute;
+    top: 0;
+    
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;justify-content: space-between;
+    padding: 0 17px;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+
+    border-radius:20px;
+    box-shadow: rgba(75, 76, 77, 0.273) 0px 1px 24px;
+    background-color: #333;
+    background-color: #ffffff00;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.headDrop {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+
+
+
+
+.blockSelect {
+    width:100%;
+    position:relative;
+    height: 45px;
+}
+
+.headSelect {
+    position: absolute;
+    top: 0;
+    
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;justify-content: space-between;
+    padding: 0 17px;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+
+    border-radius:20px;
+    box-shadow: rgba(75, 76, 77, 0.273) 0px 1px 24px;
+    background-color: #333;
+}
+
+
+
+.bodySelect {
+    position: absolute;
+    top: 0;left: 0;
+    width: 100%;
+    height: 45px;
+    z-index: 1;
+}
+
+.bodyContent {
+    width: 100%;
+    min-height: 100px;
+    border-radius:20px;
+    box-shadow: rgba(75, 76, 77, 0.273) 0px 1px 24px;
+    background-color: #333;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .4s ease-in-out;
+} 
+
+
+
+.activeSelect .bodyContent {
+    opacity: 1;
+    pointer-events: none;
+
+    transform: translateY(50px);
+}
+
+
+.arrowRight {
+    display: inline-block;
+    transition: all .4s ease-in-out;
+    transform: translateX(-10px);
+    width: 28px;
+    height: 17px;
+    background-repeat: no-repeat;
+    background-position:  center;
+    background-size: cover;
+    background-image: url('./../assets/arrow-right.svg');
+}
+
+.headFilters:hover .arrowRight {
+    transform: translateX(0px);
+
+}
+
+
+.blockDrop {
+    display: inline-block;
+    width: auto;
+    overflow: hidden;
+
+    max-height: 0px;
+    transition: all .5s ease-in-out;
+}
+
+
+.blockCont {
+    display: grid;
+    width: auto;
+    grid-template-columns: repeat(4, auto);
+    gap: 30px;
+    justify-content: space-around;
+    align-items: center;
+    margin: 30px 0;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: inset rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+
+
+.activeDrop {
+  animation: activeFilters alternate .5s ease-in-out forwards;
+}
+
+@keyframes activeFilters {
+    0% {
+        max-height: 0px;
+    }
+    50% {
+        max-height: 140px;
+        overflow: hidden;
+    }
+    100% {
+        overflow: visible;
+        max-height: 140px;
+
+    }
+}
+
+.closeDrop {
+  animation: closeFilter alternate .5s ease-in-out forwards;
+
+}
+
+@keyframes closeFilter {
+    0% {
+        overflow: visible;
+        max-height: 140px;
+    }
+    50% {
+        max-height: 140px;
+        overflow: hidden;
+    }
+    100% {
+        max-height: 0px;
+       
+
+    }
+}
+
+
+.filterBlock {
+    width: 260px ;
+}
+
+.btnSave {
+    height: 45px !important;
+    border-radius: 20px !important;
+
+}
+
+.pagBlock {
+    display: flex;
+    justify-content: center;align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+
+    background-color: #222;
+    box-shadow: inset rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+}
+.prevArrow, .nextArrow {
+    width: 27px;
+    height: 27px;
+    display: inline-block;
+    position: relative;
+    background-position: center;
+    opacity: .85;
+    background-color: #22222200;
+    background-size: contain;
+
+    background-repeat: no-repeat;
+    background-image: url('./../assets/arrow-bolc.svg');
+    transform: rotate(180deg);
+    border-radius: 50%;
+
+}
+
+.pagination {
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    gap:17px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--white);
+}
+
+.nextArrow {
+    transform: rotate(0deg);
+}
+
+.listFilms {
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: space-between;
+    gap: 25px;
+
+}
+
+
+
+
+.listFilms li {
+    max-width: 245px;
+}
+
+.contentBlock {
+    padding-top: 40px;
+}
+
+
+
+.loaderBLock {
+    position: fixed;
+    display: flex;
+    justify-content: center;align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    backdrop-filter: blur(15px);
+    z-index: 35;
+    transition: all .15s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loaderActive {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    border-radius: 40%;
+    background-color: #333333d7;
+ 
+}
+
+.loadSvg {
+    display: inline-block;
+ 
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-image: url('./../assets/load.svg');
+}
+
+.pagination {
+    margin-top: 40px;
+}
