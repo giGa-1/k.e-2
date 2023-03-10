@@ -1,0 +1,14 @@
+films/releasees                                             2   done
+
+films/series/actor  search tags                             3   
+                    name
+
+user:                                                       1   done
+    initials
+    emali
+    password hash
+
+    fav movie ids
+    fav actor ids
+
+film comments (rating)                                      4   done
