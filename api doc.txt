@@ -1,8 +1,5 @@
 films/releasees                                             2   done
 
-films/series/actor  search tags                             3   
-                    name
-
 user:                                                       1   done
     initials
     emali
@@ -12,3 +9,7 @@ user:                                                       1   done
     fav actor ids
 
 film comments (rating)                                      4   done
+
+{
+    "img": "Base64.encode(img)"
+}
