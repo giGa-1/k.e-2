@@ -9,7 +9,8 @@
   --black: #333 ;
   --grey: #666666;
   --white: #f1f1f1;
-  --red: #EF233C;
+
+  --red: #d62828;
 }
 a {
   color: var(--red);
@@ -24,6 +25,12 @@ body {
 
 .scrollHidden::-webkit-scrollbar {
   width: 0;
+}
+
+.miniCont {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 .container {
@@ -80,3 +87,49 @@ body::-webkit-scrollbar-thumb
   background-color: #424242;
 }
 
+
+.lowestRating {
+  background-color:  #000000;
+  color: #fff;
+}
+
+.lowRating {
+  
+  background-color: #280000;
+   padding: 3px 5px;
+  border-radius: 5px;
+  color: #fff;
+
+}
+.midRating {
+ 
+  background-color: #6d0000;
+
+   padding: 3px 5px;
+  border-radius: 5px;
+  color: #fff;
+
+}
+
+.goodRating {
+ 
+  background-color: #a80000;
+   padding: 3px 5px;
+  border-radius: 5px;
+  color: #fff;
+
+}
+
+.bestRating {
+ 
+  background-color: #ec0000;
+   padding: 3px 5px;
+  border-radius: 5px;
+  color: #fff;
+
+}
+
+::selection {
+  color: #fff;
+  background-color: var(--red);
+}

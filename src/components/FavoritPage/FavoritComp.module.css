@@ -1,0 +1,28 @@
+.section {
+    position: relative;
+    display: flex;
+    justify-content: center;align-items: center;
+    min-height: 100vh;
+}
+
+.voidListText {
+    display: inline-block;
+
+    top: 0;left: 0;right: 0;bottom: 0;
+    margin: auto;
+    font-size: 28px;
+    color: #fff;
+}
+
+.title {
+    margin-top: 125px;
+    margin-bottom: 45px;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+}

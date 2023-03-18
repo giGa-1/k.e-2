@@ -20,6 +20,10 @@ import {moviePageReducer} from './pageMovie-reducer';
 import {favStateReducer} from './favState-reducer';
 import {ActorStateReducer} from './ActorState-reducer';
 
+import {complilationPageReducer} from './compilationPage-reducer';
+import {compilListPageReducer} from './compilationList-reducer';
+import {tabsMediaReducer} from './tabsMedia-reducer';
+import {calendarCompReducer} from './calendarComp-reducer';
 const makeStore = () => configureStore({
     reducer: {
         [heroReducer.name]: heroReducer.reducer,
@@ -41,6 +45,11 @@ const makeStore = () => configureStore({
         [moviePageReducer.name]:moviePageReducer.reducer,
         [favStateReducer.name]:favStateReducer.reducer,
         [ActorStateReducer.name]:ActorStateReducer.reducer,
+
+        [complilationPageReducer.name]:complilationPageReducer.reducer,
+        [compilListPageReducer.name]:compilListPageReducer.reducer,
+        [tabsMediaReducer.name]:tabsMediaReducer.reducer,
+        [calendarCompReducer.name]:calendarCompReducer.reducer,
     },
     devTools: true
 })

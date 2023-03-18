@@ -2,10 +2,23 @@ import React from 'react'
 import cl from './Footer.module.css'
 import { useSelector } from 'react-redux'
 
+import { useInView } from 'react-intersection-observer';
+import Link from 'next/link';
+
 export default function Footer() {
     const stateInfo = useSelector(state=>state['Footer Info'])
+    const { ref, inView, entry } = useInView({
+        /* Optional options */
+        threshold: 0.2,
+      });
+      const [ refFoot, inViewFoot ] = useInView({
+        /* Optional options */
+        threshold: 0,
+      });
+  
+
   return (
-    <footer className={cl.footer}>
+    <footer ref={ref} className={inView? [cl.footer, cl.activeFooter].join` ` : cl.footer}>
         <div className="container">
             <div className={cl.content}>
                 {[{idColumn:0,list:'title'}, ...stateInfo].map(e=>{
@@ -29,11 +42,16 @@ export default function Footer() {
                                         return (
                                             <React.Fragment key={el.idCell}>
                                                 <div className={cl.blockList}>
-                                                    <h3 className={cl.title}>
-                                                        {el.title}
-                                                    </h3>
+
+                                                    <Link href={el.href}>
+                                                        <h3 className={cl.title}>
+                                                            {el.title}
+                                                        </h3>
+                                                    </Link>
                                                     <ul className={cl.list}>
-                                                        {el.listRows.map(e=><p className={cl.link}>{e.text}</p>)}
+                                                        {el.listRows.map(e=>
+                                                            <Link href={e.href}><p className={cl.link}>{e.text}</p></Link>
+                                                        )}
                                                     </ul>
                                                 </div>
                                             </React.Fragment>
@@ -46,10 +64,16 @@ export default function Footer() {
                     )
                 })}
             </div>
-            <div className={cl.foot}>
-                <p>© Все права защищены 2023</p>
-                <p>Политика конфеденциальности</p>
-            </div>
+
+                <div ref={refFoot} className="">
+                <div  className={inViewFoot ? [cl.foot, cl.footActive].join` ` : cl.foot}>
+                    <p>© Все права защищены 2023</p>
+                    <p>Политика конфеденциальности</p>
+                </div>
+                </div>
+              
+          
+           
         </div>
     </footer>
   )

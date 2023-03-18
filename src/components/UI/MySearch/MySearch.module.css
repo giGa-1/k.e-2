@@ -18,7 +18,8 @@
     height: 100%;
     background-color: #333;
     border-radius: 7px;
-    box-shadow: rgba(66, 69, 73, 0.2) 0px 0px 24px;
+
+    box-shadow: #645a5a30  0px 0px 24px;
     border: 1px solid #222;
     cursor: pointer;
 }
@@ -81,14 +82,22 @@
     text-align: center;
     position: relative;
     font-size: 12px;
-    color: #777;
-    padding: 3px 4px;
+
+    color: #909090;
+    padding: 4px 4px;
+    box-shadow: inset #3f3434a5 0px 0px 24px;
+
     transition: all .35s ease-in-out;
+    border-radius: 5px;
+
 }
 
 
 .catActive {
-    background-color: #555;
-    color: #222;
+
+    background-color: var(--red);
+    box-shadow: inset #3f343400 0px 0px 24px, #d62828a5 0px 0px 24px;
+
+    color: #dddddd;
     border-radius: 5px;
 }

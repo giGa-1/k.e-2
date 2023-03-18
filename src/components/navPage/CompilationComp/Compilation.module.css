@@ -8,8 +8,8 @@
 
 .listBlock {
     margin: 35px auto 0;
-  max-width: 1200px;
 
+    max-width: 1200px;
 }
 
 .list {
@@ -35,9 +35,14 @@
     box-sizing: border-box;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+
+    background-position: top center;
     transition: all .35s ease-in-out;
-    background-image: url('./../../../assets/back-comp-items.png');
+    background-image: url('../../../assets/test-news.png');
+}
+
+.itemComlp:hover {
+    background-position:  center;
 }
 
 .itemComlp * {
@@ -45,17 +50,28 @@
     
 }
 
-.itemComlp:hover {
-    transform: translateY(-5px) ;
-}
+
+
 
 .top {
-    font-size: 45px;
+    padding: 5px 20px;
+    box-sizing: border-box;
+    display: inline-block;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    background-color: #2222;
+    font-size: 40px;
     font-weight: 600;
     color: var(--white);
 }
 
 .titleItem {
+
+    padding: 5px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    background-color: #2222;
+
     font-size: 18px;
     color: #ffffffaf;
     text-align: right;
@@ -71,6 +87,18 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    opacity: .1;
+
+    opacity: .5;
     background-image: url('./../../../assets/camera-back-big.svg');
+}
+.itemComlp {
+    opacity: 0;
+    transition: all .6s ease-in-out;
+}
+.activeItem {
+    opacity: 1;
+}
+
+.miniCont {
+    max-width: 1200px;
 }
