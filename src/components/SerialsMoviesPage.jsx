@@ -32,10 +32,11 @@ export default function SerialsMoviesPage({title='Фильмы', isSerial=false,
     useEffect(()=>{setIsLoader(true)},[])
 
     useEffect(()=>{
-        const officialHeroData = isSerial ? getOfficialYandexMovies(`/v1/movie?sortField=&page=${isPag}&limit=40&year=2022-2023&rating.kp=7-8&countries.name=США&type=tv-series`, setStateMoviePage, dispatch, false) :getOfficialYandexMovies(`/v1/movie?sortField=&page=${isPag}&limit=40&year=2022-2023&rating.kp=7-8&countries.name=США`, setStateMoviePage, dispatch, false);
+
+        // const officialHeroData = isSerial ? getOfficialYandexMovies(`/v1/movie?sortField=&page=${isPag}&limit=40&year=2022-2023&rating.kp=7-8&countries.name=США&type=tv-series`, setStateMoviePage, dispatch, false) :getOfficialYandexMovies(`/v1/movie?sortField=&page=${isPag}&limit=40&year=2022-2023&rating.kp=7-8&countries.name=США`, setStateMoviePage, dispatch, false);
     },[isPag])
     
-    console.log(isLoader)
+    console.log(stateMovies)
 
     useEffect(()=>{
         isLoader&&setTimeout(()=>setIsLoader(false),1200)
@@ -115,7 +116,8 @@ export default function SerialsMoviesPage({title='Фильмы', isSerial=false,
                     {stateMovies[0]!==undefined&&stateMovies.map((e,i)=>{
                         return (
                             <React.Fragment key={i}>
-                               <BigSwiperItem idFilm={e.id} img={e.poster.url} descr={e.description} title={  e.names[0].name}  year={e.year}/>
+
+                               <BigSwiperItem idFilm={e.id} img={e.poster.url} descr={e.description} title={  e.names[0].name} titleEn={ e.names[1] ? e.names[1].name : ''} rating={e.rating}  year={e.year}/>
                             </React.Fragment>
                         )
                     })}

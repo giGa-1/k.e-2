@@ -590,3 +590,43 @@ background: linear-gradient(270deg, rgba(34,34,34,1) 40%,  rgba(239,35,60,1) 100
 .likeMovies {
     margin-top: 60px;
 }
+
+.favSection {
+    margin-top: 60px;
+
+}
+
+.textBlockFav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.textFav {
+    margin: 0 auto;
+    max-width: 80%;
+    width: 100%;
+
+    text-align: start;
+    font-size: 30px;
+    font-weight: 900;
+    color: #0000003b;
+}
+
+
+.slide {
+    width: 250px !important;
+
+}
+
+.linkFav {
+    color: var(--red);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.swiper {
+    max-width: 80% !important;
+    width: 100% !important;
+}

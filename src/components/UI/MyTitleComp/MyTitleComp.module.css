@@ -1,30 +1,56 @@
 
 
 .block {
+
+    display: inline-block;
     position: relative;
 }
 
 .title {
-    display: flex;
+
+    display: inline-block;
     align-items: end;
     position: relative;
-    max-width: 80%;    
+ 
     font-size: 36px;
     font-weight: 600;
     color: var(--white);
     margin: 0 auto;
     margin-bottom: 40px;
-}
+
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid #0000; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+   
+  }
+
+  .active {
+    animation: 
+    typing 1.5s steps(40, end),
+    blink-caret .375s step-end 4;
+
+  }
+  
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--red); }
+  }
 
 .center h2 {
     justify-content: center;
 }
 
 .svgTitle {
-    margin-left: 15px;
+
+    margin-left: 10px;
     display: inline-block;
-    width: 40px;
-    height: 40px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

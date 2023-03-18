@@ -9,40 +9,49 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setStateUnofficialHero, setStateOfficialHero } from 'redux/hero-raducer'
 import HeroItem from './HeroItem'
 
+import { useInView } from 'react-intersection-observer';
+
 export default function HeroComp() {
-    
+
+    const { ref, inView, entry } = useInView({
+        /* Optional options */
+        threshold: .2,
+      });
+    console.log(inView)
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        const officialHeroData = getOfficialYandexMovies('/v1/movie?field=rating.kp&search=7-10&field=year&search=2022-2023&field=typeNumber&search=1&sortField=year&sortType=1&sortField=votes.imdb&sortType=-1&limit=5', setStateOfficialHero, dispatch);
+        const officialHeroData = getOfficialYandexMovies('?minYear=2022&maxYear=2023&minRating=7&minVotes=20000&name=&genre=&country=&sort=rating&page=1', setStateOfficialHero, dispatch);
         
-        const unofficialHeroData = getUnofficialYandexMovies('?countries=1&order=NUM_VOTE&type=FILM&ratingFrom=7&ratingTo=8&yearFrom=2021&yearTo=2023&page=1', setStateUnofficialHero, dispatch);
+        // const unofficialHeroData = getUnofficialYandexMovies('?type=FILM&&yearFrom=2021&yearTo=2023&page=1', setStateUnofficialHero, dispatch);
     },[])   
 
     const {unofficialState,officialState} = useSelector(state=>state['Hero']);
-    console.log(unofficialState.filter((e,i)=>i<=4))
     console.log(officialState)
   return (
-    <section className={cl.hero}>
-        
-            <div className={cl.content}>
-                <Swiper
-                    spaceBetween={50}
-                    slidesPerView={1}
-                    onSlideChange={() => console.log('slide change')}
-                    onSwiper={(swiper) => console.log(swiper)}
-                    className={cl.swiper}
-                >
-                    {unofficialState.filter((e,i)=>i<=4).map((e,i)=>{
-                        return (
-                            <SwiperSlide key={i} className={cl.slide}>
-                                <HeroItem infoObj={e}/>
-                            </SwiperSlide>
-                        )
-                    })}
-                </Swiper>
-                
-            </div>
+    <section ref={ref} className={cl.hero}>
+          
+             <div className={cl.content}>
+             {/* <Swiper
+                 spaceBetween={50}
+                 slidesPerView={1}
+                 onSlideChange={() => console.log('slide change')}
+                 onSwiper={(swiper) => console.log(swiper)}
+                 className={cl.swiper}
+             >
+                 {unofficialState.filter((e,i)=>i<=4).map((e,i)=>{
+                     return (
+                         <SwiperSlide key={i} className={cl.slide}>
+                             <HeroItem infoObj={e} inView={inView}/>
+                         </SwiperSlide>
+                     )
+                 })}
+             </Swiper>
+              */}
+         </div>
+          
+           
+
    
     </section>
   )

@@ -1,11 +1,17 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+
+import HeaderComp from 'src/components/Header/HeaderComp';
+import Footer from 'src/components/Footer/Footer';
+
+import FavoritComp from '../src/components/FavoritPage/FavoritComp'
 
 export default function favorits() {
-  const stateFav = useSelector(state=>state['Fav State'])
   return (
     <div>
-        {stateFav.map(e=><div>{e.id}</div>)}
+       <HeaderComp/>
+       <FavoritComp />
+      <Footer />
+
     </div>
   )
 }

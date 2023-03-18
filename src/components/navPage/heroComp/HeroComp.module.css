@@ -10,11 +10,14 @@
 
 .content {
     height: 100%;
-    padding-top: 80px;
+
 }
 
 .swiper {
     height: 100%;
+
+    padding-top: 80px;
+
 }
 .slide {
     height: 100%;
@@ -28,8 +31,14 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    
+
+    transition: all .8s ease-in-out;
+    opacity: 0;
 }
+
+.heroActive .itemBackImg {
+    opacity: 1;
+} 
 
 .itemWrapper {
     position: relative;
@@ -57,26 +66,57 @@
 .itemGradient {
     position: absolute;
     height: 100%;
-    width: 60%;
-    background: rgb(0,0,0);
-    background: linear-gradient(90deg,rgba(0,0,0,0) 1%, rgba(0,0,0,1) 40%, rgba(9,9,121,0) 100%);
 
+    width: 100%;
+    background: linear-gradient(90deg, rgba(32,32,32,1) 45%, rgba(27,27,27,0) 100%);
 }
 
 .itemPoster {
     margin-bottom: 30px;
-    max-width: 300px;
+
+    width: 300px;
+    height: 435px;
     border-radius: 15px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all .8s ease-in-out;
 }
+
+.heroActive .itemPoster {
+    opacity: 1;
+} 
 
 .nameEng {
     margin-bottom: 5px;
 }
 
 
+.nameEng, .itemName, .bottomTitle {
+    transform: translateY(25px);
+    opacity: 0;
+    transition: all .8s ease-in-out;
+
+}
+
+.heroActive  .bottomTitle {
+    opacity: 1;
+    transform: translateY(0px);
+
+} 
+.heroActive  .itemName {
+    opacity: 1;
+    transform: translateY(0px);
+
+} 
+.heroActive  .nameEng {
+    opacity: 1;
+    transform: translateY(0px);
+
+} 
+
 
 .itemName {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     font-size: 40px;
     max-width: 50%;
     color:var(--white);
@@ -106,6 +146,18 @@
     font-size: 17px;
     font-family: 'Montserrat';
     color: var(--grey);
+}
+
+
+.ratingText {
+    color: #fff;
+}
+
+
+.itemBack {
+    width:100%;
+    height: 100vh;
+    object-fit: cover;
 }
 
 

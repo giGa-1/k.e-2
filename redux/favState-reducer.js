@@ -2,9 +2,11 @@ import { createSlice } from "@reduxjs/toolkit"
 import { HYDRATE } from "next-redux-wrapper"
 
 
-const initialState = [
-    // {id:1,infoObj:''},
-]
+
+const initialState = { 
+    videoContent: [],
+    actorsContent: [],
+}
 
 
 export const favStateReducer = createSlice({
@@ -13,10 +15,17 @@ export const favStateReducer = createSlice({
     reducers: {
 
         setFavNewItems(state, action) {
-            return [...state,{id:action.payload.id,infoObj:action.payload}]
+
+            return {...state, videoContent: [...state.videoContent,{id:action.payload.id,infoObj:action.payload}]}
         },
         deleteFavItems(state, action) {
-            return state.filter((e,i)=>e.id!=action.payload.id)
+            return state.videoContent.filter((e,i)=>e.id!=action.payload.id)
+        },
+        setFavNewActors(state, action) {
+            return {...state, actorsContent: [...state.videoContent,{id:action.payload.id,infoObj:action.payload}]}
+        },
+        deleteFavActors(state, action) {
+            return state.actorsContent.filter((e,i)=>e.id!=action.payload.id)
         },
 
         // extra
@@ -31,6 +40,7 @@ export const favStateReducer = createSlice({
     }
 })
 
-export const {setFavNewItems,deleteFavItems} = favStateReducer.actions;
+
+export const {setFavNewItems,deleteFavItems, setFavNewActors, deleteFavActors} = favStateReducer.actions;
 export const favReducerState = (state)=>state.favStateReducer;
 export default favStateReducer.reducer

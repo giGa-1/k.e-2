@@ -5,9 +5,10 @@ import { authAnimationState } from 'redux/authActive-reducer';
 import { applyMiddleware } from '@reduxjs/toolkit';
 import MyInput from './../../UI/MyInput/MyInput';
 import MyBtnFiled from '../../UI/MyBtnFiled/MyBtnFiled';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
 
+import Link from 'next/link';
+import {setNewUserReg} from 'src/untils/API/setNewUserReg';
+import {setUserSignIn} from 'src/untils/API/setUserSignIn';
 
 export default function SignComp() {
   const [isInputMail,setIsInputMail] = useState('')
@@ -18,19 +19,21 @@ export default function SignComp() {
   const dispatch = useDispatch()
 
 
+  const handleFuncBtn = (e) => {
+    e.preventDefault()
 
-
-
-  const handleFuncBtn = () => {
-    const resultFormInfo = !isSign ? {mail: isInputMail, password: isInputPassword, initials: isInputInitials} : {mail: isInputMail, password: isInputPassword}
-    console.log(resultFormInfo)
-    localStorage.setItem('isAuth', true)
+    const resultFormInfo = !isSign ? setNewUserReg(isInputInitials,isInputMail,isInputPassword ) :  setUserSignIn(isInputMail,isInputPassword ) 
+    resultFormInfo.then(res=>{
+      if(res.status==='ok'){localStorage.setItem('isAuth', true);window.location.href = '/';console.log(res.status)}
+    })
   }
+
+
+
 
   useMemo(()=>{
     isSign ? isInputMail.length>0&&isInputPassword.length>0&&setIsFormComplited(true)  : isInputMail.length>0&&isInputPassword.length>0&&isInputInitials.length>0&&setIsFormComplited(true)
   },[isInputMail,isInputPassword,isInputInitials])
-
 
 
   return (
@@ -51,23 +54,26 @@ export default function SignComp() {
                           <MyInput classesInput={cl.input} classesPlace={cl.place} required={true} type="password" place={'Пароль'} setInput={setIsInputPassword} valueInput={isInputPassword} form='sign'/>
                         </div>
                          
-                          <MyBtnFiled classBtn={cl.btn} form='sign' handleFunc={e=>handleFuncBtn(true)}>Отправить</MyBtnFiled>
+
+                          <MyBtnFiled classBtn={cl.btn} form='sign' handleFunc={handleFuncBtn}>Отправить</MyBtnFiled>
 
                       </form>
                         :
                         <form className={cl.formSign} id='sign'>
                           <div className={cl.formInputs}>
-                            <MyInput classesInput={cl.input} classesPlace={cl.place} required={true} place={'ФИО'} setInput={setIsInputInitials} valueInput={isInputInitials} form='sign'/>
+
+                            <MyInput classesInput={cl.input} classesPlace={cl.place} required={true} place={'Имя'} setInput={setIsInputInitials} valueInput={isInputInitials} form='sign'/>
                             <MyInput classesInput={cl.input} classesPlace={cl.place} required={true} place={'Почта'} setInput={setIsInputMail} valueInput={isInputMail} form='sign' />
                             <MyInput classesInput={cl.input} classesPlace={cl.place} required={true} type={'password'} place={'Пароль'} setInput={setIsInputPassword} valueInput={isInputPassword} form='sign'/>
                           </div>
                           {
                             isFormComplited ? 
-                              <Link href={'/'} >
-                                <MyBtnFiled classBtn={cl.btn} form='sign' handleFunc={e=>handleFuncBtn()}>Отправить</MyBtnFiled>
-                              </Link>
+
+                             
+                                <MyBtnFiled classBtn={cl.btn} form='sign' handleFunc={handleFuncBtn}>Отправить</MyBtnFiled>
+                              
                             :
-                              <MyBtnFiled classBtn={cl.btn} form='sign' handleFunc={e=>handleFuncBtn()}>Отправить</MyBtnFiled>
+                              <MyBtnFiled classBtn={cl.btn} form='sign' handleFunc={handleFuncBtn}>Отправить</MyBtnFiled>
                           }
                          
                         </form>

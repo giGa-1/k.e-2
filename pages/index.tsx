@@ -14,6 +14,7 @@ import { useRouter } from 'next/router';
 
 
 
+
 export default function Home() {
   useEffect(()=>{
     const isAuth = localStorage.getItem('isAuth');
@@ -24,7 +25,7 @@ export default function Home() {
       <HeaderComp/>
       <HeroComp />
       <FocusComp />
-      <NewsComp />
+
       <MoviesComp/>
       <SerialsComp/>
       <CompilationComp />

@@ -20,11 +20,7 @@ export const getUnofficialYandexMovies = async (getUrl = '', actionFunc, dispatc
         .then(res => res.json())
         .then(json => {console.log(json);dispatch(actionFunc(json.items))})
         .catch(err => console.log(err))
-    console.log(123123123)
-    console.log(123123123)
-    console.log(123123123)
-    console.log(123123123)
-    console.log(123123123)
+
 
     return response
 }

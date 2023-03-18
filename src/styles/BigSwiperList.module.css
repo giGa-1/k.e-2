@@ -15,6 +15,10 @@
 }
 .swiper {
     padding: 0 30px;
+
+    transition: all .8s ease-in-out;
+    transform: translateX(100vw);
+    opacity: 0;
 }
 
 .imgitem {
@@ -26,6 +30,8 @@
 }
 
 .block {
+
+    overflow: hidden;
     padding: 40px 0;
     box-shadow: inset rgba(23, 23, 23, 0.73) 0px 8px 24px, rgba(23, 23, 23, 0.73) 0px 8px 24px ;
 }
@@ -48,7 +54,9 @@
 .upperImg {
     position: absolute;
     width: 100%;
-    height: 370px;
+
+    max-height: 370px;
+    height: auto;
     border-radius: 5px;
 
     background-color: #090909b2;
@@ -91,3 +99,33 @@
     width: auto;
 }
 
+.activeBlock .swiper{
+    opacity: 1;
+    transform: none;
+}
+
+.itemBottom {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+}
+
+.itemBottomHead {
+   
+}
+
+.item {
+    position: relative;
+}
+
+.rating {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 5;
+}
+.itemEnTitle {
+    display: inline-block;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
