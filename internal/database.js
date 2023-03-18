@@ -68,11 +68,12 @@ export function getStatments() {
                         AND rating > ? 
                         AND votes > ? 
                         AND LOWER(name) LIKE ? 
+                        AND LOWER(type) LIKE ? 
                         AND (SELECT COUNT(*) FROM MovieGenres WHERE movieid = id AND LOWER(genre) LIKE ?) > 0 
                         AND (SELECT COUNT(*) FROM MovieCountries WHERE movieid = id AND LOWER(country) LIKE ?) > 0 
                         ORDER BY 
                             CASE ? 
-                                WHEN "year" THEN year 
+                                WHEN 'year' THEN year 
                                 ELSE rating
                             END 
                             DESC 
