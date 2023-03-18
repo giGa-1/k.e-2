@@ -1,6 +1,6 @@
 import { getStatments, insertFavoriteActorByUserKey } from "../../../../../internal/database";
 
-export default function handerl(req, res) {
+export default function handler(req, res) {
   	return new Promise((resolve, reject) => {
 		const { id } = req.query
 
@@ -12,4 +12,3 @@ export default function handerl(req, res) {
         });
 	})
 } 
-

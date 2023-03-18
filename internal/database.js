@@ -1,6 +1,12 @@
 const sqlite3 = require('sqlite3').verbose();
 
-const db = new sqlite3.Database('Data.sqlite');
+export const db = new sqlite3.Database('Data.sqlite');
+db.loadExtension("./sqlean-win-x64/unicode", (err) => console.log(err));
+
+export var insertMovieSort = null;
+export var insertMoviePoster = null;
+export var insertMovieGenre = null;
+export var insertMovieCountry = null;
 export var insertMovieStmt = null;
 export var insertUserStmt = null;
 export var insertStmt = null;
@@ -19,6 +25,8 @@ export var insertFavoriteActorByUserKey = null;
 export var deleteFavoriteActorByUserKey = null;
 export var deleteFavoriteMovieByUserKey = null;
 
+export var selectMovie = null;
+
 function dbRunPromise(cmd) {
     return new Promise((resolve, reject) => {
         db.run(cmd, (err) => resolve());
@@ -31,15 +39,26 @@ export function getStatments() {
 			// resolve();
 		// } else {
             Promise.all([
-			    dbRunPromise("CREATE TABLE if not exists `MovieData` (`id` INTEGER PRIMARY KEY, `json` TEXT)"),
+			    dbRunPromise("CREATE TABLE if not exists `Movies` (`id` INTEGER PRIMARY KEY, `year` INTEGER, `rating` DECIMAL, `votes` INTEGER, `name` TEXT, `type` TEXT)"),
+			    dbRunPromise("CREATE TABLE if not exists `MoviePosters` (`id` INTEGER PRIMARY KEY, `url` TEXT, `previewUrl` TEXT)"),
+			    dbRunPromise("CREATE TABLE if not exists `MovieCountries` (`movieid` INTEGER, `country` TEXT)"),
+			    dbRunPromise("CREATE TABLE if not exists `MovieGenres` (`movieid` INTEGER, `genre` TEXT)"),
+			    dbRunPromise("CREATE TABLE if not exists `MovieJson` (`id` INTEGER PRIMARY KEY, `json` TEXT)"),
                 dbRunPromise("CREATE TABLE if not exists `Users` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` TEXT, `email` TEXT, `password` TEXT, `key` TEXT)", (res, err) => console.log(err)),
                 dbRunPromise("CREATE TABLE if not exists `FavoriteMovies` (`userid` INTEGER NOT NULL, `movieid` INTEGER NOT NULL, PRIMARY KEY (`userid`, `movieid`))"),
                 dbRunPromise("CREATE TABLE if not exists `FavoriteActors` (`userid` INTEGER NOT NULL, `actorid` INTEGER NOT NULL, PRIMARY KEY (`userid`, `actorid`))"),
                 dbRunPromise("CREATE TABLE if not exists `Comments` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `movieid` INTEGER, `text` TEXT, `rating` INTEGER, `userid` INTEGER)"),
             ]).then(() => {
                 Promise.all([
-                    insertMovieStmt = db.prepare("INSERT INTO `MovieData` VALUES (?, ?)"),
-                    selectMovieStmt = db.prepare("SELECT `json` FROM `MovieData` WHERE `id`= ?"),
+                    insertMovieSort = db.prepare("INSERT OR IGNORE INTO `Movies` VALUES (?, ?, ?, ?, ?, ?)"),
+                    insertMoviePoster = db.prepare("INSERT OR IGNORE INTO `MoviePosters` VALUES (?, ?, ?)"),
+                    insertMovieGenre = db.prepare("INSERT OR IGNORE INTO `MovieGenres` VALUES (?, ?)"),
+                    insertMovieCountry = db.prepare("INSERT OR IGNORE INTO `MovieCountries` VALUES (?, ?)"),
+                    insertMovieStmt = db.prepare("INSERT OR IGNORE INTO `MovieJson` VALUES (?, ?)"),
+                    selectMovieStmt = db.prepare("SELECT `json` FROM `MovieJson` WHERE `id`= ?"),
+
+                    selectMovie = db.prepare(
+                        "SELECT * FROM `Movies` WHERE `year` >= ? AND `year` <= ? AND `rating` > ? AND `votes` > ? AND LOWER(name) LIKE ? AND `id` IN (SELECT `movieid` FROM `MovieGenres` WHERE `genre` LIKE ?) AND `id` IN (SELECT `movieid` FROM `MovieCountries` WHERE `country` LIKE ?) ORDER BY CASE ? WHEN 'year' THEN `year` ELSE `rating` END DESC LIMIT 20 OFFSET ?"),
 
                     insertUserStmt = db.prepare("INSERT INTO `Users` (`username`, `email`, `password`, `key`) VALUES (?, ?, ?, ?)"),
                     selectUserByEmailOrNameStmt = db.prepare("SELECT COUNT(*) AS `count` FROM `Users` WHERE (`username` = ? OR `email` = ?)"),
