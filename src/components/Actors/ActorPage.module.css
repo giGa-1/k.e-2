@@ -1,0 +1,157 @@
+
+
+.section {
+    padding: 120px 0 60px;
+
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    box-sizing: border-box;
+    gap: 70px;
+    padding: 25px 15px 0;
+    width:100%;
+    min-height: 700px;
+}
+
+.actorImg {
+    max-width: 350px;
+    width: 100%;
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin-bottom: 40px;
+} 
+
+.tabsTextBlock {
+    margin-bottom: 35px;
+    padding: 25px 40px 20px;
+    border-radius: 15px;
+    border: 3px solid #9e9e9e28;
+    box-shadow: inset rgba(84, 84, 84, 0.2) 0px 0px 29px 0px;
+}
+
+.nameEnActor {
+    font-size: 16px;
+    color: #ffffff52;
+    line-height: 120%;
+    margin-bottom: 5px;
+}
+
+.nameActor {
+    font-size: 34px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.favBlock {
+    padding: 18px 25px 18px;
+
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    border: 3px solid #9e9e9e28;
+    box-shadow: inset rgba(84, 84, 84, 0.2) 0px 0px 29px 0px;
+    cursor: pointer;
+ }
+ 
+ .favText {
+     color: #eeeeee;
+     font-size: 22px;
+     font-weight: 600;
+ }
+
+.favIcon {
+    display: inline-block;
+    width: 30px;
+    height: 33px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('./../../assets/fav-dis-1.svg');
+    transition: all .35s ease-in-out;
+
+
+
+}
+.textFav {
+    pointer-events: none;
+    color: #eeeeee;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.activeFav {
+    background-image: url('./../../assets/fav-dis.svg');
+}
+
+.listInfoActor {
+    padding: 15px;
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    gap: 15px;
+}
+
+.itemAboutActor {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    gap: 30px;
+    max-width: 800px;
+}
+
+.itemLeft, .itemRight {
+    color: #fff;
+    font-weight: 500;
+    font-size: 21px;
+    min-width: 200px;
+}
+
+.filmsActor {
+    margin-top: 50px;
+}
+
+.itemRight {
+    color: #fff;
+    opacity: .6;
+}
+
+.filmsList {
+    display: inline-grid;
+    margin-top: 25px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 25px;
+    width: 100%;
+    row-gap: 35px;
+    box-sizing: border-box;
+}
+
+.filmsTitle {
+    font-size: 25px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.filmsItem {
+    color: #ffffffb0;
+}
+
+.filmsItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    padding: 35px;
+    height: 100%;
+    font-size: 16px;
+    box-sizing: border-box;
+    box-shadow:  rgba(84, 84, 84, 0.2) 0px 0px 29px 0px;
+    border-radius: 8px;
+}

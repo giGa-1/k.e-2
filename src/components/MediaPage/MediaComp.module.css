@@ -1,0 +1,379 @@
+
+
+
+.section {
+    margin-top:90px;
+    padding: 50px 0;
+}
+
+.headContent {
+    display: grid;
+    padding: 0 20px;
+    grid-template-columns: repeat(2, auto);
+    justify-content: space-between;
+    align-items: center;
+    gap: 35px;
+}
+
+.tabsList {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 15px;
+
+    align-items: center;
+}
+
+.itemTabs {
+    display: flex;
+    justify-content: center;align-items: center;
+    height: 40px;
+    padding: 0 20px;
+    border-radius: 10px;
+    transition: all .35s ease-in-out;
+    color: #fafafa;
+    cursor: pointer;
+    transform: translateX(-5px) translateY(-10px);
+    box-shadow:  rgba(245,245,245, 0.3) 5px 5px, rgba(245,245,245, 0.2) 10px 10px, rgba(245,245,245, 0.1) 15px 15px, rgba(245,245,245, 0.05) 20px 20px;
+}
+
+.title {
+    margin: 0;
+  
+}
+
+.contentBody {
+
+    max-width: 1400px;
+    margin: 0 auto;
+    margin-top: 45px;
+}
+
+.tebsActive {
+    transform: translateX(0px) translateY(4px);
+    box-shadow:  rgba(117, 117, 117, 0.094) 5px 5px 2px 2px;
+
+}
+
+
+.itemsFFiled {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+}
+
+.itemsT {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    gap: 20px;
+}
+
+.itemsF {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+}
+
+.contentBody {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    gap: 20px;
+}
+
+.contentList {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    gap: 20px;
+}
+
+.tabsBody {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+    opacity: 0;
+    transition: all .4s ease-in-out;
+}
+
+.bodyActive {
+    position: relative;
+    opacity: 1;
+    pointer-events: all;
+
+}
+
+
+/* Media ALL  */
+
+.newsAllBlock {
+ 
+    margin-bottom: 50px;
+}
+
+
+.tabsTitle{
+    font-size: 29px !important;
+}
+
+.newsAllListBlock {
+    margin-top: 10px;
+}
+
+.newsAllList {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.link {
+    display: block;
+}
+.newsAllItem {
+    position: relative;
+    overflow: hidden;
+  
+    min-height: 255px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: rgba(85, 86, 87, 0.2) 0px 0px 24px;
+}
+.newsAlllink {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+.newsAllImgItem {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    object-fit: cover;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+}
+
+.newsAllBigItem {
+    grid-row-start: 1;
+    grid-row-end: 3;
+
+    grid-column-start: 3;
+    grid-column-end: 5;
+}
+
+.newsAllBigBottom {
+    grid-row-start: 4;
+    grid-row-end: 6;
+
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+
+
+.newsAllTextBlock {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+
+    width: 100%;
+    height: 45%;
+    box-sizing: border-box;
+    padding: 15px;
+    backdrop-filter: blur(12px);
+    background-color: #21212196;
+}
+
+.newsAllBigBottom .newsAllTextBlock, .newsAllBigItem .newsAllTextBlock  {
+    height: 22%;
+}
+
+.newsAllText {
+    overflow: hidden;
+    color: #fff;
+    font-size: 17px;
+    line-height: 160%;
+
+}
+
+.newsAllDateNews {
+    color: rgb(213, 212, 212);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.videosAllBlock {
+    margin: 105px 0;
+}
+.videosAllList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.videosAllItem {
+    display: flex;
+    justify-content: center;
+}
+
+.articlesAllBlock {
+
+}
+
+.articlesAllList {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.articlesAllItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 20px;
+    min-height: 272px;
+    border: 2px solid #333;
+    transition: all .1s ease-in-out;
+}
+
+.articlesAllItem:hover {
+    border: 2px solid var(--red);
+    
+} 
+
+
+.articlesAllDescr {
+    font-size: 16px;
+    line-height: 160%;
+    color: #454545;
+    transition: all .1s ease-in-out;
+}
+
+.articlesAllItem:hover .articlesAllDescr {
+    color: #ffff;
+
+    
+} 
+
+.articlesAllBottom {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.articlesAllLikes {
+    color: #333;
+    font-size: 19px;
+    display: grid;
+    transition: all .1s ease-in-out;
+
+    grid-template-columns: repeat(2, auto);
+    gap: 7px;
+    align-items: center;
+}
+
+
+.articlesAllItem:hover .articlesAllLikes {
+    color: #ffff;
+
+    
+}
+
+.articlesAllLikeSvg {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: contain;
+    transition: all .1s ease-in-out;
+
+    background-image: url('./../../assets/like-svg.svg');
+}
+
+.articlesAllItem:hover .articlesAllLikeSvg {
+    background-image: url('./../../assets/like-sbg-white.svg');   
+}
+
+
+.articlesAllDate {
+    color: #ffffff;
+    transition: all .1s ease-in-out;
+}
+
+.articlesAllItem:hover .articlesAllDate {
+    color: #777777;
+}
+.allLinkArticles {
+    display: block;
+    position: relative;
+}
+
+.videosAllItem, .newsAllItem, .articlesAllItem {
+    transform: translateY(10px);
+    opacity: 0;
+}
+
+.videosAllItemActive, .activeNewsItem  {
+    transition: all .8s ease-in-out;
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+.articlesAllItemActive {
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+.videoPlayer {
+    width: 100%;
+    height: 210px;
+    border-radius: 10px;
+    box-shadow: rgba(82, 82, 83, 0.2) 0px 8px 24px;
+}
+
+.pagination {
+    display: grid;
+    margin-top: 50px;
+    justify-content: center;
+    grid-template-columns: repeat(3, auto);
+    gap: 15px;
+    align-items: center;
+}
+
+.arrowCircleLeft, .arrowCircleRight {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    background-image: url('./../../assets/arrow-circle.svg');
+}
+
+
+.arrowCircleRight {
+    transform: rotate(180deg);
+}
+
+.countPage {
+    font-size: 19px;
+    color: #fff;
+
+}
+/*  */
+
+
+
+.contentBody {
+    
+    position: relative;
+}

@@ -1,0 +1,125 @@
+
+
+.section {
+    position: absolute;
+    height: 100vh;
+    top: 0;
+    width: 100vw;
+    overflow: hidden;
+    box-sizing:border-box;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-color: #222;
+}
+
+.activeAnimation {
+    opacity: 1;
+    pointer-events: all;
+
+}
+
+.back {
+    position: absolute;
+    width: 50vw;
+    height: 200vh;
+    transform: rotate(20deg) translateX(100vw);
+    right: -5vw;
+    top: -20vh;
+    bottom: 0;
+    left: auto;
+    background-color: var(--red);
+}
+
+
+.activeAnimation .back {
+    animation: back alternate 2s cubic-bezier(0,.61,.71,.99) 1.7s forwards;
+}
+
+.activeAnimation .content{
+    animation: content alternate 2s cubic-bezier(.72,-0.01,.43,1) 1.8s forwards;
+}
+
+
+
+
+@keyframes back {
+    to {
+        transform: rotate(20deg) translateX(0vw);
+    }
+}
+
+@keyframes content {
+    to {
+        transform: translateY(0vw);
+        box-shadow: rgba(0, 0, 0, 0.296) 0px 2px 20px;
+    }
+}
+
+
+
+
+.wrapper {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 0;left: 0;right: 0;bottom: 0;
+    margin: auto;
+    width: 30vw;
+ 
+}
+
+.titleSign {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 23px;
+    letter-spacing: 1px;
+    font-weight: 700;color: #ACACAC;
+}
+
+.content {
+    position: relative;
+   
+    box-sizing: border-box;
+    width: 30vw;
+    min-height: 30vw;
+    border-radius: 25px;
+    background-color: #222;
+    padding: 45px 40px;
+    transform: translateY(100vh);
+    /* box-shadow: rgba(0, 0, 0, 0.296) 0px 2px 20px; */
+}
+
+.formSign {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 20vw;
+
+}
+
+.formInputs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2,auto);
+    gap: 15px;
+    justify-content: center;
+}
+
+.input {
+    width: 100%;
+}
+
+.btn {
+    margin-top: 5px;
+    width: 100%;
+    height:50px;
+}
+
+
+.formSign a {
+    width: 100%;
+}

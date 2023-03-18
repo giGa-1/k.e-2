@@ -1,0 +1,15 @@
+films/releasees                                             2   done
+
+user:                                                       1   done
+    initials
+    emali
+    password hash
+
+    fav movie ids
+    fav actor ids
+
+film comments (rating)                                      4   done
+
+{
+    "img": "Base64.encode(img)"
+}

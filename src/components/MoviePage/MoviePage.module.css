@@ -1,0 +1,632 @@
+
+.section {
+    margin-top: 100px;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    box-sizing: border-box;
+    gap: 70px;
+    padding: 25px 15px 0;
+    width:100%;
+    min-height: 700px;
+}
+
+.videoComp {
+    max-width: 350px;
+}
+
+.imgPoster {
+    max-width: 350px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border: 1px solid #333;
+    margin-bottom: 40px;
+}
+
+.trailerText {
+    font-size: 19px ;
+    font-weight: 500;
+    color:var(--white);
+    margin-bottom: 15px;
+}
+
+
+.tabsBtns {
+    margin: 40px 0 10px;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnTabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    padding: 0 60px;
+    box-shadow: rgba(84, 84, 84, 0.2) 0px 0px 29px 0px;
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+    border-radius: 20px;
+    font-size: 16px;
+    color: #acacac;
+}
+
+.tabsHead {
+    padding: 25px 40px 20px;
+    border-radius: 15px;
+    border: 3px solid #9e9e9e28;
+    box-shadow: inset rgba(84, 84, 84, 0.2) 0px 0px 29px 0px;
+}
+
+.nameEnFilm {
+    font-size: 16px;
+    color: #ffffff52;
+    line-height: 120%;
+    margin-bottom: 5px;
+}
+
+.nameFilm {
+    font-size: 34px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.imgBlock {
+    position: relative;
+}
+
+
+.favImg {
+    display: inline-block;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 45px;
+    height: 45px;
+    border-radius: 20%;
+    background-color: #333;
+
+}
+
+.tabsHeadTitle {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: space-between;
+    align-items: start;
+    gap: 40px;
+}
+
+.tabsTextBlock {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+
+}
+
+.favBlock {
+
+   display: grid;
+   grid-template-columns: repeat(2, auto);
+   gap: 15px;
+   align-items: center;
+   cursor: pointer;
+}
+
+.favText {
+    color: #eeeeee;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.favIcon {
+    display: inline-block;
+    width: 25px;
+    height: 33px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('./../../assets/fav-dis-1.svg');
+    transition: all .35s ease-in-out;
+
+
+
+}
+
+
+.favText {
+    pointer-events: none;
+}
+
+.activeFav {
+    background-image: url('./../../assets/fav-dis.svg');
+}
+
+.activeBtnTabs {
+    background-color: #3e3e3e30;
+    box-shadow: rgba(123, 123, 123, 0.2) 0px 0px 29px 0px;
+
+}
+
+.tabsBody {
+    margin-top: 40px;
+    padding: 0 25px;
+    box-sizing: border-box;
+}
+
+.descrFilm {
+    margin-top: 20px;
+    font-size: 17px;
+    line-height: 160%;
+    max-width: 800px;
+    color: #acacac;
+}
+
+.aboutRow {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    gap: 5px;
+    max-width: 800px;
+}
+
+.titleRow, .valueRow {
+    color: #fff;
+    font-weight: 500;
+    font-size: 21px;
+}
+
+
+.valueRow {
+    color: #fff;
+    opacity: .6;
+}
+
+.infoAbout {
+    display: grid;
+    grid-template-rows: repeat(5, auto);
+    gap: 25px;
+}
+
+.filtersBlock {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 30px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sendReview {
+    padding: 12px 25px;
+    background-color: #333;
+    border-radius: 25px;
+    max-width: 450px;
+    font-size: 17px;
+    font-weight: 500;
+    color:#111;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 0px 24px ;
+    width: 100%;
+    transition: all .35s ease-in-out;
+    cursor: pointer;
+}
+
+.sendReview:hover {
+    box-shadow: rgba(149, 157, 165, 0.041) 0px 0px 24px ;
+
+}
+
+.selectBlock {
+    min-width: 220px;
+    width: 100%;
+}
+
+.listBlock {
+}
+
+.list {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    gap: 20px;
+    justify-content: center;
+}
+
+.review {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    gap: 35px;
+    width: 100%;
+    padding:  30px;
+    border-radius:20px;
+    box-sizing: border-box;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 0px 24px ;
+
+}
+
+.reviewItemHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ratingBlock {
+    display: grid;
+    grid-template-columns: repeat(10, auto);
+    gap: 7px;
+    align-items: center;   
+}
+
+.ratingPoint {
+    width: 16px;
+    height: 16px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 0px 9px;
+    border-radius: 50%;
+}
+.pointActive {
+    background-color: #ef233b;
+    
+}
+
+.dateReview {
+    color: #4c4c4c;
+    font-weight: 500;
+}
+
+.reviewItemContent {
+    display: grid;
+    grid-template-columns: auto 5fr;
+    box-sizing:border-box;
+    gap: 40px;
+}
+
+.userInfo {
+    display: grid;
+    grid-template-columns: 35px 5fr;
+    gap: 13px;
+    align-items: center;
+}
+
+.imgUser {
+    width: 35px;
+    height: 35px;
+    border-radius: 12px;
+    background-color: #333;
+    outline: none;
+}
+
+.ratingWrap {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 15px;
+    letter-spacing: 1px;
+
+}
+
+.ratingText {
+    font-size: 18px;
+    font-weight: 600;
+    color: #353535;
+}
+.ratingFade {
+    background: rgb(34,34,34);
+background: linear-gradient(270deg, rgba(34,34,34,1) 40%,  rgba(239,35,60,1) 100%);
+}
+
+.userInitials {
+    font-size: 19px;
+    font-weight: 500;
+    color: #d6d6d6;
+    letter-spacing: 1px;
+}
+
+.rightReview {
+    font-size: 17px;
+    line-height: 170%;
+    font-weight: 500;
+    color: #d6d6d6;
+    letter-spacing: 1px;
+}
+.tabsAbout {
+    box-sizing: border-box;
+}
+.pagiantion {
+    margin-top: 40px;
+    width: 100%;
+    display: grid;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 25px;
+
+}
+
+.prevArrow, .nextArrow {
+    width: 23px;
+    height: 23px;
+    display: inline-block;
+    position: relative;
+    background-position: center;
+    opacity: .85;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('./../../assets/arrow-bolc.svg');
+    transform: rotate(180deg);
+    border-radius: 50%;
+
+}
+
+.pagNumbers {
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    gap:5px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--white);
+}
+
+.nextArrow {
+    transform: rotate(0deg);
+}
+
+.listActors {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: space-between;
+    box-sizing: border-box;
+    column-gap: 20px;
+    row-gap: 35px;
+}
+
+.itemActor {
+    width: 100%;
+    padding: 25px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    box-shadow: rgba(79, 79, 86, 0.2) 0px 4px 29px 0px;
+}
+.imgActor {
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 5px;
+    max-height:200px;
+    object-fit: cover;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    filter: grayscale(10%);
+}
+
+
+.titleBlock {
+   
+}
+
+.title {
+    color: var(--white);
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.role {
+    color: #707070;
+    font-size: 14px;
+}
+
+
+.titleTabs {
+    font-size: 26px;
+    color: var(--white);
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+
+.faxList {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    gap: 15px;
+
+}
+
+.itemFax {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 15px;
+    padding: 0 15px;
+    box-sizing: border-box;
+
+}
+
+.point {
+    position: relative;
+    display: inline-block;
+    margin-top: 15px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--red);
+}
+
+.itemFax {
+    font-size: 17px;
+    line-height: 170%;
+    color: #cdcdcd;
+}
+
+.swiper {
+    max-width: 997px;
+    box-sizing: border-box !important;
+
+}
+
+.swiperSlide {
+    width: 350px !important;
+    border-radius: 20px;
+    overflow: hidden;
+    box-sizing: border-box !important;
+    
+}
+
+.videoItem,.imgItem {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #333;
+    box-sizing: border-box !important;
+
+    
+}
+.videoItem {
+    padding: 20px 25px;
+}
+.imgItem {
+    padding: 0;
+}
+
+.descrAbout {
+    margin-top: 20px;
+    font-size: 18px;
+    padding: 0 5px 10px;
+    color: var(--white);
+}
+
+.videosBLock {
+    margin-bottom: 35px;
+}
+
+
+.imgFrame {
+    height: 250px;
+    width:100%;
+    object-fit: cover;
+}
+
+.framesBlock {
+    margin-top: 30px;
+}
+
+.reviewWrapp {
+    padding: 30px;
+    box-shadow: rgba(58, 58, 58, 0.2) 0px 8px 24px, inset rgba(58, 58, 58, 0.2) 0px 8px 24px;
+    background-color: #222;
+    border-radius: 15px;
+
+}
+
+
+.reviewBlock {
+    position: relative;
+  
+    background-color: #ffffff00;
+    width: 100%;
+    z-index: 30;
+    /* max-height: 400px; */
+    max-height: 0px;
+    opacity: 0;
+    overflow-y: hidden;
+    box-sizing: border-box;
+    transition: all .55s ease-in-out;
+}
+.activeReviewBlock {
+    max-height: 400px;
+    opacity: 1;
+
+}
+
+
+.textarea {
+    border-radius: 10px;
+    overflow: hidden;
+    overflow-y:scroll;
+    padding: 30px 24px;
+    min-height: 220px;
+    box-shadow: rgba(58, 58, 58, 0.2) 0px 8px 24px, inset rgba(58, 58, 58, 0.2) 0px 8px 24px;
+
+}
+.textarea::-webkit-scrollbar {
+    width: 0px;
+}
+.btnSendReview {
+    width: 230px;
+    height: 47px;
+}
+
+.tabsAbout {
+    position: relative;
+}
+
+.filtersBlock {
+}
+
+.reviewBodySend {
+    margin-bottom: 20px;
+}
+
+.reviewBlock {
+    
+    padding: 30px 0;
+}
+
+.reviewSendFooter {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 25px;
+    justify-content: start;
+    align-items: center;
+}
+
+.btnBlock {
+    height: 47px;
+    max-width: 225;
+}
+
+.likeMovies {
+    margin-top: 60px;
+}
+
+.favSection {
+    margin-top: 60px;
+
+}
+
+.textBlockFav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.textFav {
+    margin: 0 auto;
+    max-width: 80%;
+    width: 100%;
+
+    text-align: start;
+    font-size: 30px;
+    font-weight: 900;
+    color: #0000003b;
+}
+
+
+.slide {
+    width: 250px !important;
+
+}
+
+.linkFav {
+    color: var(--red);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.swiper {
+    max-width: 80% !important;
+    width: 100% !important;
+}

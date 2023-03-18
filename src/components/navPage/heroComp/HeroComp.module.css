@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat');
+
+.hero {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+
+.content {
+    height: 100%;
+}
+
+.swiper {
+    height: 100%;
+    padding-top: 80px;
+
+}
+.slide {
+    height: 100%;
+}
+
+.itemBackImg {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: all .8s ease-in-out;
+    opacity: 0;
+}
+
+.heroActive .itemBackImg {
+    opacity: 1;
+} 
+
+.itemWrapper {
+    position: relative;
+    height: 100%;
+    z-index: 2;
+
+}
+
+.itemContent {
+    padding: 60px 0 50px 150px;
+}
+
+.itemBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+
+.heroItem {
+    position: relative;
+    height: 100%;
+}
+
+.itemGradient {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(32,32,32,1) 45%, rgba(27,27,27,0) 100%);
+}
+
+.itemPoster {
+    margin-bottom: 30px;
+    width: 300px;
+    height: 435px;
+    border-radius: 15px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all .8s ease-in-out;
+}
+
+.heroActive .itemPoster {
+    opacity: 1;
+} 
+
+.nameEng {
+    margin-bottom: 5px;
+}
+
+.nameEng, .itemName, .bottomTitle {
+    transform: translateY(25px);
+    opacity: 0;
+    transition: all .8s ease-in-out;
+
+}
+
+.heroActive  .bottomTitle {
+    opacity: 1;
+    transform: translateY(0px);
+
+} 
+.heroActive  .itemName {
+    opacity: 1;
+    transform: translateY(0px);
+
+} 
+.heroActive  .nameEng {
+    opacity: 1;
+    transform: translateY(0px);
+
+} 
+
+
+.itemName {
+    margin-bottom: 5px;
+    font-size: 40px;
+    max-width: 50%;
+    color:var(--white);
+    font-weight: 600;
+}
+
+.bottomTitle {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 10px;
+    align-items: center;
+}
+
+.nameEng {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    align-items: center;
+    color: var(--white);
+}
+
+.nameEng * {
+    color: var(--grey);
+}
+
+.bottomTitle * {
+    font-size: 17px;
+    font-family: 'Montserrat';
+    color: var(--grey);
+}
+
+.ratingText {
+    color: #fff;
+}
+
+
+.itemBack {
+    width:100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+

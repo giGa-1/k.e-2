@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+
+
+.header {
+    position: fixed;
+    top: -110px;
+    width: 100%;
+    min-height: 70px;
+    padding: 10px 0;
+    background-color: var(--dark);
+    box-shadow: rgb(31, 31, 31) 0px 12px 20px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    transition: all .65s ease-in-out;
+    z-index: 100;
+    opacity: .6;
+}
+
+.cont {
+    background-color: #222;
+    z-index: 4;
+}
+
+
+.profileAuth {
+    cursor: pointer;
+}
+
+.activeHeader {
+  top: 0;
+  opacity: 1;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 35px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('./../../assets/logo-back.svg');
+    width: 250px;
+    height: 70px;
+}
+
+.navBlock {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 40px;
+    align-items: center;
+}
+
+.listNav {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 25px;
+    align-items: center;
+}
+
+.itemText {
+    display: inline-block;
+    position: relative;
+    font-size: 17px;
+    line-height: 120%;
+    color: var(--white);
+    cursor: pointer;
+}
+.line {
+    content: '';
+    position: absolute;
+    top: auto;right: 0;left: 0;bottom: 0;
+    margin: auto;
+    height: 2px;
+    max-width: 0%;
+    width: 100%;
+    transition: all .3s ease-in-out;
+    background-color: var(--red);
+}
+
+.itemText:hover  .line {
+    max-width: 100%;
+    width: 100%;
+}
+
+.authBlock {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 20px;
+    align-items: center;
+}
+
+
+.favorites {
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('./../../assets/fav.svg');
+    width: 20px;
+    height: 25px;
+
+}
+
+
+.profileAuth {
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('./../../assets/person-img.svg');
+    width: 40px;
+    height: 40px;
+}
+
+.searchBlock {
+    width: 280px;
+
+}
+
+
+/*  */
+
+    .profileBlock {
+        display: inline-block;
+        position: fixed;
+        z-index: -2;
+        padding: 15px 20px 25px 20px;
+        box-sizing: border-box;
+        background-color: #262626;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px,inset rgba(50, 50, 51, 0.2) 0px 0px 29px 0px;
+        top: 95px;
+        transition: all .5s ease-in-out;
+        transform: translateX(25vw);
+        right: 20px;
+        width: 340px;
+        min-height: 300px;
+    }
+
+    .profileActive {
+        transform: none;
+    }
+
+    .profileImg {
+        width: 50px;
+        height: 50px;
+    }
+
+    .topBlock {
+        display: grid;
+        margin-bottom: 20px;
+        grid-template-columns: repeat(2, auto);
+        gap: 15px;
+        align-items: center;
+        justify-content: start;
+    }
+
+    .profileName {
+        color: #fff;
+        font-size: 18px;
+    }
+
+    .profileChange {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .profileBtns {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        gap: 10px;
+        align-items: center;
+    }
+
+    .profileBtn {
+        text-align: center;
+        position: relative;
+        font-size: 13px;
+        color: #909090;
+        padding: 5px 10px;
+        box-shadow: inset #3f3434a5 0px 0px 24px;
+    
+        transition: all .35s ease-in-out;
+        border-radius: 8px;
+    }
+
+    .profileText {
+        color: #fff;
+        font-size: 16px;
+        line-height: 1;
+        display: flex;
+        height: 100%;
+        align-items: center;
+    }
+    .profileBtnActive {
+        background-color: var(--red);
+    box-shadow: inset #3f343400 0px 0px 24px, #d62828a5 0px 0px 24px;
+
+    color: #dddddd;
+    border-radius: 5px;
+    }
+    .formProfile {
+        display: grid;
+        grid-template-rows: repeat(2, auto);
+        gap: 15px;
+    }
+    .input {
+
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    .btnProfile {
+
+        height:  45px !important;
+    }
+/*  */

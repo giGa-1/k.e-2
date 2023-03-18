@@ -1,0 +1,29 @@
+
+.section {
+    padding: 50px 0 100px;
+}
+
+.descr {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: start;
+    font-size: 18px;
+    color: var(--white);
+    line-height: 220%;
+    opacity: 0;
+    transition: all 1s ease-in-out;
+
+}
+
+.mminiCont {
+    display: flex;
+    justify-content: center;
+}
+
+.activeSection .descr {
+    opacity: 1;
+}
+
+.activeDesr {
+    opacity: 1;
+}
