@@ -41,8 +41,8 @@ export function getStatments() {
             Promise.all([
 			    dbRunPromise("CREATE TABLE if not exists `Movies` (`id` INTEGER PRIMARY KEY, `year` INTEGER, `rating` DECIMAL, `votes` INTEGER, `name` TEXT, `type` TEXT)"),
 			    dbRunPromise("CREATE TABLE if not exists `MoviePosters` (`id` INTEGER PRIMARY KEY, `url` TEXT, `previewUrl` TEXT)"),
-			    dbRunPromise("CREATE TABLE if not exists `MovieCountries` (`movieid` INTEGER, `country` TEXT)"),
-			    dbRunPromise("CREATE TABLE if not exists `MovieGenres` (`movieid` INTEGER, `genre` TEXT)"),
+			    dbRunPromise("CREATE TABLE if not exists `MovieCountries` (`movieid` INTEGER, `country` TEXT, PRIMARY KEY (`movieid`, `country`))"),
+			    dbRunPromise("CREATE TABLE if not exists `MovieGenres` (`movieid` INTEGER, `genre` TEXT, PRIMARY KEY (`movieid`, `genre`))"),
 			    dbRunPromise("CREATE TABLE if not exists `MovieJson` (`id` INTEGER PRIMARY KEY, `json` TEXT)"),
                 dbRunPromise("CREATE TABLE if not exists `Users` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` TEXT, `email` TEXT, `password` TEXT, `key` TEXT)", (res, err) => console.log(err)),
                 dbRunPromise("CREATE TABLE if not exists `FavoriteMovies` (`userid` INTEGER NOT NULL, `movieid` INTEGER NOT NULL, PRIMARY KEY (`userid`, `movieid`))"),
@@ -50,6 +50,10 @@ export function getStatments() {
                 dbRunPromise("CREATE TABLE if not exists `Comments` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `movieid` INTEGER, `text` TEXT, `rating` INTEGER, `userid` INTEGER)"),
             ]).then(() => {
                 Promise.all([
+                    dbRunPromise("CREATE UNIQUE INDEX `idx_country` ON `MovieCountries` (`movieid`ASC, `country`)"),
+                    dbRunPromise("CREATE UNIQUE INDEX `idx_genre` ON `MovieGenres` (`movieid`ASC, `genre`)"),
+                    dbRunPromise("CREATE UNIQUE INDEX `idx_movie_name` ON `Movies` (`name`)"),
+
                     insertMovieSort = db.prepare("INSERT OR IGNORE INTO `Movies` VALUES (?, ?, ?, ?, ?, ?)"),
                     insertMoviePoster = db.prepare("INSERT OR IGNORE INTO `MoviePosters` VALUES (?, ?, ?)"),
                     insertMovieGenre = db.prepare("INSERT OR IGNORE INTO `MovieGenres` VALUES (?, ?)"),
@@ -58,7 +62,22 @@ export function getStatments() {
                     selectMovieStmt = db.prepare("SELECT `json` FROM `MovieJson` WHERE `id`= ?"),
 
                     selectMovie = db.prepare(
-                        "SELECT * FROM `Movies` WHERE `year` >= ? AND `year` <= ? AND `rating` > ? AND `votes` > ? AND LOWER(name) LIKE ? AND `id` IN (SELECT `movieid` FROM `MovieGenres` WHERE `genre` LIKE ?) AND `id` IN (SELECT `movieid` FROM `MovieCountries` WHERE `country` LIKE ?) ORDER BY CASE ? WHEN 'year' THEN `year` ELSE `rating` END DESC LIMIT 20 OFFSET ?"),
+                        `SELECT * FROM Movies WHERE 
+                        year >= ? 
+                        AND year <= ? 
+                        AND rating > ? 
+                        AND votes > ? 
+                        AND LOWER(name) LIKE ? 
+                        AND (SELECT COUNT(*) FROM MovieGenres WHERE movieid = id AND LOWER(genre) LIKE ?) > 0 
+                        AND (SELECT COUNT(*) FROM MovieCountries WHERE movieid = id AND LOWER(country) LIKE ?) > 0 
+                        ORDER BY 
+                            CASE ? 
+                                WHEN "year" THEN year 
+                                ELSE rating
+                            END 
+                            DESC 
+                        LIMIT 20 
+                        OFFSET ?`),
 
                     insertUserStmt = db.prepare("INSERT INTO `Users` (`username`, `email`, `password`, `key`) VALUES (?, ?, ?, ?)"),
                     selectUserByEmailOrNameStmt = db.prepare("SELECT COUNT(*) AS `count` FROM `Users` WHERE (`username` = ? OR `email` = ?)"),
