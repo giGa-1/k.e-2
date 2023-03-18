@@ -1,8 +1,18 @@
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
+const cache = new Map();
+
 export default function handle(req, res) {
     let num = (req.query.page - 1) * 20;
+
+    if(cache.has(num)) {
+        let c = cache.get(num);
+        if(new Date().valueOf() - c.date.valueOf() < 6000 * 1000) {
+            res.status(200).json(c.value);
+            return;
+        }
+    }
 
     return new Promise((resolve, reject) => {
         return fetch(`https://kg-portal.ru/news/movies/${num}/`, {
@@ -15,6 +25,8 @@ export default function handle(req, res) {
                 promises[i] = getData(collection.item(i).getElementsByTagName("a")[0].href);
             }
             Promise.all(promises).then((values) => {
+                cache.set(num, {date: new Date(), value: values});
+
                 res.status(200).json(values);
                 resolve();
             });
