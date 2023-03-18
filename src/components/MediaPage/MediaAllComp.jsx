@@ -16,11 +16,12 @@ export default function MediaAllComp() {
     const [stateArticles, setStateArticles] = useState([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
 
     useEffect(()=>{
-        // const response = getNewsAPIjs('page=1');
+        const response = getNewsAPIjs('page=1');
 
-        // response.then((data)=>{
-        //     setStateNews([...stateNews, data])
-        // })
+        response.then((data)=>{
+            console.log(data);
+            // setStateNews([...stateNews, data])
+        })
        
 
     },[])
@@ -45,7 +46,7 @@ export default function MediaAllComp() {
                             return (
                                 <React.Fragment key={i}>
                                    
-                                  <MediaNewsItem descr={e.suites[0].title} index={i}/>
+                                  {/* <MediaNewsItem descr={e.title} index={i}/> */}
                                    
                                 </React.Fragment>
                             )
