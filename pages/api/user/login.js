@@ -22,7 +22,10 @@ export default function handler(req, res) {
             selectUserKeyByEmailPasswordStmt.get(email, passwordHash, (err, responce) => {
                 selectUserKeyByEmailPasswordStmt.reset();
                 if(responce != null) {
-                    res.status(200).json({status: "ok", session: responce.key});
+                    res.status(200).setHeader('Set-Cookie', [
+                        serialize('key', responce.key, { path: '/' }),
+                        serialize('username', responce.username, { path: '/' }) 
+                    ]).json({status: "ok"});
                     resolve();
                 } else {
                     res.status(400).json({err: "email or password invalid!"});

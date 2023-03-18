@@ -13,8 +13,8 @@ export default function handle(req, res) {
 
         var month = req.query.month;
 
-        //10 minute cache
-        if(cache[month] != null && date.valueOf() - cacheDate[month].valueOf() < 600 * 1000) {
+        //100 minute cache
+        if(cache[month] != null && date.valueOf() - cacheDate[month].valueOf() < 6000 * 1000) {
             res.status(200).json(cache[month]);
             resolve();
         } else {
