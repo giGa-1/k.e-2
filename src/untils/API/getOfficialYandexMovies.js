@@ -7,13 +7,14 @@
 
 
 
-export const getOfficialYandexMovies = async (getUrl = '', actionFunc, dispatch, isDocs=false)=>{
+export const getOfficialYandexMovies = async (getUrl = 'page=1', actionFunc, dispatch, isDocs=false)=>{
 
     
-    const response = await fetch('https://api.kinopoisk.dev'+getUrl+'&token=4V3CKFC-64144Y0-N05EDDC-QJSR0RG');
+    const response = await fetch('/api/search?'+getUrl);
     const data =  response.json();
     data.then((data)=>{
-        dispatch(actionFunc(isDocs ? data : data.docs))
+        console.log(data);
+        dispatch(actionFunc(data))
     }).catch((err)=>console.log(err))
     return data
 }

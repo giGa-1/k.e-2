@@ -14,8 +14,9 @@ const  MediaComp = () => {
     const [stateArrNews, setStateArrNews] = useState(0);
     const dispatch = useDispatch();
 
-   
+    
     useMemo(()=>{
+        console.log(stateNews)
         // if(stateNews.length) {
         //     let arr = [];
         //     arr.length = ~~(stateNews.length/11);

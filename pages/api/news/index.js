@@ -1,30 +1,57 @@
-var cache = null;
-var cacheDate = null;
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
 
 export default function handle(req, res) {
+    let num = (req.query.page - 1) * 20;
+
     return new Promise((resolve, reject) => {
-        var date = new Date();
-        if(cache != null && date.valueOf() - cacheDate.valueOf() < 600 * 1000) {
-            res.status(200).json(cache);
-            resolve();
-
-            return;
-        }
-
-        fetch("https://adme.media/", {method: "GET"}).then(resp => {
-            fetch("https://wba.adme.media/api/v1/adme/web/articles?limit=100&rubricId=7&offset=0", {
-                method: "GET",
-                headers: {
-                    authorization: `Bearer ${resp.headers.get("set-cookie").split("=")[1].split(";")[0]}`
-                }
-            }).then(resp => resp.json()).then(json => {
-                if(json.code === "ok") {
-                    res.status(200).json(json.data);
-                    cache = json.data;
-                    cacheDate = date;
-                }
+        return fetch(`https://kg-portal.ru/news/movies/${num}/`, {
+            method: 'GET',
+        }).then(resp => resp.text()).then(text => {
+            const { document } = (new JSDOM(text)).window;
+            let collection = document.getElementsByClassName("news_box movies_cat");
+            let promises = [];
+            for (let i = 0; i < collection.length; i++) {
+                promises[i] = getData(collection.item(i).getElementsByTagName("a")[0].href);
+            }
+            Promise.all(promises).then((values) => {
+                res.status(200).json(values);
                 resolve();
-            })
+            });
+        });
+    });
+}
+
+function getData(link) {
+    return new Promise((res, rej) => {
+        fetch(`https://kg-portal.ru${link}`, {
+                method: 'GET',
+        }).then(resp => resp.text()).then(text => {
+            const { document } = (new JSDOM(text)).window;
+            try {
+                let title = document.getElementsByClassName("news_title").item(0).textContent;
+                let date = document.getElementsByClassName("date").item(0).attributes.getNamedItem("content").nodeValue;
+
+                let div = document.getElementsByClassName("news_text").item(0);
+
+                let pic = "";
+                for (let i = 0; i < div.children.length; i++) {
+                    let element = div.children.item(i);
+                    if(element.className == "news_cover_center") {
+                        pic = "https://kg-portal.ru" + element.children.item(0).getElementsByTagName("img").item(0).src;
+                    }
+                }
+
+                let content = "";
+                let arr = div.getElementsByTagName("p");
+                for (let i = 0; i < arr.length; i++) {
+                    content += arr.item(i).textContent;
+                }
+
+                res({title: title, text: content, coverUrl: pic, date: date});
+            } catch (ex) {
+                res({});
+            }
         });
     });
 }

@@ -15,14 +15,24 @@ export default function MediaAllComp() {
     const [isLoading, setIsLoading] = useState(false)
     const [stateArticles, setStateArticles] = useState([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
 
-    
+    useEffect(()=>{
+        // const response = getNewsAPIjs('page=1');
+
+        // response.then((data)=>{
+        //     setStateNews([...stateNews, data])
+        // })
+       
+
+    },[])
+    useMemo(()=>{
+        if (stateNews.length>2) {
+            setStateNews(stateNews.filter(e=>e.coverUrl !== ''))
+            console.log(stateNews)
+            setIsLoading(true)
+        }
+    },[stateNews])
     const [stateArrNews, setStateArrNews] = useState(0);
     const dispatch = useDispatch()
-    useEffect(()=>{
-        const dataNews = getNewsAPIjs();
-        dataNews.then(res=>setStateNews(res))
-    },[])
-    console.log(stateNews)
 
   return (
     <div className={cl.allComp}>

@@ -21,7 +21,7 @@ export default function HeroComp() {
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        // const officialHeroData = getOfficialYandexMovies('/v1/movie?limit=50000', setStateOfficialHero, dispatch);
+        const officialHeroData = getOfficialYandexMovies('?minYear=2022&maxYear=2023&minRating=7&minVotes=20000&name=&genre=&country=&sort=rating&page=1', setStateOfficialHero, dispatch);
         
         // const unofficialHeroData = getUnofficialYandexMovies('?type=FILM&&yearFrom=2021&yearTo=2023&page=1', setStateUnofficialHero, dispatch);
     },[])   
