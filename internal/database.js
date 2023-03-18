@@ -27,9 +27,17 @@ export var deleteFavoriteMovieByUserKey = null;
 
 export var selectMovie = null;
 
+export var changePassword = null;
+export var changeEmail = null;
+
 function dbRunPromise(cmd) {
     return new Promise((resolve, reject) => {
-        db.run(cmd, (err) => resolve());
+        db.run(cmd, (err) => {
+            if(err != null) {
+                console.log("db err: " + err);
+            }
+            resolve();
+        });
     });
 }
 
@@ -50,9 +58,10 @@ export function getStatments() {
                 dbRunPromise("CREATE TABLE if not exists `Comments` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `movieid` INTEGER, `text` TEXT, `rating` INTEGER, `userid` INTEGER)"),
             ]).then(() => {
                 Promise.all([
-                    dbRunPromise("CREATE UNIQUE INDEX `idx_country` ON `MovieCountries` (`movieid`ASC, `country`)"),
-                    dbRunPromise("CREATE UNIQUE INDEX `idx_genre` ON `MovieGenres` (`movieid`ASC, `genre`)"),
-                    dbRunPromise("CREATE UNIQUE INDEX `idx_movie_name` ON `Movies` (`name`)"),
+                    dbRunPromise("CREATE UNIQUE INDEX if not exists `idx_poster` ON `MoviePosters` (`id` ASC)"),
+                    dbRunPromise("CREATE UNIQUE INDEX if not exists `idx_country` ON `MovieCountries` (`movieid`ASC, `country`)"),
+                    dbRunPromise("CREATE UNIQUE INDEX if not exists `idx_genre` ON `MovieGenres` (`movieid`ASC, `genre`)"),
+                    dbRunPromise("CREATE UNIQUE INDEX if not exists `idx_movie_name` ON `Movies` (`name`)"),
 
                     insertMovieSort = db.prepare("INSERT OR IGNORE INTO `Movies` VALUES (?, ?, ?, ?, ?, ?)"),
                     insertMoviePoster = db.prepare("INSERT OR IGNORE INTO `MoviePosters` VALUES (?, ?, ?)"),
@@ -60,17 +69,19 @@ export function getStatments() {
                     insertMovieCountry = db.prepare("INSERT OR IGNORE INTO `MovieCountries` VALUES (?, ?)"),
                     insertMovieStmt = db.prepare("INSERT OR IGNORE INTO `MovieJson` VALUES (?, ?)"),
                     selectMovieStmt = db.prepare("SELECT `json` FROM `MovieJson` WHERE `id`= ?"),
+                    changePassword = db.prepare("UPDATE `users` SET `password` = ?, `key` = ? WHERE `password` = ? AND `key` = ?"),
+                    changeEmail = db.prepare("UPDATE `users` SET `email` = ?, `key` = ? WHERE `password` = ? AND `key` = ?"),
 
                     selectMovie = db.prepare(
-                        `SELECT * FROM Movies WHERE 
+                        `SELECT m.id, year, rating, votes, name, type, url, previewUrl FROM Movies m INNER JOIN MoviePosters p ON m.id = p.id WHERE 
                         year >= ? 
                         AND year <= ? 
                         AND rating > ? 
                         AND votes > ? 
                         AND LOWER(name) LIKE ? 
                         AND LOWER(type) LIKE ? 
-                        AND (SELECT COUNT(*) FROM MovieGenres WHERE movieid = id AND LOWER(genre) LIKE ?) > 0 
-                        AND (SELECT COUNT(*) FROM MovieCountries WHERE movieid = id AND LOWER(country) LIKE ?) > 0 
+                        AND (SELECT COUNT(*) FROM MovieGenres WHERE movieid = m.id AND LOWER(genre) LIKE ?) > 0 
+                        AND (SELECT COUNT(*) FROM MovieCountries WHERE movieid = m.id AND LOWER(country) LIKE ?) > 0 
                         ORDER BY 
                             CASE ? 
                                 WHEN 'year' THEN year 
