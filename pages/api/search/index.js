@@ -3,10 +3,12 @@ import { getMovieCountries, getMovieGenres, getStatments, selectMovie } from "..
 export default function handle(req, res) {
     return new Promise((resolve, reject) => {
         getStatments().then(() => {
-            const { minYear, maxYear, minRating, minVotes, name, type, genre, country, sort, page } = req.query;
+            const { minYear, maxYear, minRating, minVotes, name, type, genre, country, sort, page, limit } = req.query;
             //search?minYear=2013&maxYear=2013&minRating=0&minVotes=0&name=волк&type=movie&genre=&country=&sort=rating&page=1
 
-            selectMovie.all(minYear, maxYear, minRating, minVotes, "%" + name + "%", "%" + type + "%", "%" + genre + "%", "%" + country + "%", sort, (page - 1) * 20, (selectErr, responce) => {
+            let lim = Math.min(limit, 100);
+
+            selectMovie.all(minYear, maxYear, minRating, minVotes, "%" + name + "%", "%" + type + "%", "%" + genre + "%", "%" + country + "%", sort, lim, (page - 1) * 20, (selectErr, responce) => {
                 let prom = [];
                 responce.forEach(film => {
                     prom.push(new Promise((r, rj) => {

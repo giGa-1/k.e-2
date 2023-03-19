@@ -35,6 +35,8 @@ export var getMovieGenres = null;
 
 export var selectUsernameEmailByKey = null;
 
+export var selectFavoriteMoviesByKey = null;
+
 function dbRunPromise(cmd) {
     return new Promise((resolve, reject) => {
         db.run(cmd, (err) => {
@@ -105,7 +107,7 @@ export function getStatments() {
                                     ELSE rating
                                 END 
                                 DESC 
-                            LIMIT 20 
+                            LIMIT ? 
                             OFFSET ?`),
 
                     insertUserStmt = db.prepare("INSERT INTO `Users` (`username`, `email`, `password`, `key`) VALUES (?, ?, ?, ?)"),
@@ -124,6 +126,14 @@ export function getStatments() {
                     selectIsMovieFavoriteByUserKey = db.prepare("SELECT COUNT(*) AS `count` FROM `FavoriteMovies` WHERE `userid` IN (SELECT `id` AS `userid` FROM `Users` WHERE `key` = ?) AND `movieid` = ?"),
                     deleteFavoriteMovieByUserKey = db.prepare("DELETE FROM `FavoriteMovies` WHERE `userid` = (SELECT `id` AS `userid` FROM `Users` WHERE `key` = ? GROUP BY `id`) AND `movieid` = ?"),
                     insertFavoriteMovieByUserKey = db.prepare("INSERT OR IGNORE INTO `FavoriteMovies` (`userid`, `movieid`) VALUES ((SELECT `id` AS `userid` FROM `Users` WHERE `key` = ? GROUP BY `id`), ?)"),
+
+                    selectFavoriteMoviesByKey = db.prepare(`
+                        SELECT 
+                            m.id, year, rating, votes, name, type, url, previewUrl 
+                        FROM FavoriteMovies f
+                        INNER JOIN Movies m ON m.id = movieid
+                        INNER JOIN MoviePosters p ON m.id = p.id
+                        WHERE f.userid = ((SELECT u.id FROM Users u WHERE key = ? GROUP BY u.id)`)
                 ]).then(() => resolve());
             });
 		}
