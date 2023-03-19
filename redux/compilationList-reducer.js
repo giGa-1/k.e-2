@@ -3,12 +3,12 @@ import { HYDRATE } from "next-redux-wrapper"
 
 
 const initialState = [
-    {id:1,nameTop:'Топ 100 Лучших Фильмов',list:[], fetch:'search?minYear=1980&maxYear=2023&minRating=0&minVotes=200000&name=&type=movie&genre=&country=&sort=rating&page=1'},
-    {id:2,nameTop:'Топ 25 Лучших Сериалов',list:[],fetch:'search?minYear=1980&maxYear=2023&minRating=0&minVotes=150000&name=&type=tv-series&genre=&country=&sort=rating&page=1' },
-    {id:3,nameTop:'Топ 30 Страшнейших Ужасов',list:[], fetch:'search?minYear=1985&maxYear=2023&minRating=0&minVotes=70000&name=&type=movie&genre=ужасы&country=&sort=rating&page=1'},
-    {id:4,nameTop:'Топ 40 Мультфильмов',list:[], fetch: 'search?minYear=1980&maxYear=2023&minRating=0&minVotes=100000&name=&type=movie&genre=&country=&sort=rating&page=1'},
-    {id:5,nameTop:'Топ 35 Комедийных картин',list:[],  fetch: 'search?minYear=1980&maxYear=2023&minRating=0&minVotes=100000&name=&type=movie&genre=комедия&country=&sort=rating&page=1'},
-    {id:6,nameTop:'Топ 20 Фантастических фильмов',list:[],  fetch: 'search?minYear=1995&maxYear=2023&minRating=0&minVotes=125000&name=&type=movie&genre=фантастика&country=&sort=rating&page=1'},
+    {id:1,nameTop:'Топ 100 Лучших Фильмов',list:[], fetch:'search?minYear=1980&limit=100&maxYear=2023&minRating=0&minVotes=200000&name=&type=movie&genre=&country=&sort=rating&page=1'},
+    {id:2,nameTop:'Топ 25 Лучших Сериалов',list:[],fetch:'search?minYear=1980&limit=25&maxYear=2023&minRating=0&minVotes=150000&name=&type=tv-series&genre=&country=&sort=rating&page=1' },
+    {id:3,nameTop:'Топ 30 Страшнейших Ужасов',list:[], fetch:'search?minYear=1985&limit=30&maxYear=2023&minRating=0&minVotes=70000&name=&type=movie&genre=ужасы&country=&sort=rating&page=1'},
+    {id:4,nameTop:'Топ 40 Захватывающих боевиков',list:[], fetch: 'search?minYear=1980&limit=40&maxYear=2023&minRating=0&minVotes=100000&name=&type=movie&genre=боевик&country=&sort=rating&page=1'},
+    {id:5,nameTop:'Топ 35 Комедийных картин',list:[],  fetch: 'search?minYear=1980&limit=35&maxYear=2023&minRating=0&minVotes=100000&name=&type=movie&genre=комедия&country=&sort=rating&page=1'},
+    {id:6,nameTop:'Топ 20 Фантастических фильмов',list:[],  fetch: 'search?minYear=1995&limit=20&maxYear=2023&minRating=0&minVotes=125000&name=&type=movie&genre=фантастика&country=&sort=rating&page=1'},
    
 ]
 
