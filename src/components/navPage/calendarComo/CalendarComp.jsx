@@ -1,17 +1,21 @@
-import React, { useRef, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import dayjs from 'dayjs';
 
 import { useDispatch, useSelector } from 'react-redux';
 import MyTitleComp from './../../UI/MyTitleComp/MyTitleComp'
 import cl from './CalendarComp.module.css'
 import CalendarItem from './CalendarItem';
-import { setDateTextCalendar } from 'redux/calendarComp-reducer';
+import { setDateTextCalendar,setPremierMoviesCalendar } from 'redux/calendarComp-reducer';
 import { useInView } from 'react-intersection-observer';
+import {getReleaseDataAPI} from './../../../untils/API/getReleaseDataAPI';
 
 export default function CalendarComp() {
     const [currentDate, setCurrentDate] = useState(dayjs());
     const monthNames = useSelector(state=>state['Months'])
 
+    const monthNamesText = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+    "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+    ];
     const [activePremier, setActivePremier] = useState('');
     const activePremierState = useSelector(state=>state['Calendar Comp']) 
 
@@ -29,6 +33,8 @@ export default function CalendarComp() {
     filledArr.length = currentDate.daysInMonth() + currentDate.startOf("month").day()
     filledArr.fill('')
 
+    const [dataRelease, setDataRelease] = useState([])
+
     const prevBtn = (e)=>{
         e.preventDefault();
         setCurrentDate(currentDate.subtract(1, "month").startOf("month"))
@@ -43,16 +49,32 @@ export default function CalendarComp() {
         e.preventDefault();
         setCurrentDate(dayjs())
     }
+    const [filedCeils,setFiledCeils] = useState([])
+    useMemo(()=>{
+        const getDataRelease = getReleaseDataAPI(currentDate.month())
+        getDataRelease.then((data)=>{
+            setDataRelease([...data[0], ...data[1], ...data[2], ...data[3]]);
+            setFiledCeils(filledArr.map((e,i,arr)=>{
+                if (i < currentDate.startOf("month").day()) {
+                    return ``
+                } else {
+                    return {releases: [...data[0], ...data[1], ...data[2], ...data[3]].filter(e=>e.releaseDate.split`-`[2]==i-currentDate.startOf("month").day()),count:[...data[0], ...data[1], ...data[2], ...data[3]].filter(e=>e.releaseDate.split`-`[2]==i-currentDate.startOf("month").day()).length}
+                }
+            }))    ;
+        })  
+       
+    },[currentDate])
+    console.log(dataRelease)
 
-
-
-    
     const changePremierCatalog = (e)=>{
         console.log(e);
         dispatch(setDateTextCalendar(`${e} ${monthNames[currentDate.month()]}`))
     }
 
-
+   const changeListPremierCatalog = (e,list)=>{
+        console.log(e);
+        dispatch(setPremierMoviesCalendar(list))
+   }
 
   return (
     <section className={cl.section}>
@@ -84,12 +106,12 @@ export default function CalendarComp() {
                             <div>Вс</div>
                         </div>
                         <div ref={dateElement} className={cl.calendarDates}>
-                            {filledArr.map((e,i,arr)=>{
+                            {filedCeils.length ? filedCeils.map((e,i,arr)=>{
                                 if (i < currentDate.startOf("month").day()) {
                                     return <button className={[cl.calendarDatesDayEmpty, cl.dates].join` `}></button>
                                 } else {
                                     // setIsCalendar(`${event.target.textContent} ${monthNames[currentDate.month()]} ${currentDate.year()}`);
-                                    return <button className={[cl.calendarDatesDay, cl.dates].join` `} onClick={event=>{ changePremierCatalog(event.target.textContent)}}>
+                                    return <button className={[cl.calendarDatesDay, cl.dates].join` `} onClick={event=>{ changePremierCatalog(event.target.textContent);changeListPremierCatalog(event, e.releases)}}>
                                             <span className={cl.dateNumber}>
                                                 <span className={cl.dateValue}>
                                                     {i+1-currentDate.startOf("month").day()}
@@ -100,13 +122,38 @@ export default function CalendarComp() {
 
                                                 </span>
                                                 <span className={cl.dataText}>
-                                                    +2
+                                                    +{e.count}
                                                 </span>
                                             </div>
                                         </button>
                                 }
                                 
-                            })}
+                            })
+                            :
+                            filledArr.map((e,i,arr)=>{
+                                if (i < currentDate.startOf("month").day()) {
+                                    return <button className={[cl.calendarDatesDayEmpty, cl.dates].join` `}></button>
+                                } else {
+                                    // setIsCalendar(`${event.target.textContent} ${monthNames[currentDate.month()]} ${currentDate.year()}`);
+                                    return <button className={[cl.calendarDatesDay, cl.dates].join` `} onClick={event=>{ changePremierCatalog(event.target.textContent);changeListPremierCatalog(event, e.releases)}}>
+                                            <span className={cl.dateNumber}>
+                                                <span className={cl.dateValue}>
+                                                    {i+1-currentDate.startOf("month").day()}
+                                                </span>
+                                            </span>
+                                            <div className={cl.dateRelease} >
+                                                <span className={cl.datimg}>
+
+                                                </span>
+                                                <span className={cl.dataText}>
+                                                    +{e.count}
+                                                </span>
+                                            </div>
+                                        </button>
+                                }
+                                
+                            })
+                        }
                         </div>
                     </div>
                 </div>
@@ -125,7 +172,7 @@ export default function CalendarComp() {
                                     activePremierState.premierMovies.map(e=>{
                                         return (
                                             <React.Fragment key={e.id}>
-                                                <CalendarItem title={e.title} titleEn={cl.titleEn} datePremier={activePremierState.dateText || `${dayjs().format('DD')} ${monthNames[currentDate.month()]}`} />
+                                                <CalendarItem title={e.nameRu} titleEn={e.nameEn} img={e.posterUrl} datePremier={activePremierState.dateText || `${dayjs().format('DD')} ${monthNames[currentDate.month()]}`} />
                                             </React.Fragment>
                                         )
                                     })

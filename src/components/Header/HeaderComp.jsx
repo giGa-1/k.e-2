@@ -6,6 +6,8 @@ import MySearch from './../UI/MySearch/MySearch';
 import { useInView } from 'react-intersection-observer';
 import MyInput from '../UI/MyInput/MyInput';
 import MyBtnFiled from '../UI/MyBtnFiled/MyBtnFiled';
+import {setNewPassAPI } from './../../untils/API/setNewPassAPI';
+import {setNewMailAPI } from './../../untils/API/setNewMailAPI';
 
 export default function HeaderComp() {
 
@@ -18,17 +20,26 @@ export default function HeaderComp() {
     const [isInputMail,setIsInputMail] = useState('')
     const [isInputPassword,setIsInputPassword] = useState('')
 
+    const [userInfo, setUserInfo] = useState()
+
+    useEffect(()=>{
+        setUserInfo(JSON.parse(localStorage.getItem('authInfo')))
+    },[])
     useEffect(()=>{
         setIsView(true)
+        console.log(userInfo)
     },[])
-    console.log('123123123132')
-    console.log('123123123132')
-    console.log('123123123132')
-    console.log('123123123132')
-    console.log('123123123132')
-    console.log('123123123132')
-    console.log('123123123132')
-    console.log('123123123132')
+
+    const setNewPassword = (e)=>{
+        e.preventDefault();
+        const respone = setNewPassAPI(isInputPassword,isInputConfirm)
+        console.log(respone)
+    };
+    const setNewMail = (e)=>{
+        e.preventDefault();
+        const respone = setNewMailAPI(isInputMail, isInputConfirm)
+        console.log(respone)
+    }
 
   return (
     <header  className={isView ? [cl.header, cl.activeHeader].join` ` : cl.header}>
@@ -39,7 +50,7 @@ export default function HeaderComp() {
                             <span className={[cl.profileAuth, cl.profileImg].join` `}>
 
                             </span>
-                            <p className={cl.profileName}>Lorem Test1</p>
+                            <p className={cl.profileName}>{userInfo&&userInfo.initials}</p>
                         </div>
                         <div className={cl.profileChange}>
                             <h3 className={cl.profileText}>Изменить данные:</h3>
@@ -59,7 +70,7 @@ export default function HeaderComp() {
                                 <form id='change' className={cl.formProfile}>
                                     <MyInput classesInput={cl.input} classesPlace={cl.place} required={true} place={'Почта'} setInput={setIsInputMail} valueInput={isInputMail} form='change' />
                                     <MyInput classesInput={cl.input} classesPlace={cl.place} required={true} type="password" place={'Подтвердите пароль'} setInput={setIsInputConfirm} valueInput={isInputConfirm} form='change'/>
-                                    <MyBtnFiled classBtn={cl.btnProfile}>
+                                    <MyBtnFiled classBtn={cl.btnProfile} type='submit' handleFunc={setNewMail}>
                                         Подтвердить
                                     </MyBtnFiled>
                                 </form>
@@ -67,7 +78,7 @@ export default function HeaderComp() {
                             <form id='change' className={cl.formProfile}>
                                 <MyInput classesInput={cl.input} classesPlace={cl.place} required={true} place={'Старый пароль'} setInput={setIsInputPassword} valueInput={isInputPassword} form='change' />
                                 <MyInput classesInput={cl.input} classesPlace={cl.place} required={true} type="password" place={'Новый пароль'} setInput={setIsInputConfirm} valueInput={isInputConfirm} form='change'/>
-                                <MyBtnFiled classBtn={cl.btnProfile}>
+                                <MyBtnFiled classBtn={cl.btnProfile}  type='submit' handleFunc={setNewPassword}>
                                     Подтвердить
                                 </MyBtnFiled>
                             </form>

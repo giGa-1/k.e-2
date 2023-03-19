@@ -6,8 +6,7 @@ import BigSwiperItem from './BigSwiperItem';
 
 import { useInView } from 'react-intersection-observer';
 
-export default function BigSwiperList({title, stateSwiper, similar=false }) {
-    console.log(stateSwiper)
+export default function BigSwiperList({stateSwiper, similar=false }) {
     const { ref, inView, entry } = useInView({
         /* Optional options */
         threshold: 0,
@@ -23,11 +22,11 @@ export default function BigSwiperList({title, stateSwiper, similar=false }) {
                     className={cl.swiper}
                 >
                     {
-                        stateSwiper&&stateSwiper.map((e)=>{
+                        stateSwiper[0].genres!==undefined&&stateSwiper.map((e)=>{
                             return (
                                 <SwiperSlide key={e.id} className={cl.slide}>
 
-                                    <BigSwiperItem idFilm={e.id} img={e.img} descr={e.description} title={ e.nameRu}  year={e.year}/>
+                                    <BigSwiperItem idFilm={e.id} img={e.url} descr={''} title={ e.name} genre={e.genres[0]} country={e.counties[0]} year={e.year}/>
                                 </SwiperSlide>
                             )
                         })

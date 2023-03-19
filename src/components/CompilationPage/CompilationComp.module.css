@@ -1,0 +1,103 @@
+
+
+.section {
+    margin-top:125px;
+
+}
+
+.miniCont {
+    max-width: 1200px;
+
+}
+
+.list {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.itemComp {
+    display: grid;
+    grid-template-columns: auto 5fr;
+    gap: 45px;
+    align-items: center;
+}
+
+.itemCount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: #acacac;
+    font-weight: 600;
+}
+
+
+.itemInfo {
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: auto 5fr;
+    gap: 30px;
+    padding: 25px 45px;
+    box-sizing: border-box;
+    box-shadow: inset rgba(43, 44, 46, 0.2) 0px 0px 24px;
+}
+
+.leftBlock {
+    overflow: hidden;
+    position: relative;
+}
+
+.imgItem {
+    display: inline-block;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow:  rgba(89, 89, 90, 0.2) 0px 0px 20px;
+    max-height: 135px;
+}
+
+.rightBlock {
+    padding: 10px 0;
+    position: relative;
+ display: grid;
+ grid-template-rows: auto 4fr;
+ align-items: start;
+ gap: 10px;
+}
+
+.titleItem {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 500;
+}
+.bottomBlock {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: start;
+    gap: 5px;
+    font-size: 16px;
+    color: #c6c6c6;
+
+}
+.rating {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    align-items: center;
+    gap: 16px;
+    top: 0;bottom: 0;
+    left: auto;
+    right: 60px;
+    margin: auto;
+    font-style: italic;
+    height: min-content;
+  color: var(--red);
+  font-size: 45px;
+
+}
+
+.votes {
+    display: inline-block;
+    font-size: 20px;
+    color: #555;
+}

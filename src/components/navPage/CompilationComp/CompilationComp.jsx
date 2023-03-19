@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 export default function CompilationComp({stateTypeComp = 'cont'}) {
     
-    const stateComp = useSelector(state=>state[  stateTypeComp  === 'cont' ? 'Compilation Comp' : 'Compilation Page']) 
+    const stateComp = useSelector(state=>state[  stateTypeComp  === 'cont' ? 'Compilation Comp' : 'Compilation Comp']) 
 
     return (
     <section className={cl.section}>

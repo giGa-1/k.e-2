@@ -128,14 +128,15 @@ export function getStatments() {
                     insertFavoriteMovieByUserKey = db.prepare("INSERT OR IGNORE INTO `FavoriteMovies` (`userid`, `movieid`) VALUES ((SELECT `id` AS `userid` FROM `Users` WHERE `key` = ? GROUP BY `id`), ?)"),
 
                     selectFavoriteMoviesByKey = db.prepare(`
-                        SELECT 
-                            m.id, year, rating, votes, name, type, url, previewUrl 
-                        FROM FavoriteMovies f
-                        INNER JOIN Movies m ON m.id = movieid
-                        INNER JOIN MoviePosters p ON m.id = p.id
-                        WHERE f.userid = ((SELECT u.id FROM Users u WHERE key = ? GROUP BY u.id)`)
+                    SELECT 
+                        m.id, year, rating, votes, name, type, url, previewUrl 
+                    FROM FavoriteMovies f
+                    INNER JOIN Movies m ON m.id = movieid
+                    INNER JOIN MoviePosters p ON m.id = p.id
+                    WHERE f.userid = (SELECT u.id FROM Users u WHERE key = ? GROUP BY u.id)`)
                 ]).then(() => resolve());
             });
 		}
 	});
 }
+

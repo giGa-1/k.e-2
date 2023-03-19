@@ -3,13 +3,12 @@ import cl from './HeroComp.module.css'
 
 import Link from 'next/link'
 import {getColorRating} from 'src/untils/getColorRating';
-export default function HeroItem({infoObj, inView}) {
+export default function HeroItem({rating,title,img,year,genre,country,id, inView}) {
    
-    console.log(infoObj)
     return (
         <div className={inView? [cl.heroItem, cl.heroActive].join` ` : cl.heroItem}>
-            <div className={cl.itemBackImg} style={{'backgroundImage': infoObj.posterUrl }}>
-                <img className={cl.itemBack} src={infoObj.posterUrl}/>
+            <div className={cl.itemBackImg} >
+                <img className={cl.itemBack} src={img}/>
             </div>
             <div className={cl.itemGradient}>
 
@@ -20,17 +19,17 @@ export default function HeroItem({infoObj, inView}) {
                     <div className={cl.itemContent}>
                         <div className={cl.itemBlock}>
 
-                            <Link href={'/movie/'+infoObj.id}>
-                                <img className={cl.itemPoster} src={infoObj.posterUrl}/>
+                            <Link href={'/movie/'+id}>
+                                <img className={cl.itemPoster} src={img}/>
 
                             </Link>
-                            <p className={cl.nameEng}>{infoObj.nameOriginal},<span>{infoObj.countries[0]!==undefined&&infoObj.countries[0].country}</span></p>
-                            <h1 className={cl.itemName}>{infoObj.nameRu}</h1>
+                            {/* <p className={cl.nameEng}><span>{title}</span></p> */}
+                            <h1 className={cl.itemName}>{title}</h1>
                             <div className={cl.bottomTitle}>
-                                <span className={[cl.bottomText, getColorRating(infoObj.ratingImdb), cl.ratingText].join` `}>{infoObj.ratingImdb}</span>
-                                <span className={cl.bottomText}>{infoObj.year},</span>
-                                <span className={cl.bottomText}>{infoObj.filmLength},</span>
-                                <span className={cl.bottomText}>{infoObj.genres.map(e=>e.genre).join`, `}</span>
+                                <span className={[cl.bottomText, getColorRating(rating), cl.ratingText].join` `}>{rating}</span>
+                                <span className={cl.bottomText}>{year},</span>
+                                <span className={cl.bottomText}>{country},</span>
+                                <span className={cl.bottomText}>{genre}</span>
                             </div>
                         </div>
                     </div>

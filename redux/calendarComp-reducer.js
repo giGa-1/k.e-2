@@ -6,10 +6,7 @@ const initialState = {
     date: '',
     dateText: '',
     premierMovies: [
-        {id:1, img:false, title: 'Lorem ipsum1', titleEn: 'Lorem ipsim1'},
-        {id:2, img:false, title: 'Lorem ipsum1', titleEn: 'Lorem ipsim1'},
-        {id:3, img:false, title: 'Lorem ipsum1', titleEn: 'Lorem ipsim1'},
-        {id:4, img:false, title: 'Lorem ipsum1', titleEn: 'Lorem ipsim1'},
+        
     ]
 }
 

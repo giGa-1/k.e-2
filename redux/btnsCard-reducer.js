@@ -6,7 +6,6 @@ const initialState = [
     {id:1,title:'О фильме',cardId:'about', active: true},
     {id:2,title:'Отзывы',cardId:'reviews', active: false},
     {id:3,title:'Актеры',cardId:'actors', active: false},
-    {id:4,title:'Медиа',cardId:'media', active: false},
 
 ]
 

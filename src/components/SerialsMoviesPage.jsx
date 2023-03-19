@@ -31,10 +31,7 @@ export default function SerialsMoviesPage({title='Фильмы', isSerial=false,
     
     useEffect(()=>{setIsLoader(true)},[])
 
-    useEffect(()=>{
-
-        // const officialHeroData = isSerial ? getOfficialYandexMovies(`/v1/movie?sortField=&page=${isPag}&limit=40&year=2022-2023&rating.kp=7-8&countries.name=США&type=tv-series`, setStateMoviePage, dispatch, false) :getOfficialYandexMovies(`/v1/movie?sortField=&page=${isPag}&limit=40&year=2022-2023&rating.kp=7-8&countries.name=США`, setStateMoviePage, dispatch, false);
-    },[isPag])
+   
     
     console.log(stateMovies)
 
@@ -45,14 +42,20 @@ export default function SerialsMoviesPage({title='Фильмы', isSerial=false,
     const stateCountries = useSelector(state=>state['Filter Countries'])
     
     const stateGenres = useSelector(state=>state['Filter Genres'])
-    
     const stateYears = useSelector(state=>state['Filter Years'])
+
+
+    useEffect(()=>{
+        const officialHeroData = !isSerial ? getOfficialYandexMovies(`search?minYear=${stateYears.filter(e=>e.active)[0].slug[0]}&maxYear=${stateYears.filter(e=>e.active)[0].slug[1]}&minRating=0&minVotes=10000&name=&type=movie&genre=${stateGenres.filter(e=>e.active)[0].slug}&country=${stateCountries.filter(e=>e.active)[0].text == 'Все страны' ? '': stateCountries.filter(e=>e.active)[0].text}&sort=rating&limit=25&page=${isPag}`, setStateMoviePage, dispatch, false)     :    getOfficialYandexMovies(`search?minYear=${stateYears.filter(e=>e.active)[0].slug[0]}&maxYear=${stateYears.filter(e=>e.active)[0].slug[1]}&minRating=0&minVotes=10000&name=&type=tv-series&genre=${stateGenres.filter(e=>e.active)[0].slug}&country=${stateCountries.filter(e=>e.active)[0].text == 'Все страны' ? '': stateCountries.filter(e=>e.active)[0].text}&sort=rating&limit=25&page=${isPag}`, setStateMoviePage, dispatch, false) ;
+    },[isPag])
    
 
     const [isSortInfo, setIsSortInfo] = useState([{id:1,text:'Рейтинг Больше',active:false},{id:2,text:'Рейтинг Меньше',active:false},{id:3,text:'Сначало Новые',active:true},{id:4,text:'Сначало Старые',active:false}])
 
     const SaveFilters = (e)=>{
         setIsDropBlock(false)
+        const officialHeroData = !isSerial ? getOfficialYandexMovies(`search?minYear=${stateYears.filter(e=>e.active)[0].slug[0]}&maxYear=${stateYears.filter(e=>e.active)[0].slug[1]}&minRating=0&minVotes=10000&name=&type=movie&genre=${stateGenres.filter(e=>e.active)[0].slug}&country=${stateCountries.filter(e=>e.active)[0].text == 'Все страны' ? '': stateCountries.filter(e=>e.active)[0].text}&sort=rating&limit=25&page=${isPag}`, setStateMoviePage, dispatch, false)     :      getOfficialYandexMovies(`search?minYear=${stateYears.filter(e=>e.active)[0].slug[0]}&maxYear=${stateYears.filter(e=>e.active)[0].slug[1]}&minRating=0&minVotes=10000&name=&type=tv-series&genre=${stateGenres.filter(e=>e.active)[0].slug}&country=${stateCountries.filter(e=>e.active)[0].text == 'Все страны' ? '': stateCountries.filter(e=>e.active)[0].text}&sort=rating&limit=25&page=${isPag}`, setStateMoviePage, dispatch, false) ;
+
     }
 
     return (
@@ -117,7 +120,7 @@ export default function SerialsMoviesPage({title='Фильмы', isSerial=false,
                         return (
                             <React.Fragment key={i}>
 
-                               <BigSwiperItem idFilm={e.id} img={e.poster.url} descr={e.description} title={  e.names[0].name} titleEn={ e.names[1] ? e.names[1].name : ''} rating={e.rating}  year={e.year}/>
+                               <BigSwiperItem idFilm={e.id} img={e.url} descr={''} title={  e.name} titleEn={''} rating={e.rating} country={e.counties[0]} genre={e.genres[0]}  year={e.year}/>
                             </React.Fragment>
                         )
                     })}

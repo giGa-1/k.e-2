@@ -24,6 +24,8 @@ import {complilationPageReducer} from './compilationPage-reducer';
 import {compilListPageReducer} from './compilationList-reducer';
 import {tabsMediaReducer} from './tabsMedia-reducer';
 import {calendarCompReducer} from './calendarComp-reducer';
+import {topsStateReducecr} from './topsState-reducer';
+
 const makeStore = () => configureStore({
     reducer: {
         [heroReducer.name]: heroReducer.reducer,
@@ -50,6 +52,8 @@ const makeStore = () => configureStore({
         [compilListPageReducer.name]:compilListPageReducer.reducer,
         [tabsMediaReducer.name]:tabsMediaReducer.reducer,
         [calendarCompReducer.name]:calendarCompReducer.reducer,
+        [topsStateReducecr.name]:topsStateReducecr.reducer,
+
     },
     devTools: true
 })

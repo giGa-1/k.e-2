@@ -6,7 +6,7 @@ export default function FocusCompItem({title, img}) {
     <li className={cl.item}>
         <img src={img} className={cl.img}/>
         <h3 className={cl.titleItem}>
-            {title}
+            {title.slice(0, 35)}...
         </h3>
     </li>
   )

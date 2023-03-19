@@ -18,35 +18,23 @@ import MyTextarea from '../UI/MyTextarea/MyTextarea';
 import BigSwiperList from '../BigSwiperList';
 import {setFavNewItems, deleteFavItems} from './../../../redux/favState-reducer';
 import Link from 'next/link';
+import {getMoviesBlankAPI} from './../../untils/API/getMoviesBlankAPI';
+import { getColorRating } from '../../untils/getColorRating';
+import { getReviewsMovie } from '../../untils/API/getReviewsMovie';
+import { deleteFavAPI } from '../../untils/API/deleteFavAPI';
+import { addFavAPI, getFavAPI } from '../../untils/API/getFavAPI';
 
 export default function MoviePage() {
     
     const dispatch = useDispatch()
     const stateFav = useSelector(state=>state['Fav State'])
-
-    const stateFilm = useSelector(state=>state['Movie Page']).infoObj
-
+    const stateMovieAll = useSelector(state=>state['Movie Page']).infoObj
+    const stateFilm = stateMovieAll.json
+    const [reviewsState, setReviewsState] = useState([]);
     const tabsState = useSelector(state=>state['Tabs btns card'])
 
-    const [stateReviews, setStateReviews] = useState([
-        {userPic:'',rating:'8',dateReview:'04.03.2023', initialsUser : 'Bot1 420691337', reviewUser : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur  magn dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore  incidunt sequi obcaecati possimus ea atque a omnis ut.',},
-        {userPic:'',rating:'7',dateReview:'01.03.2023', initialsUser : 'Bot2 24206914312', reviewUser : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore  incidunt sequi obcaecati possimus ea atque a omnis ut.',},
-        {userPic:'',rating:'6.5',dateReview:'14.02.2023', initialsUser : 'Bot3 091283123', reviewUser : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit am maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore  incidunt sequi obcaecati possimus ea atque a omnis ut.',},
-        {userPic:'',rating:'4.5',dateReview:'24.02.2023', initialsUser : 'Bot4 091283123', reviewUser : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit am maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore  incidunt sequi obcaecati possimus ea atque a omnis ut.',},
-        {userPic:'',rating:'8.5',dateReview:'15.02.2023', initialsUser : 'Bot5 091283123', reviewUser : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit am maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore  incidunt sequi obcaecati possimus ea atque a omnis ut.',},
-        {userPic:'',rating:'9.5',dateReview:'14.01.2023', initialsUser : 'Bot6 091283123', reviewUser : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit am maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore  incidunt sequi obcaecati possimus ea atque a omnis ut.',},
-        {userPic:'',rating:'4.5',dateReview:'14.01.2023', initialsUser : 'Bot7 091283123', reviewUser : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit am maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore  incidunt sequi obcaecati possimus ea atque a omnis ut.',},
-        {userPic:'',rating:'6',dateReview:'01.02.2023', initialsUser : 'Bot8 091283123', reviewUser : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit am maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore  incidunt sequi obcaecati possimus ea atque a omnis ut.',},
-        {userPic:'',rating:'5',dateReview:'01.01.2023', initialsUser : 'Bot9 091283123', reviewUser : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit am maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore  incidunt sequi obcaecati possimus ea atque a omnis ut.',},
-        {userPic:'',rating:'4',dateReview:'12.12.2023', initialsUser : 'Bot10 091283123', reviewUser : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit am maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore  incidunt sequi obcaecati possimus ea atque a omnis ut.',},
-        {userPic:'',rating:'8.3',dateReview:'16.11.2023', initialsUser : 'Bot11 091283123', reviewUser : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit am maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore  incidunt sequi obcaecati possimus ea atque a omnis ut.',},
-        {userPic:'',rating:'9.1',dateReview:'26.02.2023', initialsUser : 'Bot12 091283123', reviewUser : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit am maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore  incidunt sequi obcaecati possimus ea atque a omnis ut.',},
-        {userPic:'',rating:'10',dateReview:'28.04.2023', initialsUser : 'Bot12 091283123', reviewUser : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit am maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore  incidunt sequi obcaecati possimus ea atque a omnis ut.',},
-        {userPic:'',rating:'6.1',dateReview:'31.05.2023', initialsUser : 'Bot14 091283123', reviewUser : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit am maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore  incidunt sequi obcaecati possimus ea atque a omnis ut.',},
-        {userPic:'',rating:'6.5',dateReview:'23.06.2023', initialsUser : 'Bot15 091283123', reviewUser : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit am maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae magni perspiciatis corporis sunt maiores aspernatur dolor, assumenda odit, voluptate eaque dolore  incidunt sequi obcaecati possimus ea atque a omnis ut.',},
-    ])
+    const [stateReviews, setStateReviews] = useState()
 
-    const [isPag, setIsPag] = useState([0,1])
     const [isLoading, setIsLoading] = useState(false)
     const [isFav, setIsFav] = useState(null)
     const [isSelect, setIsSelect] = useState(false);
@@ -56,39 +44,61 @@ export default function MoviePage() {
     const [isReviewOpen, setIsReviewOpen] = useState(false);
 
 
-    const stateUser = {userName: 'Not Bot 123123'}
+    
+
+    // const stateUser = localStorage.getItem('authInfo').initials
 
     useMemo(()=>{
-        if(Object.values(infoSelect.filter(e=>e.active)[0]).length){
-            infoSelect.filter(e=>e.active)[0].id===3 ? 
-            setStateReviews(stateReviews.sort((a,b)=> +(b.dateReview.split`.`.reverse().join``)-(+(a.dateReview.split`.`.reverse().join``)) ))
-            : infoSelect.filter(e=>e.active)[0].id===4 ? setStateReviews(stateReviews.sort((a,b)=> +(a.dateReview.split`.`.reverse().join``)-(+(b.dateReview.split`.`.reverse().join``)) ))
-            : infoSelect.filter(e=>e.active)[0].id===2 ? setStateReviews(stateReviews.sort((a,b)=> +(a.rating)-(+(b.rating)) ))
-            : infoSelect.filter(e=>e.active)[0].id===1 ? setStateReviews(stateReviews.sort((a,b)=>+(b.rating)-(+(a.rating)) )) : ''       
-        }
+        
     },[infoSelect,stateReviews ])
 
 
-    useMemo(()=>{
-        Object.values(stateFilm).length&&setIsLoading(true)
-    },[stateFilm])
-
+    
     
     useEffect(()=>{
-        const officialHeroData = getOfficialYandexMovies('/v1/movie/'+`${window.location.href}?`.split`/`[`${window.location.href}`.split`/`.length-1], setInfoMoviePage, dispatch, true);
+        const reviewsData = getReviewsMovie(`${window.location.href}?`.split`/`[`${window.location.href}`.split`/`.length-1].match(/\d/g).join``);
+        reviewsData.then((data)=>{
+            setStateReviews(data)
+            console.log(data)
+        })
+        const officialHeroData = getMoviesBlankAPI('movie/'+`${window.location.href}?`.split`/`[`${window.location.href}`.split`/`.length-1]);
+        officialHeroData.then((data)=>{
+            dispatch(setInfoMoviePage(data))
+            setIsLoading(true)
+        })
     },[])
 
  
-    console.log(stateFilm)
+    console.log(stateMovieAll)
 
+   
     const sendReviewToState = (e)=>{
-        setStateReviews([...stateReviews, {id:stateReviews.length+1,rating:isRatingReview,dateReview:dayjs().format('DD.MM.YYYY'),initialsUser:stateUser.userName,reviewUser:isTextareaReview}])
+
     }
 
     useEffect(()=>{
-        isFav?dispatch(setFavNewItems(stateFilm)):isFav===false?dispatch(deleteFavItems(stateFilm.id)):''
+        const deleteFav = getFavAPI("?id="+window.location.href.split`/`[window.location.href.split`/`.length-1])
+        deleteFav.then(data=>{
+            console.log(data)
+        })
     },[isFav])
 
+    const setFavFilm = (e)=>{   
+        if(isFav) {
+            const deleteFav = deleteFavAPI(window.location.href.split`/`[window.location.href.split`/`.length-1])
+            deleteFav.then(data=>{
+                console.log(data)
+                setIsFav(!isFav)
+            })
+        } else {
+            const deleteFav = addFavAPI(window.location.href.split`/`[window.location.href.split`/`.length-1])
+            deleteFav.then(data=>{
+                console.log(data)
+                setIsFav(!isFav)
+            })
+        }
+      
+    }
 
   return (
  
@@ -96,32 +106,34 @@ export default function MoviePage() {
     <section className={cl.section}>
         <div className="container">
             <div className={cl.content}>
-            <div className={cl.leftBlock}>
+                <div className={cl.leftBlock}>
                      <div className={cl.imgBlock}>
-                         <img src={isLoading&&stateFilm.poster.url}  className={cl.imgPoster}/>
+                         <img src={isLoading&&stateFilm.posterUrl}  className={cl.imgPoster}/>
+                         <span className={[cl.rating, ].join` `}>
+                            {isLoading&&stateFilm.ratingKinopoisk}
+                         </span>
                      </div>
-                     <div className={cl.videoBlock}>
+                     {/* <div className={cl.videoBlock}>
                          <p className={cl.trailerText}>Трейлер к фильму:</p>
                          <>
-                             <ReactPlayer url={isLoading&&stateFilm.videos.trailers[0].url} style={{maxWidth: '350px', width:'100%', maxHeight: '220px', border: ' 1px solid #333', boxShadow: ' rgba(100, 100, 111, 0.15) 0px 7px 29px 0px', borderRadius: '15px', overflow: 'hidden'}}>
-                             </ReactPlayer>
+                             <ReactPlayer url={isLoading&&stateFilm.videos.trailers[0].url} style={{maxWidth: '350px', width:'100%', maxHeight: '220px', border: ' 1px solid #333', boxShadow: ' rgba(100, 100, 111, 0.15) 0px 7px 29px 0px', borderRadius: '15px', overflow: 'hidden'}}></ReactPlayer>
                          </>
                        
-                     </div>
+                     </div> */}
                  </div>
-                <div className={cl.rightBlock}>
+                 <div className={cl.rightBlock}>
                     <div className={cl.tabsHead}>
                         <div className={cl.tabsHeadTitle}>
                             <div className={cl.tabsTextBlock}>
-                                <p className={cl.nameEnFilm}>{isLoading&&stateFilm.names[1].name}</p>
+                                <p className={cl.nameEnFilm}>{isLoading&&stateFilm.nameOriginal}</p>
                                 <h1 className={cl.nameFilm}>
-                                    {isLoading&&stateFilm.names[0].name}
+                                    {isLoading&&stateFilm.nameRu}
                                 </h1>
                                 <p className={cl.descrFilm}>
                                     {isLoading&&stateFilm.description}
                                 </p>
                             </div>
-                            <div className={cl.favBlock} onClick={e=>{setIsFav(!isFav)}}>
+                            <div className={cl.favBlock} onClick={e=>{setFavFilm(e)}}>
                                 <span className={cl.favText}>В Избранное</span>
                                 <span className={isFav  ? [cl.favIcon, cl.activeFav].join` `  : cl.favIcon}>
 
@@ -148,54 +160,78 @@ export default function MoviePage() {
 
                                     
                                     <div className={cl.infoAbout}>
-                                        <div className={cl.aboutRow}>
-                                            <span className={cl.titleRow}>{isLoading&&stateFilm.seasonsInfo.length!==0 ? 'Сезоны' :  'Время'}</span>
-                                            <span className={cl.valueRow}>{isLoading&&stateFilm.seasonsInfo.length!==0 ? `${stateFilm.seasonsInfo.length} сезона, ${~~(stateFilm.seasonsInfo.reduce((ac,e)=>+(e.episodesCount)+ac,0)/stateFilm.seasonsInfo.length)} серий (сред. значение)`  :  `${stateFilm.movieLength} мин - ${~~(stateFilm.movieLength/60)} ч. ${stateFilm.movieLength-(~~(stateFilm.movieLength/60)*60)} мин.`}</span>
-                                       </div>
+                                        {
+                                            isLoading&&stateFilm.type != 'TV_SERIES'?
+                                                <div className={cl.aboutRow}>
+                                                        <span className={cl.titleRow}>{'Время'}</span>
+                                                        <span className={cl.valueRow}>{  `${stateFilm.filmLength} мин - ${~~(stateFilm.filmLength/60)} ч. ${stateFilm.filmLength-(~~(stateFilm.filmLength/60)*60)} мин.`}</span>
+                                                </div>
+                                            :''
+                                        }
+                                       
                                        <div className={cl.aboutRow}>
                                             <span className={cl.titleRow}>Год</span>
-                                            <span className={cl.valueRow}>{isLoading&&stateFilm.year}</span>
-                                       </div>
-                                       <div className={cl.aboutRow}>
-                                            <span className={cl.titleRow}>Жанр</span>
-                                            <span className={cl.valueRow}>{isLoading&&stateFilm.genres.map(e=>e.name).join`, `}</span>
-                                       </div>
-                                       <div className={cl.aboutRow}>
-                                            <span className={cl.titleRow}>Страна</span>
-                                            <span className={cl.valueRow}>{isLoading&&stateFilm.countries.map(e=>e.name).join`, `}</span>
-                                       </div>
-                                       <div className={cl.aboutRow}>
-                                            <span className={cl.titleRow}>Сборы</span>
                                             <span className={cl.valueRow}>
-                                                
-                                                  {isLoading&&`${stateFilm.fees.world.currency}${(stateFilm.fees.world.value+'').split``.reverse().filter((e,i)=>i>5).reverse().join``} млн`}
-                                                
+                                            {isLoading&&stateFilm.type != 'TV_SERIES' ? 
+                                             isLoading&&stateFilm.year
+                                            :
+                                                `${isLoading&&stateFilm.year} - ${ isLoading&&stateFilm.endYear}`
+                                            }
+                                               
+                                            
                                             </span>
                                        </div>
                                        <div className={cl.aboutRow}>
-                                            <span className={cl.titleRow}>Бюджет</span>
-                                            <span className={cl.valueRow}>{isLoading&&`${stateFilm.budget.currency}${(stateFilm.budget.value+'').split``.reverse().filter((e,i)=>i>5).reverse().join``} млн`}</span>
+                                            <span className={cl.titleRow}>Жанр</span>
+                                            <span className={cl.valueRow}>{isLoading&&stateFilm.genres.map(e=>e.genre).join`, `}</span>
                                        </div>
                                        <div className={cl.aboutRow}>
-                                            <span className={cl.titleRow}>Возраст</span>
-                                            <span className={cl.valueRow}>{isLoading&&stateFilm.ageRating}+</span>
+                                            <span className={cl.titleRow}>Страна</span>
+                                            <span className={cl.valueRow}>{isLoading&&stateFilm.countries.map(e=>e.country).join`, `}</span>
                                        </div>
                                       
+                                       {isLoading&&stateFilm.type != 'TV_SERIES'&&!Object.values(stateMovieAll.boxJson).length ? 
+                                       <>
+                                            <div className={cl.aboutRow}>
+                                                <span className={cl.titleRow}>Сборы</span>
+                                                <span className={cl.valueRow}>
+                                                    
+                                                    {isLoading&&`${stateMovieAll.boxJson.items[3].symbol}${(stateMovieAll.boxJson.items[3].amount+'').split``.reverse().filter((e,i)=>i>5).reverse().join``} млн`}
+                                                    
+                                                </span>
+                                            </div>
+                                            <div className={cl.aboutRow}>
+                                                        <span className={cl.titleRow}>Бюджет</span>
+                                                        <span className={cl.valueRow}>{isLoading&&`${stateMovieAll.boxJson.items[0].symbol}${(stateMovieAll.boxJson.items[0].amount+'').split``.reverse().filter((e,i)=>i>5).reverse().join``} млн`}</span>
+                                            </div>
+                                        </>
+                                       
+                                            :
+                                       ''}
+                                      
                                        <div className={cl.aboutRow}>
-                                            <span className={cl.titleRow}>Режиссер</span>
-                                            <span className={cl.valueRow}>Стивен Кинг</span>
+                                            <span className={cl.titleRow}>Возраст</span>
+                                            <span className={cl.valueRow}>{isLoading&&stateFilm.ratingAgeLimits.match(/\d/g)}+</span>
                                        </div>
                                        <div className={cl.aboutRow}>
-                                            <span className={cl.titleRow}>Продюсер</span>
-                                            <span className={cl.valueRow}>Стивен Кинг</span>
+                                            <span className={cl.titleRow}>Оценки</span>
+                                            <span className={cl.valueRow}>{isLoading&&stateFilm.ratingKinopoiskVoteCount}</span>
                                        </div>
                                        <div className={cl.aboutRow}>
-                                            <span className={cl.titleRow}>Композитор</span>
-                                            <span className={cl.valueRow}>Стивен Кинг</span>
+                                            <span className={cl.titleRow}>Окенка критиков</span>
+                                            <span className={cl.valueRow}>
+                                            {isLoading&&stateFilm.type != 'TV_SERIES' ? 
+                                               isLoading&&stateFilm.ratingFilmCritics
+                                            :
+                                                isLoading&&stateFilm.ratingImdb
+                                            }
+                                             
+                                            
+                                            </span>
                                        </div>
                                        <div className={cl.aboutRow}>
-                                            <span className={cl.titleRow}>Художник</span>
-                                            <span className={cl.valueRow}>Стивен Кинг</span>
+                                            <span className={cl.titleRow}>Отзывов</span>
+                                            <span className={cl.valueRow}>{isLoading&&stateFilm.reviewsCount}</span>
                                        </div>
 
                                     </div>
@@ -206,9 +242,9 @@ export default function MoviePage() {
                                         <div className={cl.sendReview} onClick={e=>setIsReviewOpen(!isReviewOpen)}>
                                             Оставить отзыв...
                                         </div>
-                                        <div className={cl.selectBlock}>
+                                        {/* <div className={cl.selectBlock}>
                                             <MySelect setIsSelect={setIsSelect} isSelect={isSelect} infoSelect={infoSelect} setInfoSelect={setInfoSelect}/>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div className={isReviewOpen ? [cl.reviewBlock, cl.activeReviewBlock].join` ` : cl.reviewBlock}>
                                        <div className={cl.reviewWrapp}>
@@ -230,22 +266,12 @@ export default function MoviePage() {
                                     </div>
                                     <div className={cl.listBlock}>
                                         <ul className={cl.list}>
-                                            {stateReviews.slice(isPag[0],+(`${isPag[1]}0`)).map((e,i)=>
+                                            {reviewsState.map((e,i)=>
                                                 <MoviePageReviews userPic={e.userPic} rating={e.rating} dateReview={e.dateReview} initialsUser={e.initialsUser} reviewUser={e.reviewUser}  key={i} />
                                             )}
                                         </ul>
                                         <div className={cl.pagiantion}>
                                             <span className={cl.prevArrow}></span>
-                                            <span className={cl.pagNumbers}>
-                                                {
-                                                    isPag[1]===1?
-                                                    stateReviews.filter((e,i)=>i<30&&(i+1===1||`${i+1}`.split``.reverse()[0]==1)).map((e,i)=><span onClick={event=>setIsPag([i,i+1])}>{1+i}</span>)
-                                                    : (~~(stateReviews.length/10))-isPag[1]===0 ? 
-                                                    stateReviews.reverse().filter((e,i)=>i>30&&(i+1===1||`${i+1}`.split``.reverse()[0]==1)).reverse().map((e,i)=><span onClick={event=>setIsPag([i,i+1])}>{1+i}</span>)
-                                                    : [isPag[1]-1,isPag[1],isPag[1]+1].map(e=><span onClick={setIsPag([e-1,e])}>{e}</span>)
-                                                   
-                                                }
-                                            </span>
                                             <span className={cl.nextArrow}></span>
                                         </div>
                                     </div>
@@ -254,10 +280,10 @@ export default function MoviePage() {
                             tabsState.filter(e=>e.cardId=='actors')[0].active ? 
                                 <div className={cl.tabsAbout}>
                                     <ul className={cl.listActors}>
-                                        {isLoading&&stateFilm.persons.filter((e,i)=>i<26).map((e,i)=>
-                                            <Link href={'/actors/'+e.id}>
-                                                <MoviewPageActors key={e.id} imgSrc={e.photo} title={e.name}/>
-                                            </Link>
+                                        {isLoading&&stateMovieAll.staffJson.filter((e,i)=>i<26).map((e,i)=>
+                                            // <Link href={'/actors/'+e.staffId}>
+                                                <MoviewPageActors key={e.staffId} imgSrc={e.posterUrl} descr={e.description} titleEn={e.nameEn} title={e.nameRu}/>
+                                            // </Link>
                                         )}
                                     </ul>
                                 </div>
@@ -290,15 +316,17 @@ export default function MoviePage() {
                     </div>
                 </div>
             </div>
-         
         </div>
         <div className={cl.likeMovies}>
-                <BigSwiperList  stateSwiper={isLoading&&stateFilm.similarMovies} similar={true} title={'Вам также могут понравиться'}/>
+                {/* <BigSwiperList  stateSwiper={isLoading&&stateFilm.similarMovies} similar={true} title={'Вам также могут понравиться'}/>  */}
             </div>
-    </section>
+ </section>
 
   
     </>
     
   )
 }
+
+
+

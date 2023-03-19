@@ -19,10 +19,9 @@ export default function SerialsComp() {
     });
     const stateSerials = useSelector(state=>state['Serials Comp'])
     useEffect(()=>{
-        // const officialHeroData = getOfficialYandexMovies('/v1/movie?field=rating.kp&search=7-10&field=year&search=2022-2023&field=typeNumber&search=2&sortField=year&sortType=1&sortField=votes.imdb&sortType=-1&limit=15', setStateOfficialSerialsComp, dispatch);
+        const officialHeroData = getOfficialYandexMovies('search?minYear=2016&limit=25&maxYear=2023&minRating=0&minVotes=200000&name=&type=tv-series&genre=&country=&sort=rating&page=1', setStateOfficialSerialsComp, dispatch);
     
     },[])   
-    console.log(stateSerials)
   return (
     <section className={cl.section}>
 

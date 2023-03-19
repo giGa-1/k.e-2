@@ -23,10 +23,9 @@ export default function MoviesComp() {
     });
     useEffect(()=>{
       
-        // const officialHeroData = getOfficialYandexMovies('/v1/movie?field=rating.kp&search=7-10&field=year&search=2022-2023&field=typeNumber&search=1&sortField=year&sortType=1&sortField=votes.imdb&sortType=-1&limit=15', setStateOfficialMoviesComp, dispatch);
+        const officialHeroData = getOfficialYandexMovies('search?minYear=2019&maxYear=2023&minRating=0&limit=25&minVotes=350000&name=&type=movie&genre=&country=&sort=rating&page=1', setStateOfficialMoviesComp, dispatch);
 
     },[])   
-    console.log(stateMovies)
   return (
     <section className={cl.section}>
 

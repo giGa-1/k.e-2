@@ -37,7 +37,9 @@
 }
 
 .itemBottom {
-   
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    gap: 6px;
     margin-top: 25px;
     color: #cfcfcf;
     font-weight: 500;
@@ -78,7 +80,13 @@
 .upperImg::-webkit-scrollbar {
     width: 0;
 }
-
+.itemBottomFooter {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: start;
+    gap: 5px;
+    font-size: 14px;
+}
 .title {
     margin-bottom: 55px;
 }

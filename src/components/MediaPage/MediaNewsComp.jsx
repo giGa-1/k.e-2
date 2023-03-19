@@ -9,17 +9,16 @@ export default function MediaNewsComp() {
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(()=>{
+
         // const response = getNewsAPIjs('page=1');
 
         // response.then((data)=>{
         //     setStateNews([...stateNews, data])
         // })
-       
 
     },[])
     useMemo(()=>{
         if (stateNews.length>2) {
-            setStateNews(stateNews.filter(e=>e.coverUrl !== ''))
             console.log(stateNews)
             setIsLoading(true)
         }
@@ -33,9 +32,7 @@ export default function MediaNewsComp() {
                         isLoading&&stateNews.filter((e,i)=>i<=33).map((e,i)=>{
                             return (
                                 <React.Fragment key={i}>
-                                   
-                                  <MediaNewsItem descr={e.title} img={e.coverUrl} index={i}/>
-                                   
+                                    <MediaNewsItem descr={e.title} img={e.coverUrl} index={i}/> 
                                 </React.Fragment>
                             )
                         })

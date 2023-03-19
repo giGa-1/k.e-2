@@ -4,11 +4,12 @@ import cl from './MediaComp.module.css';
 import { useInView } from 'react-intersection-observer';
 
 
-export default function MediaNewsItem({index,href = '/news/12321',img = '/img/test-news.png',date = '13:00 17.05.2023', descr }) {
+export default function MediaNewsItem({index,href = '/news/12321',img = '/img/test-news.png',date = '13:00 17.05.2023', descr ='' }) {
     const { ref, inView, entry } = useInView({
         /* Optional options */
         threshold: .2,
       });
+      console.log(descr);
     return (
     <li ref={ref} className={index===2 ? inView ? [cl.newsAllItem, cl.newsAllBigItem, cl.activeNewsItem].join` `  : [cl.newsAllItem, cl.newsAllBigItem].join` ` : index===9 ? inView ? [cl.newsAllItem, cl.newsAllBigBottom, cl.activeNewsItem].join` ` : [cl.newsAllItem, cl.newsAllBigBottom].join` ` : inView ? [cl.newsAllItem, cl.activeNewsItem].join` ` : cl.newsAllItem}>            
         <Link href={href } className={cl.newsAlllink}>

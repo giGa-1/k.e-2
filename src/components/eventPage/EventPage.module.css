@@ -1,0 +1,66 @@
+.section {
+    margin-top: 125px;   
+}
+
+
+.titleBlock {
+    margin-bottom: 45px;
+    display: grid;
+    grid-template-columns: repeat(2, auto)
+    ;justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.othertitle {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 20px;
+    align-items: center;
+
+}
+.likesBlock, .viewsBlock {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 5px;
+    align-items: center;
+}
+
+.likeText {
+    font-size: 17px;
+
+    color: #fff;
+}
+
+
+
+.likeImg, .viewsImg {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: contain;
+    background-image: url('./../../assets/like-sbg-white.svg');    
+}
+
+.viewsImg {
+    background-image: url('./../../assets/eye-white.svg');    
+
+}
+
+.viewsText {
+    color:#fff;
+    font-size: 17px; 
+}
+
+.title {
+    color: #fff;
+    font-size: 22px;
+}
+
+.descr {
+    line-height: 200%;
+    font-size: 18px;
+    color: #fff;
+}
