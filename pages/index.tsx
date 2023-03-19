@@ -10,7 +10,6 @@ import AboutComp from 'src/components/navPage/AboutComp/AboutComp';
 import CalendarComp from 'src/components/navPage/calendarComo/calendarComp';
 import Footer from 'src/components/Footer/Footer';
 
-import { useRouter } from 'next/router';
 
 
 
