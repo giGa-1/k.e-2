@@ -1,5 +1,6 @@
 import { getPasswordHash } from "../../../../internal/auth";
 import { changeEmail, changePassword, getStatments, selectUsernameEmailByKey,  } from "../../../../internal/database";
+import { serialize } from "cookie";
 
 export default function handler(req, res) {
     return new Promise((resolve, reject) => {
