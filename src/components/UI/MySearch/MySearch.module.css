@@ -72,7 +72,7 @@
 
 .bodyCategories {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 5px;
     align-items: center;
 }
@@ -100,4 +100,47 @@
 
     color: #dddddd;
     border-radius: 5px;
+}
+
+
+.itemBody {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 15px;
+    height: 140px;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 15px;
+    box-shadow:  #4949491d 0px 0px 20px;
+
+ 
+    
+}
+
+.link {
+    display: block;
+}
+
+.rating {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+
+.textItem {
+    font-size: 15px;
+    color: #fff;
+}
+
+.imgSearch {
+    
+    object-fit: cover;
+    border-radius: 10px;
+    width: 70px;
+}
+
+.listSearch {
+    max-height: 300px;
+    overflow-y: scroll;
 }

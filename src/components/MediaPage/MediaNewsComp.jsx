@@ -10,11 +10,11 @@ export default function MediaNewsComp() {
 
     useEffect(()=>{
 
-        // const response = getNewsAPIjs('page=1');
+        const response = getNewsAPIjs('page=1');
 
-        // response.then((data)=>{
-        //     setStateNews([...stateNews, data])
-        // })
+        response.then((data)=>{
+            setStateNews([...stateNews, data])
+        })
 
     },[])
     useMemo(()=>{

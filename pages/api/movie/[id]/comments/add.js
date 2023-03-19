@@ -15,7 +15,7 @@ export default function handler(req, res) {
 					resolve();
 					return;
 				} else {
-					var body = JSON.parse(req.body);
+					var body = req.body;
 					var movieid = req.query.id;
 					var text = body.text;
 					var rating = body.rating;

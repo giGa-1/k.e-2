@@ -28,26 +28,26 @@ export default function MediaAllComp() {
 
 
     useEffect(()=>{
-        // const response = getNewsAPIjs('page=1');
-        // const response2 = getNewsAPIjs('page=2');
-        // const response3 = getNewsAPIjs('page=3');
-        // const response4 = getNewsAPIjs('page=4');
+        const response = getNewsAPIjs('page=1');
+        const response2 = getNewsAPIjs('page=2');
+        const response3 = getNewsAPIjs('page=3');
+        const response4 = getNewsAPIjs('page=4');
 
 
         
 
-        // response.then((data)=>{
-        //     setStateNews([...stateNews, ...data].filter((e)=>e.coverUrl!==''))
-        // })
-        // response2.then((data)=>{
-        //     setStateNewsN([...stateNewsN, ...data].filter((e)=>e.coverUrl!==''))
-        // })
-        // response3.then((data)=>{
-        //     setStateArticles([...stateArticles, ...data])
-        // }) 
-        // response4.then((data)=>{
-        //     setStateArticlesN([...stateArticlesN, ...data])
-        // })
+        response.then((data)=>{
+            setStateNews([...stateNews, ...data].filter((e)=>e.coverUrl!==''))
+        })
+        response2.then((data)=>{
+            setStateNewsN([...stateNewsN, ...data].filter((e)=>e.coverUrl!==''))
+        })
+        response3.then((data)=>{
+            setStateArticles([...stateArticles, ...data])
+        }) 
+        response4.then((data)=>{
+            setStateArticlesN([...stateArticlesN, ...data])
+        })
         const getStateTops = getTopsAPI();
         getStateTops.then((data)=>{
             dispatch(setStateTops(data))

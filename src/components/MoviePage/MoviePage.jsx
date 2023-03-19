@@ -23,6 +23,7 @@ import { getColorRating } from '../../untils/getColorRating';
 import { getReviewsMovie } from '../../untils/API/getReviewsMovie';
 import { deleteFavAPI } from '../../untils/API/deleteFavAPI';
 import { addFavAPI, getFavAPI } from '../../untils/API/getFavAPI';
+import { addReviewsMovie } from '../../untils/API/addReviewsMovie';
 
 export default function MoviePage() {
     
@@ -34,7 +35,7 @@ export default function MoviePage() {
     const tabsState = useSelector(state=>state['Tabs btns card'])
 
     const [stateReviews, setStateReviews] = useState()
-
+    const [commentsState,setCommentsState] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [isFav, setIsFav] = useState(null)
     const [isSelect, setIsSelect] = useState(false);
@@ -42,7 +43,7 @@ export default function MoviePage() {
     const [isTextareaReview, setIsTextareaReview] = useState('');
     const [isRatingReview, setIsRatingReview] = useState('7');
     const [isReviewOpen, setIsReviewOpen] = useState(false);
-
+    const [change, setChange] = useState(null)
 
     
 
@@ -57,10 +58,10 @@ export default function MoviePage() {
     
     useEffect(()=>{
         const reviewsData = getReviewsMovie(`${window.location.href}?`.split`/`[`${window.location.href}`.split`/`.length-1].match(/\d/g).join``);
-        reviewsData.then((data)=>{
-            setStateReviews(data)
-            console.log(data)
-        })
+            reviewsData.then((data)=>{
+                setCommentsState(data)
+                console.log(data)
+            })
         const officialHeroData = getMoviesBlankAPI('movie/'+`${window.location.href}?`.split`/`[`${window.location.href}`.split`/`.length-1]);
         officialHeroData.then((data)=>{
             dispatch(setInfoMoviePage(data))
@@ -68,18 +69,33 @@ export default function MoviePage() {
         })
     },[])
 
+    useMemo(()=>{
+        if (typeof window !== 'undefined') {
+            const reviewsData = getReviewsMovie(`${window.location.href}?`.split`/`[`${window.location.href}`.split`/`.length-1].match(/\d/g).join``);
+            reviewsData.then((data)=>{
+                setCommentsState(data)
+                console.log(data)
+            })
+        }
+       
+    },[change])
  
     console.log(stateMovieAll)
 
    
     const sendReviewToState = (e)=>{
+        const response = addReviewsMovie(`${window.location.href}?`.split`/`[`${window.location.href}`.split`/`.length-1].match(/\d/g).join``, {rating: '0', text: isTextareaReview})
+        response.then(data=>{
+            console.log(data)
+            setChange(Math.random())
 
+        })
     }
 
     useEffect(()=>{
         const deleteFav = getFavAPI("?id="+window.location.href.split`/`[window.location.href.split`/`.length-1])
         deleteFav.then(data=>{
-            console.log(data)
+            setCommentsState(data)
         })
     },[isFav])
 
@@ -161,13 +177,15 @@ export default function MoviePage() {
                                     
                                     <div className={cl.infoAbout}>
                                         {
-                                            isLoading&&stateFilm.type != 'TV_SERIES'?
+                                            isLoading? 
                                                 <div className={cl.aboutRow}>
-                                                        <span className={cl.titleRow}>{'Время'}</span>
-                                                        <span className={cl.valueRow}>{  `${stateFilm.filmLength} мин - ${~~(stateFilm.filmLength/60)} ч. ${stateFilm.filmLength-(~~(stateFilm.filmLength/60)*60)} мин.`}</span>
-                                                </div>
+                                                <span className={cl.titleRow}>{'Сред. Время'}</span>
+                                                <span className={cl.valueRow}>{  `${stateFilm.filmLength} мин - ${~~(stateFilm.filmLength/60)} ч. ${stateFilm.filmLength-(~~(stateFilm.filmLength/60)*60)} мин.`}</span>
+                                        </div>
                                             :''
                                         }
+                                               
+                                            
                                        
                                        <div className={cl.aboutRow}>
                                             <span className={cl.titleRow}>Год</span>
@@ -220,11 +238,9 @@ export default function MoviePage() {
                                        <div className={cl.aboutRow}>
                                             <span className={cl.titleRow}>Окенка критиков</span>
                                             <span className={cl.valueRow}>
-                                            {isLoading&&stateFilm.type != 'TV_SERIES' ? 
-                                               isLoading&&stateFilm.ratingFilmCritics
-                                            :
-                                                isLoading&&stateFilm.ratingImdb
-                                            }
+                                          
+                                                {isLoading&&stateFilm.ratingImdb}
+                                         
                                              
                                             
                                             </span>
@@ -259,21 +275,19 @@ export default function MoviePage() {
                                                     <MyBtnFiled classBtn={cl.btnSendReview} handleFunc={sendReviewToState}>Опубликовать</MyBtnFiled>
                                                 </div>
                                                 <div className={cl.ratingWrap}>
-                                                    <p className={cl.ratingText}>- {isRatingReview}</p>
+                                                    {/* <p className={cl.ratingText}>- {isRatingReview}</p> */}
                                                 </div>
                                             </div>
                                        </div>
                                     </div>
                                     <div className={cl.listBlock}>
                                         <ul className={cl.list}>
-                                            {reviewsState.map((e,i)=>
-                                                <MoviePageReviews userPic={e.userPic} rating={e.rating} dateReview={e.dateReview} initialsUser={e.initialsUser} reviewUser={e.reviewUser}  key={i} />
-                                            )}
+                                            {commentsState.length?commentsState.map((e,i)=>
+                                                <MoviePageReviews   initialsUser={e.userName} reviewUser={e.text}  key={i} />
+                                            )
+                                        :''}
                                         </ul>
-                                        <div className={cl.pagiantion}>
-                                            <span className={cl.prevArrow}></span>
-                                            <span className={cl.nextArrow}></span>
-                                        </div>
+                                     
                                     </div>
                                 </div>
                             :

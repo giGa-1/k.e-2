@@ -90,11 +90,11 @@ export default function SerialsMoviesPage({title='Фильмы', isSerial=false,
                         </div>
                     </div>
                     <div className={cl.sortWrap}>
-                        <p className={cl.sortText}>Сортировка:</p>
+                        {/* <p className={cl.sortText}>Сортировка:</p>
                         <div className={cl.sortBlock}>
 
                         <MySelect isSelect={isSortSelect} setIsSelect={setIsSortSelect} infoSelect={isSortInfo} setInfoSelect={setIsSortInfo}/>
-                        </div>
+                        </div> */}
                     </div>
                 </div>  
                 <div className={isDropBlock ? [cl.blockDrop, cl.activeDrop].join` ` : isDropBlock===false ?  [cl.blockDrop, cl.closeDrop].join` `  : cl.blockDrop}>

@@ -17,15 +17,15 @@ export default function FocusComp() {
     const [isLoader, setIsLoader] = useState(false)
 
     useEffect(()=>{
-        // const response = getNewsAPIjs('page=1');
-        // response.then((data)=>{
-        //     setStateNews(data)
-        // })
-        // const response2 = getNewsAPIjs('page=2');
-        // response2.then((data)=>{
-        //     setStateNewsN(data)
-        //     setIsLoader(true)
-        // })
+        const response = getNewsAPIjs('page=1');
+        response.then((data)=>{
+            setStateNews(data)
+        })
+        const response2 = getNewsAPIjs('page=2');
+        response2.then((data)=>{
+            setStateNewsN(data)
+            setIsLoader(true)
+        })
     },[])
     const { ref, inView, entry } = useInView({
         /* Optional options */
