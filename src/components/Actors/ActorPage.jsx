@@ -109,9 +109,9 @@ export default function ActorPage({idActor}) {
                         <div className={cl.filmsActor}>
                             <h2 className={cl.filmsTitle}>Смотрите также:</h2>
                             <ul className={cl.filmsList}>
-                                {bestMovieActor.map(e=>{
+                                {bestMovieActor.map((e,i)=>{
                                     return (
-                                        <Link href={'/movies/'+e.id}>
+                                        <Link key={i} href={'/movies/'+e.id}>
                                             <li className={cl.filmsItem}>
                                                 {e.name}
                                                 <span className={[cl.ratingFilm, getColorRating(e.rating)].join` `}>

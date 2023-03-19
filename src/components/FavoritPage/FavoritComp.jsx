@@ -26,9 +26,9 @@ export default function FavoritComp() {
                 <div className={cl.listBlock}>
                     <ul className={cl.list}>
                         {
-                            stateFav.videoContent.map(e=>{
+                            stateFav.videoContent.map((e,u)=>{
                                 return (
-                                    <MoviesCompItem img={e.img} title={e.title} rating={e.rating} genre={e.genre} year={e.year} descr={e.description} idFilm={e.idFilm}/>
+                                    <MoviesCompItem key={u} img={e.img} title={e.title} rating={e.rating} genre={e.genre} year={e.year} descr={e.description} idFilm={e.idFilm}/>
                                 )
                             })
                         }

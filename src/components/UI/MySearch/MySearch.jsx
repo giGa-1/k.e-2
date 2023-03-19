@@ -38,9 +38,9 @@ export default function MySearch({classSearch}) {
             </div>
             <div className={cl.listSearch}>
                 <ul className={cl.list}>
-                    { searchState.length?searchState.map(e=>{
+                    { searchState.length?searchState.map((e,i)=>{
                         return (
-                            <Link href={'/movies/'+e.id} className={cl.link}>
+                            <Link key={i} href={'/movies/'+e.id} className={cl.link}>
                             <li className={cl.itemBody}>
                                 <img src={e.previewUrl} alt="" className={cl.imgSearch}/>
                                 <p className={cl.textItem}>{e.name}</p>

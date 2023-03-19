@@ -9,10 +9,7 @@ import CompilationComp from 'src/components/navPage/CompilationComp/CompilationC
 import EventPage from 'src/components/eventPage/EventPage';
 export default function Events() {
 
-  useEffect(()=>{
-    const isAuth = localStorage.getItem('isAuth');
-    if(!isAuth)window.location.href = '/sign'
-  },[])
+ 
   return (
     <main>
         <HeaderComp/>

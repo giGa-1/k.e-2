@@ -26,7 +26,7 @@ export default function CompilationComp({stateTypeComp = 'cont'}) {
                     {
                         stateComp.map((e,i)=>{
                             return (
-                                <Link href={'/compilations/'+e.id}>
+                                <Link key={i} href={'/compilations/'+e.id}>
                                     <CompilationItem top={e.top} id={e.id} title={e.title}/>
                                 </Link>
                             )

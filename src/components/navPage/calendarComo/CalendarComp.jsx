@@ -108,10 +108,10 @@ export default function CalendarComp() {
                         <div ref={dateElement} className={cl.calendarDates}>
                             {filedCeils.length ? filedCeils.map((e,i,arr)=>{
                                 if (i < currentDate.startOf("month").day()) {
-                                    return <button className={[cl.calendarDatesDayEmpty, cl.dates].join` `}></button>
+                                    return <button key={i} className={[cl.calendarDatesDayEmpty, cl.dates].join` `}></button>
                                 } else {
                                     // setIsCalendar(`${event.target.textContent} ${monthNames[currentDate.month()]} ${currentDate.year()}`);
-                                    return <button className={[cl.calendarDatesDay, cl.dates].join` `} onClick={event=>{ changePremierCatalog(event.target.textContent);changeListPremierCatalog(event, e.releases)}}>
+                                    return <button key={i} className={[cl.calendarDatesDay, cl.dates].join` `} onClick={event=>{ changePremierCatalog(event.target.textContent);changeListPremierCatalog(event, e.releases)}}>
                                             <span className={cl.dateNumber}>
                                                 <span className={cl.dateValue}>
                                                     {i+1-currentDate.startOf("month").day()}
@@ -132,10 +132,10 @@ export default function CalendarComp() {
                             :
                             filledArr.map((e,i,arr)=>{
                                 if (i < currentDate.startOf("month").day()) {
-                                    return <button className={[cl.calendarDatesDayEmpty, cl.dates].join` `}></button>
+                                    return <button key={i} className={[cl.calendarDatesDayEmpty, cl.dates].join` `}></button>
                                 } else {
                                     // setIsCalendar(`${event.target.textContent} ${monthNames[currentDate.month()]} ${currentDate.year()}`);
-                                    return <button className={[cl.calendarDatesDay, cl.dates].join` `} onClick={event=>{ changePremierCatalog(event.target.textContent);changeListPremierCatalog(event, e.releases)}}>
+                                    return <button key={i} className={[cl.calendarDatesDay, cl.dates].join` `} onClick={event=>{ changePremierCatalog(event.target.textContent);changeListPremierCatalog(event, e.releases)}}>
                                             <span className={cl.dateNumber}>
                                                 <span className={cl.dateValue}>
                                                     {i+1-currentDate.startOf("month").day()}

@@ -7,10 +7,7 @@ import Footer from 'src/components/Footer/Footer';
 
 
 export default function Home() {
-  useEffect(()=>{
-    const isAuth = localStorage.getItem('isAuth');
-    if(!isAuth)window.location.href = '/sign'
-  },[])
+ 
   return (
     <main>
       <HeaderComp/>

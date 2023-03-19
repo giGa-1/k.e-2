@@ -283,7 +283,7 @@ export default function MoviePage() {
                                     <div className={cl.listBlock}>
                                         <ul className={cl.list}>
                                             {commentsState.length?commentsState.map((e,i)=>
-                                                <MoviePageReviews   initialsUser={e.userName} reviewUser={e.text}  key={i} />
+                                                <MoviePageReviews   initialsUser={e.userName}  reviewUser={e.text}  key={i} />
                                             )
                                         :''}
                                         </ul>
@@ -312,12 +312,7 @@ export default function MoviePage() {
                                             Интереcные факты
                                         </h3>
                                         <ol className={cl.faxList}>
-                                            {[1,1,1,1,1].map(e=>
-                                                <li className={cl.itemFax}>
-                                                    <span className={cl.point}></span>
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa perferendis doloribus error corrupti quia aut numquam repellat possimus similique officia, odio amet molestias ad molestiae quis eum nam. Doloribus, quaerat?
-                                                </li>    
-                                            )}
+                                           
                                         </ol>
                                     </div>
                                     <div className={cl.framesBlock}>

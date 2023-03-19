@@ -49,8 +49,8 @@ export default function Footer() {
                                                         </h3>
                                                     </Link>
                                                     <ul className={cl.list}>
-                                                        {el.listRows.map(e=>
-                                                            <Link href={e.href}><p className={cl.link}>{e.text}</p></Link>
+                                                        {el.listRows.map((e,i)=>
+                                                            <Link key={i} href={e.href}><p className={cl.link}>{e.text}</p></Link>
                                                         )}
                                                     </ul>
                                                 </div>

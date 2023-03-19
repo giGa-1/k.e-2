@@ -7,12 +7,9 @@ import CompilationComp from 'src/components/navPage/CompilationComp/CompilationC
 
 
 
-export default function () {
+export default function compilationItem() {
 
-  useEffect(()=>{
-    const isAuth = localStorage.getItem('isAuth');
-    if(!isAuth)window.location.href = '/sign'
-  },[])
+
 
   return (
     <main>

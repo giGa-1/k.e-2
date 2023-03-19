@@ -4,11 +4,8 @@ import Footer from 'src/components/Footer/Footer';
 import NewsComp from '../../src/components/NewsComp/NewsComp';
 import CompilationComp from 'src/components/navPage/CompilationComp/CompilationComp';
 
-export default function () {
-  useEffect(()=>{
-    const isAuth = localStorage.getItem('isAuth');
-    if(!isAuth)window.location.href = '/sign'
-  },[])
+export default function newsItem() {
+ 
   return (
     <div>
       <HeaderComp/>

@@ -10,8 +10,10 @@ import {setNewPassAPI } from './../../untils/API/setNewPassAPI';
 import {setNewMailAPI } from './../../untils/API/setNewMailAPI';
 
 export default function HeaderComp() {
-
-
+    useEffect(()=>{
+        const isAuth = localStorage.getItem('isAuth');
+        if(!isAuth)window.location.href = '/sign'
+      },[])
     const [isView, setIsView] = useState(false)
     const [isActiveProfile,setIsActiveProfile] = useState(false);
     const [modeChange,setModeChange] = useState(1)

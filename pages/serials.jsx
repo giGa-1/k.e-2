@@ -8,10 +8,7 @@ import CompilationComp from '@/components/navPage/CompilationComp/CompilationCom
 import CalendarComp from 'src/components/navPage/calendarComo/calendarComp';
 
 export default function movies() {
-  useEffect(()=>{
-    const isAuth = localStorage.getItem('isAuth');
-    if(!isAuth)window.location.href = '/sign'
-  },[])
+ 
   return (
     <main>
         <HeaderComp/>
