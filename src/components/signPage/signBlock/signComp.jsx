@@ -3,7 +3,7 @@ import cl from './SignBlock.module.css';
 import {useSelector, useDispatch} from 'react-redux'
 import { authAnimationState } from 'redux/authActive-reducer';
 import { applyMiddleware } from '@reduxjs/toolkit';
-import MyInput from './../../UI/MyInput/MyInput';
+import MyInput from '../../UI/MyInput/MyInput';
 import MyBtnFiled from '../../UI/MyBtnFiled/MyBtnFiled';
 
 import Link from 'next/link';
