@@ -104,9 +104,10 @@ export function getStatments() {
                             ORDER BY 
                                 CASE ? 
                                     WHEN 'year' THEN year 
+                                    WHEN 'votes' THEN votes 
                                     ELSE rating
                                 END 
-                                DESC 
+                            DESC
                             LIMIT ? 
                             OFFSET ?`),
 
@@ -133,7 +134,7 @@ export function getStatments() {
                         FROM FavoriteMovies f
                         INNER JOIN Movies m ON m.id = movieid
                         INNER JOIN MoviePosters p ON m.id = p.id
-                        WHERE f.userid = ((SELECT u.id FROM Users u WHERE key = ? GROUP BY u.id)`)
+                        WHERE f.userid = (SELECT u.id FROM Users u WHERE key = ? GROUP BY u.id)`)
                 ]).then(() => resolve());
             });
 		}
