@@ -4,165 +4,130 @@ import { HYDRATE } from "next-redux-wrapper"
 
 const initialState =[
     {
-        id: 0,
-        text: "Все жанры",
-        active: true,
-    },
+        id:1,
+        active:true,
+          text: "Все жанры",
+        slug: ""
+      },
     {
-        id: 1,
+      id:2,
+      active:false,
         text: "Аниме",
-        active: false,
+      slug: "аниме"
     },
     {
-        id: 2,
-        text: "Биографии",
-        active: false,
+      id:3,
+      active:false,
+        text: "Биография",
+      slug: "биография"
     },
     {
-        id: 3,
-        text: "Боевики",
-        active: false,
+      id:4,
+      active:false,
+        text: "Боевик",
+      slug: "боевик"
     },
     {
-        id: 4,
-        text: "Вестерны",
-        active: false,
+      id:5,
+      active:false,
+        text: "Вестерн",
+      slug: "вестерн"
     },
     {
-        id: 5,
-        text: "Военные",
-        active: false,
+      id:6,
+      active:false,
+        text: "Военный",
+      slug: "военный"
     },
     {
-        id: 6,
-        text: "Детективы",
-        active: false,
+      id:7,
+      active:false,
+        text: "Детектив",
+      slug: "детектив"
+    },
+ 
+    {
+      id:10,
+      active:false,
+        text: "Документальный",
+      slug: "документальный"
     },
     {
-        id: 7,
-        text: "Детские",
-        active: false,
+      id:11,
+      active:false,
+        text: "Драма",
+      slug: "драма"
     },
+   
     {
-        id: 8,
-        text: "Документальные",
-        active: false,
+      id:14,
+      active:false,
+        text: "Комедия",
+      slug: "комедия"
     },
+   
+   
     {
-        id: 9,
-        text: "Драмы",
-        active: false,
-    },
-    {
-        id: 10,
-        text: "Игры",
-        active: false,
-    },
-    {
-        id: 11,
-        text: "Исторические",
-        active: false,
-    },
-    {
-        id: 12,
-        text: "Комедии",
-        active: false,
-    },
-    {
-        id: 13,
-        text: "Концерты",
-        active: false,
-    },
-    {
-        id: 14,
-        text: "Короткометражки",
-        active: false,
-    },
-    {
-        id: 15,
+      id:17,
+      active:false,
         text: "Криминал",
-        active: false,
+      slug: "криминал"
     },
     {
-        id: 16,
-        text: "Мелодрамы",
-        active: false,
+      id:18,
+      active:false,
+        text: "Мелодрама",
+      slug: "мелодрама"
     },
+  
     {
-        id: 17,
-        text: "Музыкальные",
-        active: false,
+      id:20,
+      active:false,
+        text: "Мультфильм",
+      slug: "мультфильм"
     },
+   
+  
     {
-        id: 18,
-        text: "Мультфильмы",
-        active: false,
-    },
-    {
-        id: 19,
-        text: "Мюзиклы",
-        active: false,
-    },
-    {
-        id: 20,
-        text: "Новости",
-        active: false,
-    },
-    {
-        id: 21,
+      id:23,
+      active:false,
         text: "Приключения",
-        active: false,
+      slug: "приключения"
+    },
+  
+  
+    {
+      id:28,
+      active:false,
+        text: "Триллер",
+      slug: "триллер"
     },
     {
-        id: 22,
-        text: "Реальное ТВ",
-        active: false,
-    },
-    {
-        id: 23,
-        text: "Семейные",
-        active: false,
-    },
-    {
-        id: 24,
-        text: "Спортивные",
-        active: false,
-    },
-    {
-        id: 25,
-        text: "Ток-шоу",
-        active: false,
-    },
-    {
-        id: 26,
-        text: "Триллеры",
-        active: false,
-    },
-    {
-        id: 27,
+      id:29,
+      active:false,
         text: "Ужасы",
-        active: false,
+      slug: "ужасы"
     },
     {
-        id: 28,
+      id:30,
+      active:false,
         text: "Фантастика",
-        active: false,
+      slug: "фантастика"
     },
     {
-        id: 29,
-        text: "Фильмы-нуар",
-        active: false,
+      id:31,
+      active:false,
+        text: "Нуар",
+      slug: "нуар"
     },
     {
-        id: 30,
+      id:32,
+      active:false,
         text: "Фэнтези",
-        active: false,
+      slug: "фэнтези"
     },
-    {
-        id: 31,
-        text: "Церемонии"
-    }
-]
+   
+  ]
 
 export const FilterGenresReducer = createSlice({
     name: 'Filter Genres',

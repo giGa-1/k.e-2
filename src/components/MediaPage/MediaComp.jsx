@@ -10,27 +10,11 @@ import MediaVideosComp from './MediaVideosComp'
 import MediaArticlesComp from './MediaArticlesComp'
 const  MediaComp = () => {
     const tabsState= useSelector(state=>state['Tabs Media']);
-    const [stateNews,setStateNews] = useState([])
     const [stateArrNews, setStateArrNews] = useState(0);
     const dispatch = useDispatch();
 
     
-    useMemo(()=>{
-        console.log(stateNews)
-        // if(stateNews.length) {
-        //     let arr = [];
-        //     arr.length = ~~(stateNews.length/11);
-        //     arr.fill([])
-        //     const randomLayout = (arr = [])=>{
-        //         let resArr = [...arr]
-        //         let randomValues = [{class:cl.itemsFFiled, value:5, arr:[]},{class:cl.itemsT, value: 2, arr: []},{class:cl.itemsF, value:4, arr: []}];
-        //         randomValues = randomValues.sort((a,b)=>Math.random()-0.5);
-        //         return randomValues.map((e,i)=>{return {...e, arr: resArr.splice(0,e.value)}})
-        //     }
-        //     setStateArrNews(arr.map((e,i)=>stateNews.filter((el,g)=>(i+1)*11-11<g+1&&g+1<=(i+1)*11)).map(e=>randomLayout(e)))
-        //     console.log(stateArrNews)
-        // }
-    },[stateNews])
+   
     
     console.log(tabsState)
   return (
@@ -61,10 +45,8 @@ const  MediaComp = () => {
             <div className={tabsState[1].active ? [cl.tabsBody, cl.bodyActive].join` ` : cl.tabsBody}>
                 <MediaNewsComp />
             </div>
+         
             <div className={tabsState[2].active ? [cl.tabsBody, cl.bodyActive].join` ` : cl.tabsBody}>
-                <MediaVideosComp />
-            </div>
-            <div className={tabsState[3].active ? [cl.tabsBody, cl.bodyActive].join` ` : cl.tabsBody}>
                 <MediaArticlesComp />
             </div>
             

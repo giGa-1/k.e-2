@@ -377,3 +377,7 @@
     
     position: relative;
 }
+
+.articlesAllItem {
+    min-height: 362px;
+}

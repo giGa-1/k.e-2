@@ -9,31 +9,60 @@ import Link from 'next/link';
 import MediaVideoItem from './MediaVideoItem';
 import MediaNewsItem from './MediaNewsItem';
 import MediaArticlesItem from './MediaArticlesItem';
+import {getTopsAPI} from './../../untils/API/getTopsAPI';
+import { setStateTops } from 'redux/topsState-reducer';
+
+
 export default function MediaAllComp() {
+    const dispatch = useDispatch()
+
     const [stateNews,setStateNews] = useState([])
+    const [stateNewsN,setStateNewsN] = useState([])
+    const statetops = useSelector((state)=>state['Tops state'])
+
     const [stateVideos,setStateVideos] = useState([1,1,1,,1,1,1,1,1,1,1,1,1,1,1,,1,1,1,1,1,1,1])
     const [isLoading, setIsLoading] = useState(false)
     const [stateArticles, setStateArticles] = useState([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+    const [stateArticlesN,setStateArticlesN] = useState([])
+
+
 
     useEffect(()=>{
-        const response = getNewsAPIjs('page=1');
+        // const response = getNewsAPIjs('page=1');
+        // const response2 = getNewsAPIjs('page=2');
+        // const response3 = getNewsAPIjs('page=3');
+        // const response4 = getNewsAPIjs('page=4');
 
-        response.then((data)=>{
-            console.log(data);
-            // setStateNews([...stateNews, data])
+
+        
+
+        // response.then((data)=>{
+        //     setStateNews([...stateNews, ...data].filter((e)=>e.coverUrl!==''))
+        // })
+        // response2.then((data)=>{
+        //     setStateNewsN([...stateNewsN, ...data].filter((e)=>e.coverUrl!==''))
+        // })
+        // response3.then((data)=>{
+        //     setStateArticles([...stateArticles, ...data])
+        // }) 
+        // response4.then((data)=>{
+        //     setStateArticlesN([...stateArticlesN, ...data])
+        // })
+        const getStateTops = getTopsAPI();
+        getStateTops.then((data)=>{
+            dispatch(setStateTops(data))
         })
        
 
     },[])
     useMemo(()=>{
-        if (stateNews.length>2) {
-            setStateNews(stateNews.filter(e=>e.coverUrl !== ''))
+        if (stateNews.length) {
             console.log(stateNews)
             setIsLoading(true)
         }
     },[stateNews])
+
     const [stateArrNews, setStateArrNews] = useState(0);
-    const dispatch = useDispatch()
 
   return (
     <div className={cl.allComp}>
@@ -42,11 +71,11 @@ export default function MediaAllComp() {
             <div className={cl.newsAllListBlock}>
                 <ul className={cl.newsAllList}>
                     {
-                        stateNews.filter((e,i)=>i<=17).map((e,i)=>{
+                        isLoading&&[...stateNews, ...stateNewsN].filter((e,i)=>i<=17).map((e,i)=>{
                             return (
                                 <React.Fragment key={i}>
                                    
-                                  {/* <MediaNewsItem descr={e.title} index={i}/> */}
+                                  <MediaNewsItem descr={e.title} index={i} img={e.coverUrl}/>
                                    
                                 </React.Fragment>
                             )
@@ -55,7 +84,7 @@ export default function MediaAllComp() {
                 </ul>
             </div>
         </div>
-        <div className={cl.videosAllBlock}>
+        {/* <div className={cl.videosAllBlock}>
             <MyTitleComp classTitle={cl.tabsTitle} isCenter={false} >Трейлеры и другие видео</MyTitleComp>
             <div className={cl.videosAllListBlock}>
                 <ul className={cl.videosAllList}>
@@ -68,16 +97,16 @@ export default function MediaAllComp() {
                     })}
                 </ul>
             </div>
-        </div>
+        </div> */}
         <div className={cl.articlesAllBlock}>
             <MyTitleComp classTitle={cl.tabsTitle} isCenter={false} >Интересные статьи для вас</MyTitleComp>
             <div className={cl.articlesAllListBlock}>
                 <ul className={cl.articlesAllList}>
-                    {stateArticles.filter((e,i)=>i<=25).map((e,i)=>{
+                    {[...stateArticlesN, ...statetops].filter((e,i)=>i<=24).map((e,i)=>{
                         return (
                             <React.Fragment key={i}>
-                                <Link href={'/event/'+i} className={cl.allLinkArticles}>
-                                    <MediaArticlesItem />
+                                <Link href={'/event/'+e.id} className={cl.allLinkArticles}>
+                                    <MediaArticlesItem views={e.pageViewsCount} likes={e.likes} description={e.description}/>
                                 </Link>
                                 
                             </React.Fragment>

@@ -7,10 +7,10 @@
 
 
 
-export const getOfficialYandexMovies = async (getUrl = 'page=1', actionFunc, dispatch, isDocs=false)=>{
+export const getOfficialYandexMovies = async (getUrl, actionFunc, dispatch, isDocs=false)=>{
 
     
-    const response = await fetch('/api/search?'+getUrl);
+    const response = await fetch('/api/'+getUrl);
     const data =  response.json();
     data.then((data)=>{
         console.log(data);

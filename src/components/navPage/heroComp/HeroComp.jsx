@@ -17,37 +17,34 @@ export default function HeroComp() {
         /* Optional options */
         threshold: .2,
       });
-    console.log(inView)
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        const officialHeroData = getOfficialYandexMovies('?minYear=2022&maxYear=2023&minRating=7&minVotes=20000&name=&genre=&country=&sort=rating&page=1', setStateOfficialHero, dispatch);
+        const officialHeroData = getOfficialYandexMovies('search?minYear=2022&limit=25&maxYear=2023&minRating=0&minVotes=15000&name=&type=movie&genre=&country=США&sort=rating&page=1', setStateOfficialHero, dispatch);
         
-        // const unofficialHeroData = getUnofficialYandexMovies('?type=FILM&&yearFrom=2021&yearTo=2023&page=1', setStateUnofficialHero, dispatch);
     },[])   
 
     const {unofficialState,officialState} = useSelector(state=>state['Hero']);
-    console.log(officialState)
   return (
     <section ref={ref} className={cl.hero}>
           
              <div className={cl.content}>
-             {/* <Swiper
+             <Swiper
                  spaceBetween={50}
                  slidesPerView={1}
                  onSlideChange={() => console.log('slide change')}
                  onSwiper={(swiper) => console.log(swiper)}
                  className={cl.swiper}
              >
-                 {unofficialState.filter((e,i)=>i<=4).map((e,i)=>{
+                 {officialState.length&&officialState.filter((e,i)=>i<=4).map((e,i)=>{
                      return (
                          <SwiperSlide key={i} className={cl.slide}>
-                             <HeroItem infoObj={e} inView={inView}/>
+                             <HeroItem rating={`${e.rating}`.slice(0,3)} title={e.name} country={e.counties[0]} genre={e.genres[0]} year={e.year} img={e.url} id={e.id} inView={inView}/>
                          </SwiperSlide>
                      )
                  })}
              </Swiper>
-              */}
+             
          </div>
           
            

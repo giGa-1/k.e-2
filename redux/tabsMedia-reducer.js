@@ -4,7 +4,6 @@ import { HYDRATE } from "next-redux-wrapper"
 const initialState = [
     {id:1,title:'Все материалы', active:true},
     {id:2,title:'Новости', active:false},
-    {id:3,title:'Видео', active:false},
     {id:4,title:'Статьи', active:false},
 
 ]

@@ -630,3 +630,19 @@ background: linear-gradient(270deg, rgba(34,34,34,1) 40%,  rgba(239,35,60,1) 100
     max-width: 80% !important;
     width: 100% !important;
 }
+
+.rating {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: 68px;
+    line-height: 1;
+    font-style: italic;
+    color: var(--red);
+}
+
+.role {
+    display: block;
+    margin-top: 6px;
+    height: 15px;
+}

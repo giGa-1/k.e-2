@@ -24,7 +24,7 @@ export default function SignComp() {
 
     const resultFormInfo = !isSign ? setNewUserReg(isInputInitials,isInputMail,isInputPassword ) :  setUserSignIn(isInputMail,isInputPassword ) 
     resultFormInfo.then(res=>{
-      if(res.status==='ok'){localStorage.setItem('isAuth', true);window.location.href = '/';console.log(res.status)}
+      if(res.status==='ok'){localStorage.setItem('isAuth', true);localStorage.setItem('authInfo', JSON.stringify({password:isInputPassword,mail:isInputMail,initials:isInputInitials}));window.location.href = '/';console.log(res.status)}
     })
   }
 

@@ -18,7 +18,7 @@ import { useRouter } from 'next/router';
 export default function Home() {
   useEffect(()=>{
     const isAuth = localStorage.getItem('isAuth');
-    console.log(window.location.href)
+    if(!isAuth)window.location.href = '/sign'
   },[])
   return (
     <main>
