@@ -316,7 +316,7 @@ export default function MoviePage() {
                             tabsState.filter(e=>e.cardId=='actors')[0].active ? 
                                 <div className={cl.tabsAbout}>
                                     <ul className={cl.listActors}>
-                                        {isLoading&&stateMovieAll.staffJson.filter((e,i)=>i<26).map((e,i)=>
+                                        {isLoading&&stateMovieAll.staffJson.filter((e,i)=>e.description).filter((e,i)=>i<26).map((e,i)=>
                                             // <Link href={'/actors/'+e.staffId}>
                                                 <MoviewPageActors key={e.staffId} imgSrc={e.posterUrl} descr={e.description} titleEn={e.nameEn} title={e.nameRu}/>
                                             // </Link>
