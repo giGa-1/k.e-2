@@ -4,7 +4,7 @@ const { JSDOM } = jsdom;
 const cache = new Map();
 
 export default function handle(req, res) {
-    if(typeof req.query.page !== "number" || req.query.page < 1) {
+    if(isNaN(req.query.page) || req.query.page < 1) {
         res.status(400).json({err: "invalid page!"});
         return;
     }
