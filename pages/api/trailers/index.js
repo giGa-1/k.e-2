@@ -16,6 +16,10 @@ export default function handle(req, res) {
         try {
             fetch("https://www.googleapis.com/youtube/v3/search?key=AIzaSyDYRacw1YB0gBeGPpvVX41Cox72UqPDE-w&q=трейлер фильма&maxResults=50", {
                 method: "GET"
+            }).catch(err => {
+                res.status(500).json({err: "fetch"});
+                resolve();
+                return;
             }).then(resp => resp.json()).then(json => {
                 cacheDate = date;
                 cache = json;
