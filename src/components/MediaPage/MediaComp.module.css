@@ -295,11 +295,12 @@
     background-size: contain;
     transition: all .1s ease-in-out;
 
-    background-image: url('./../../assets/like-svg.svg');
 }
 
-.articlesAllItem:hover .articlesAllLikeSvg {
-    background-image: url('./../../assets/like-sbg-white.svg');   
+.articlesAllItem:hover path {
+    transition: all .1s ease-in-out;
+
+    stroke: #fff;
 }
 
 
@@ -356,7 +357,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
-    background-image: url('./../../assets/arrow-circle.svg');
+    /* background-image: url('./../../assets/arrow-circle.svg'); */
 }
 
 

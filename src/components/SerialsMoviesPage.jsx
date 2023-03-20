@@ -127,7 +127,9 @@ export default function SerialsMoviesPage({title='Фильмы', isSerial=false,
                 </ul>
                 <div className={cl.pagination}>
                     <div className={cl.pagBlock}>
-                        <span className={cl.prevArrow} onClick={e=>{setIsPag(isPag!==1 ? isPag-1:1);window.scrollTo({top:0,behavior:'smooth'});setIsLoader(true)}}></span>
+                        <span className={cl.prevArrow} onClick={e=>{setIsPag(isPag!==1 ? isPag-1:1);window.scrollTo({top:0,behavior:'smooth'});setIsLoader(true)}}>
+                        <svg width="27px" height="27px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="M338.752 104.704a64 64 0 0 0 0 90.496l316.8 316.8-316.8 316.8a64 64 0 0 0 90.496 90.496l362.048-362.048a64 64 0 0 0 0-90.496L429.248 104.704a64 64 0 0 0-90.496 0z" /></svg>
+                        </span>
                     </div>
                     <div className={cl.pag}>
                         {/* {
@@ -143,7 +145,10 @@ export default function SerialsMoviesPage({title='Фильмы', isSerial=false,
                         } */}
                     </div>
                     <div className={cl.pagBlock}>
-                        <span className={cl.nextArrow}  onClick={e=>{setIsPag(isPag+1);window.scrollTo({top:0,behavior:'smooth'});setIsLoader(true)}}></span>
+                        <span className={cl.nextArrow}  onClick={e=>{setIsPag(isPag+1);window.scrollTo({top:0,behavior:'smooth'});setIsLoader(true)}}>
+                        <svg width="27px" height="27px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="M338.752 104.704a64 64 0 0 0 0 90.496l316.8 316.8-316.8 316.8a64 64 0 0 0 90.496 90.496l362.048-362.048a64 64 0 0 0 0-90.496L429.248 104.704a64 64 0 0 0-90.496 0z" /></svg>
+
+                        </span>
                     </div>
                 </div>
             </div>
