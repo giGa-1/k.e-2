@@ -23,7 +23,7 @@ export default function handle(req, res) {
         fetch(`https://kg-portal.ru/news/movies/${num}/`, {
             method: 'GET',
         }).catch(err => {
-            res.status(500).json({err: "fetch"});
+            res.status(200).json([]);
             resolve();
             return;
         }).then(resp => resp.text()).then(text => {
