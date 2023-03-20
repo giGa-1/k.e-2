@@ -7,7 +7,7 @@ import SerialsComp from 'src/components/navPage/SerialsComp/SerialsComp';
 import MoviesComp from 'src/components/navPage/MoviesComp/MoviesComp';
 import CompilationComp from 'src/components/navPage/CompilationComp/CompilationComp';
 import AboutComp from 'src/components/navPage/AboutComp/AboutComp';
-import CalendarComp from 'src/components/navPage/calendarComo/calendarComp';
+import CalendarComp from 'src/components/navPage/calendarComo/CalendarComp';
 import Footer from 'src/components/Footer/Footer';
 
 

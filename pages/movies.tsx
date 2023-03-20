@@ -5,7 +5,7 @@ import SerialsMoviesPage from '@/components/SerialsMoviesPage';
 import { useEffect } from 'react';
 import MovieFavorit from '@/components/MoviePage/MovieFavorit';
 import CompilationComp from '@/components/navPage/CompilationComp/CompilationComp';
-import CalendarComp from 'src/components/navPage/calendarComo/calendarComp';
+import CalendarComp from 'src/components/navPage/calendarComo/CalendarComp';
 
 export default function movies() {
  

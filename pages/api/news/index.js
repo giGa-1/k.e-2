@@ -4,33 +4,44 @@ const { JSDOM } = jsdom;
 const cache = new Map();
 
 export default function handle(req, res) {
+    if(typeof req.query.page !== "number" || req.query.page < 1) {
+        res.status(400).json({err: "invalid page!"});
+        return;
+    }
     let num = (req.query.page - 1) * 20;
 
     if(cache.has(num)) {
         let c = cache.get(num);
         if(new Date().valueOf() - c.date.valueOf() < 6000 * 1000) {
+            console.log("fetched news from cache");
             res.status(200).json(c.value);
             return;
         }
     }
 
     return new Promise((resolve, reject) => {
-        return fetch(`https://kg-portal.ru/news/movies/${num}/`, {
-            method: 'GET',
-        }).then(resp => resp.text()).then(text => {
-            const { document } = (new JSDOM(text)).window;
-            let collection = document.getElementsByClassName("news_box movies_cat");
-            let promises = [];
-            for (let i = 0; i < collection.length; i++) {
-                promises[i] = getData(collection.item(i).getElementsByTagName("a")[0].href);
-            }
-            Promise.all(promises).then((values) => {
-                cache.set(num, {date: new Date(), value: values});
-
-                res.status(200).json(values);
-                resolve();
+        try {
+            return fetch(`https://kg-portal.ru/news/movies/${num}/`, {
+                method: 'GET',
+            }).then(resp => resp.text()).then(text => {
+                const { document } = (new JSDOM(text)).window;
+                let collection = document.getElementsByClassName("news_box movies_cat");
+                let promises = [];
+                for (let i = 0; i < collection.length; i++) {
+                    promises[i] = getData(collection.item(i).getElementsByTagName("a")[0].href);
+                }
+                Promise.all(promises).then((values) => {
+                    cache.set(num, {date: new Date(), value: values});
+                    
+                    console.log("fetched news from web");
+                    res.status(200).json(values);
+                    resolve();
+                });
             });
-        });
+        } catch (ex) {
+            res.status(500);
+            resolve();
+        }
     });
 }
 
