@@ -21,7 +21,7 @@ export default function handle(req, res) {
 
     return new Promise((resolve, reject) => {
         try {
-            return fetch(`https://kg-portal.ru/news/movies/${num}/`, {
+            fetch(`https://kg-portal.ru/news/movies/${num}/`, {
                 method: 'GET',
             }).then(resp => resp.text()).then(text => {
                 const { document } = (new JSDOM(text)).window;
@@ -47,34 +47,38 @@ export default function handle(req, res) {
 
 function getData(link) {
     return new Promise((res, rej) => {
-        fetch(`https://kg-portal.ru${link}`, {
+        try {
+            fetch(`https://kg-portal.ru${link}`, {
                 method: 'GET',
-        }).then(resp => resp.text()).then(text => {
-            const { document } = (new JSDOM(text)).window;
-            try {
-                let title = document.getElementsByClassName("news_title").item(0).textContent;
-                let date = document.getElementsByClassName("date").item(0).attributes.getNamedItem("content").nodeValue;
+            }).then(resp => resp.text()).then(text => {
+                const { document } = (new JSDOM(text)).window;
+                try {
+                    let title = document.getElementsByClassName("news_title").item(0).textContent;
+                    let date = document.getElementsByClassName("date").item(0).attributes.getNamedItem("content").nodeValue;
 
-                let div = document.getElementsByClassName("news_text").item(0);
+                    let div = document.getElementsByClassName("news_text").item(0);
 
-                let pic = "";
-                for (let i = 0; i < div.children.length; i++) {
-                    let element = div.children.item(i);
-                    if(element.className == "news_cover_center") {
-                        pic = "https://kg-portal.ru" + element.children.item(0).getElementsByTagName("img").item(0).src;
+                    let pic = "";
+                    for (let i = 0; i < div.children.length; i++) {
+                        let element = div.children.item(i);
+                        if(element.className == "news_cover_center") {
+                            pic = "https://kg-portal.ru" + element.children.item(0).getElementsByTagName("img").item(0).src;
+                        }
                     }
-                }
 
-                let content = "";
-                let arr = div.getElementsByTagName("p");
-                for (let i = 0; i < arr.length; i++) {
-                    content += arr.item(i).textContent;
-                }
+                    let content = "";
+                    let arr = div.getElementsByTagName("p");
+                    for (let i = 0; i < arr.length; i++) {
+                        content += arr.item(i).textContent;
+                    }
 
-                res({title: title, text: content, coverUrl: pic, date: date});
-            } catch (ex) {
-                res({});
-            }
-        });
+                    res({title: title, text: content, coverUrl: pic, date: date});
+                } catch (ex) {
+                    res({});
+                }
+            });
+        } catch (ex) {
+            res({});
+        }
     });
 }
