@@ -26,7 +26,7 @@ export default function BigSwiperList({stateSwiper, similar=false }) {
                             return (
                                 <SwiperSlide key={e.id} className={cl.slide}>
 
-                                    <BigSwiperItem idFilm={e.id} img={e.url} descr={''} title={ e.name} genre={e.genres[0]} country={e.counties[0]} year={e.year}/>
+                                    <BigSwiperItem rating={e.rating} idFilm={e.id} img={e.url} descr={''} title={ e.name} genre={e.genres[0]} country={e.counties[0]} year={e.year}/>
                                 </SwiperSlide>
                             )
                         })
