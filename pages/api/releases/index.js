@@ -18,22 +18,27 @@ export default function handle(req, res) {
             res.status(200).json(cache[month]);
             resolve();
         } else {
-            let prom = [];
-            for (let i = 0; i < 4; i++) {
-                prom.push(getJson(`v2.1/films/releases?year=${date.getFullYear()}&month=${monthNames[month].toUpperCase()}&page=${i+1}`));
-            }
-
-            Promise.all(prom).then((values) => {
-                let releases = [];
-                values.forEach(value => {
-                    releases.push(value.releases);
+            try {
+                let prom = [];
+                for (let i = 0; i < 4; i++) {
+                    prom.push(getJson(`v2.1/films/releases?year=${date.getFullYear()}&month=${monthNames[month].toUpperCase()}&page=${i+1}`));
+                }
+    
+                Promise.all(prom).then((values) => {
+                    let releases = [];
+                    values.forEach(value => {
+                        releases.push(value.releases);
+                    });
+    
+                    res.status(200).json(releases);
+                    cache[month] = releases;
+                    cacheDate[month] = date;
+                    resolve();
                 });
-
-                res.status(200).json(releases);
-                cache[month] = releases;
-                cacheDate[month] = date;
+            } catch (ex) {
+                res.status(500);
                 resolve();
-            });
+            }
         }
     });
 }

@@ -1,7 +1,7 @@
 const sqlite3 = require('sqlite3').verbose();
 
 export const db = new sqlite3.Database('Data.sqlite');
-db.loadExtension("./sqlean-win-x64/unicode", (err) => console.log(err));
+db.loadExtension("./sqlean-win-x64/unicode", (err) => { if(err != null) console.log(err) });
 
 export var insertMovieSort = null;
 export var insertMoviePoster = null;
