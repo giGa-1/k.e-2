@@ -71,11 +71,11 @@ export default function FocusComp() {
                 <MyTitleComp classTitle={cl.title}>Будьте в курсе всех событий!</MyTitleComp>
                 <div className={cl.newsBlock}>
                     <div className={cl.newsLeftBlock}>
-                        <Link href={'/news/'+stateNews[11].date} className={cl.link}>
+                        <Link href={'/news/'+stateNews[0].date} className={cl.link}>
                             <div className={[cl.newsTopBlock, cl.newsItem].join` `}>
-                                <img src={stateNews[11].coverUrl} className={cl.imgItem}/>
+                                <img src={stateNews[0].coverUrl} className={cl.imgItem}/>
                                 <div className={cl.itemContent}>
-                                    <p className={cl.itemDescr}>{stateNews[11].title.slice(0, 95)}...</p>
+                                    <p className={cl.itemDescr}>{stateNews[0].title.slice(0, 95)}...</p>
                                 </div>
                             </div>
                         </Link>
