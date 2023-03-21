@@ -9,3 +9,9 @@ export const addFavAPI = async (id) => {
     const data = response.json()
     return data
 }
+
+export const addFavActorAPI = async (id) => {
+    const response = await fetch('/api/user/favorites/actir/add?id='+id)
+    const data = response.json()
+    return data
+}

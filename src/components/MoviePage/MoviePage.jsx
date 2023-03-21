@@ -317,9 +317,9 @@ export default function MoviePage() {
                                 <div className={cl.tabsAbout}>
                                     <ul className={cl.listActors}>
                                         {isLoading&&stateMovieAll.staffJson.filter((e,i)=>e.description).filter((e,i)=>i<26).map((e,i)=>
-                                            // <Link href={'/actors/'+e.staffId}>
+                                            <Link href={'/actors/'+e.staffId}>
                                                 <MoviewPageActors key={e.staffId} imgSrc={e.posterUrl} descr={e.description} titleEn={e.nameEn} title={e.nameRu}/>
-                                            // </Link>
+                                            </Link>
                                         )}
                                     </ul>
                                 </div>

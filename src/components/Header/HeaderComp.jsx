@@ -43,7 +43,7 @@ export default function HeaderComp() {
         console.log(respone)
     }
 
-  return (
+    return (
     <header  className={isView ? [cl.header, cl.activeHeader].join` ` : cl.header}>
         <div className={isActiveProfile ? [cl.profileBlock, cl.profileActive].join` ` :cl.profileBlock}>
             <div className={cl.profileContent}>
