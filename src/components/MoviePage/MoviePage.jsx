@@ -202,7 +202,7 @@ export default function MoviePage() {
                                             isLoading? 
                                                 <div className={cl.aboutRow}>
                                                 <span className={cl.titleRow}>{'Сред. Время'}</span>
-                                                <span className={cl.valueRow}>{  `${stateFilm.filmLength} мин - ${~~(stateFilm.filmLength/60)} ч. ${stateFilm.filmLength-(~~(stateFilm.filmLength/60)*60)} мин.`}</span>
+                                                <span className={cl.valueRow}>{  `${+(stateFilm.filmLength)} мин - ${~~(stateFilm.filmLength/60)} ч. ${stateFilm.filmLength-(~~(stateFilm.filmLength/60)*60)} мин.`}</span>
                                         </div>
                                             :''
                                         }

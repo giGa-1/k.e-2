@@ -1,4 +1,5 @@
 .section {
+    padding-top: 125px;
     position: relative;
     display: flex;
     justify-content: center;align-items: center;
@@ -6,8 +7,10 @@
 }
 
 .voidListText {
+    position: absolute;
     display: inline-block;
-
+    height: 125px;
+    text-align: center;
     top: 0;left: 0;right: 0;bottom: 0;
     margin: auto;
     font-size: 28px;
@@ -18,10 +21,14 @@
     margin-top: 125px;
     margin-bottom: 45px;
 }
-
+.listBlock, .cont {
+    width: 100%;
+}
 .list {
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(5, auto);
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, auto);
     gap: 15px;
     justify-content: space-between;
     align-items: center;

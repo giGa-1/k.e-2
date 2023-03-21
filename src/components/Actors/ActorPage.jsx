@@ -145,7 +145,7 @@ export default function ActorPage({idActor}) {
                                     {stateActor.sex ? stateActor.sex === 'MALE' ? 'Обручен с' : 'Замужем за' : '-'}
                                 </span>
                                 <span className={cl.itemRight}>
-                                    {isLoading&&stateActor.spouses ? `${stateActor.spouses[0].name}, детей - ${stateActor.spouses[0].children}` : '-'}
+                                    {isLoading&&stateActor.spouses.length ? `${stateActor.spouses[0].name}, детей - ${stateActor.spouses[0].children}` : '-'}
                                 </span>
                             </li>
                         </ul>
