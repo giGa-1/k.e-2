@@ -1,4 +1,4 @@
-import { getStatments, selectMovieStmt, insertMovieStmt } from "../../../internal/database";
+import { getStatments, selectMovieStmt, insertMovieStmt, selectMovieTrailers, insertMovieTrailer } from "../../../internal/database";
 import getJson from "../../../internal/api-relay";
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
@@ -66,8 +66,29 @@ export default function handler(req, res) {
 									jsonData.article = "";
 								}
 		
-								res.status(200).json(jsonData);
-								resolve();
+								selectMovieTrailers.get(id, (tSelectErr, tResponce) => {
+									selectMovieTrailers.reset();
+									if(tResponce == null) {
+										fetch(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyDYRacw1YB0gBeGPpvVX41Cox72UqPDE-w&q=трейлер фильма ${jsonData.json.nameOriginal}&maxResults=10`, {
+											method: "GET"
+										}).catch(err => {
+											res.status(500).json({err: "fetch"});
+											resolve();
+											return;
+										}).then(resp => resp.json()).then(json => {
+											insertMovieTrailer.run(id, JSON.stringify(json));
+											jsonData.trailers = json;
+											
+											res.status(200).json(jsonData);
+											resolve();
+										});
+									} else {
+										jsonData.trailers = JSON.parse(tResponce.json);
+		
+										res.status(200).json(jsonData);
+										resolve();
+									}
+								});
 							});
 						});
 					} catch(ex) {
@@ -99,8 +120,29 @@ export default function handler(req, res) {
 							respData.article = "";
 						}
 
-						res.status(200).json(respData);
-						resolve();
+						selectMovieTrailers.get(id, (tSelectErr, tResponce) => {
+							selectMovieTrailers.reset();
+							if(tResponce == null) {
+								fetch(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyDYRacw1YB0gBeGPpvVX41Cox72UqPDE-w&q=трейлер фильма ${respData.json.nameOriginal}&maxResults=10`, {
+									method: "GET"
+								}).catch(err => {
+									res.status(500).json({err: "fetch"});
+									resolve();
+									return;
+								}).then(resp => resp.json()).then(json => {
+									insertMovieTrailer.run(id, JSON.stringify(json));
+									respData.trailers = json;
+									
+									res.status(200).json(respData);
+									resolve();
+								});
+							} else {
+								respData.trailers = JSON.parse(tResponce.json);
+
+								res.status(200).json(respData);
+								resolve();
+							}
+						});
 					});
 				}
 			});

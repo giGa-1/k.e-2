@@ -24,7 +24,8 @@ export var insertFavoriteMovieByUserKey = null;
 export var insertFavoriteActorByUserKey = null;
 export var deleteFavoriteActorByUserKey = null;
 export var deleteFavoriteMovieByUserKey = null;
-
+export var insertMovieTrailer = null;
+export var selectMovieTrailers = null
 export var selectMovie = null;
 
 export var changePassword = null;
@@ -55,6 +56,7 @@ export function getStatments() {
 		} else {
             Promise.all([
 			    dbRunPromise("CREATE TABLE if not exists `Movies` (`id` INTEGER PRIMARY KEY, `year` INTEGER, `rating` DECIMAL, `votes` INTEGER, `name` TEXT, `type` TEXT)"),
+			    dbRunPromise("CREATE TABLE if not exists `MovieTrailers` (`movieid` INTEGER PRIMARY KEY, `json` TEXT)"),
 			    dbRunPromise("CREATE TABLE if not exists `MoviePosters` (`id` INTEGER PRIMARY KEY, `url` TEXT, `previewUrl` TEXT)"),
 			    dbRunPromise("CREATE TABLE if not exists `MovieCountries` (`movieid` INTEGER, `country` TEXT, PRIMARY KEY (`movieid`, `country`))"),
 			    dbRunPromise("CREATE TABLE if not exists `MovieGenres` (`movieid` INTEGER, `genre` TEXT, PRIMARY KEY (`movieid`, `genre`))"),
@@ -76,6 +78,9 @@ export function getStatments() {
                     insertMovieCountry = db.prepare("INSERT OR IGNORE INTO `MovieCountries` VALUES (?, ?)"),
                     insertMovieStmt = db.prepare("INSERT OR IGNORE INTO `MovieJson` VALUES (?, ?)"),
                     selectMovieStmt = db.prepare("SELECT `json` FROM `MovieJson` WHERE `id`= ?"),
+
+                    insertMovieTrailer = db.prepare("INSERT OR IGNORE INTO `MovieTrailers` VALUES (?, ?)"),
+                    selectMovieTrailers = db.prepare("SELECT * FROM MovieTrailers WHERE movieid = ?"),
 
                     changePassword = db.prepare("UPDATE `users` SET `password` = ?, `key` = ? WHERE `password` = ? AND `key` = ?"),
                     changeEmail = db.prepare("UPDATE `users` SET `email` = ?, `key` = ? WHERE `password` = ? AND `key` = ?"),
