@@ -24,6 +24,7 @@ import { getReviewsMovie } from '../../untils/API/getReviewsMovie';
 import { deleteFavAPI } from '../../untils/API/deleteFavAPI';
 import { addFavAPI, getFavAPI } from '../../untils/API/getFavAPI';
 import { addReviewsMovie } from '../../untils/API/addReviewsMovie';
+import MovieSimilar from './MovieSimilar';
 
 export default function MoviePage() {
     
@@ -60,7 +61,6 @@ export default function MoviePage() {
         const reviewsData = getReviewsMovie(`${window.location.href}?`.split`/`[`${window.location.href}`.split`/`.length-1].match(/\d/g).join``);
             reviewsData.then((data)=>{
                 setCommentsState(data)
-                console.log(data)
             })
         const officialHeroData = getMoviesBlankAPI('movie/'+`${window.location.href}?`.split`/`[`${window.location.href}`.split`/`.length-1]);
         officialHeroData.then((data)=>{
@@ -74,7 +74,6 @@ export default function MoviePage() {
             const reviewsData = getReviewsMovie(`${window.location.href}?`.split`/`[`${window.location.href}`.split`/`.length-1].match(/\d/g).join``);
             reviewsData.then((data)=>{
                 setCommentsState(data)
-                console.log(data)
             })
         }
        
@@ -86,7 +85,6 @@ export default function MoviePage() {
     const sendReviewToState = (e)=>{
         const response = addReviewsMovie(`${window.location.href}?`.split`/`[`${window.location.href}`.split`/`.length-1].match(/\d/g).join``, {rating: '0', text: isTextareaReview})
         response.then(data=>{
-            console.log(data)
             setChange(Math.random())
 
         })
@@ -103,13 +101,11 @@ export default function MoviePage() {
         if(isFav) {
             const deleteFav = deleteFavAPI(window.location.href.split`/`[window.location.href.split`/`.length-1])
             deleteFav.then(data=>{
-                console.log(data)
                 setIsFav(!isFav)
             })
         } else {
             const deleteFav = addFavAPI(window.location.href.split`/`[window.location.href.split`/`.length-1])
             deleteFav.then(data=>{
-                console.log(data)
                 setIsFav(!isFav)
             })
         }
@@ -146,10 +142,29 @@ export default function MoviePage() {
             <div className={cl.content}>
                 <div className={cl.leftBlock}>
                      <div className={cl.imgBlock}>
-                         <img src={isLoading&&stateFilm.posterUrl}  className={cl.imgPoster}/>
-                         <span className={[cl.rating, ].join` `}>
-                            {isLoading&&stateFilm.ratingKinopoisk}
-                         </span>
+
+                         <img src={isLoading?stateFilm.posterUrl:''}  className={cl.imgBack}/>
+                         <img src={isLoading?stateFilm.posterUrl:''}  className={cl.imgPoster}/>
+
+                      
+                         <div className={cl.videoFilmBlock}>
+                            <p className={cl.shortVideoText}>Трейлер:</p>
+                            <div className={cl.shortVideoBlock}>
+                          
+                                <ReactPlayer url={isLoading&&`https://www.youtube.com/watch?v=${stateMovieAll.trailers.items[0].id.videoId}`} style={{maxWidth: '300px', width:'100%', maxHeight: '200px', border: ' 1px solid #333', boxShadow: ' rgba(100, 100, 111, 0.15) 0px 7px 29px 0px', borderRadius: '15px', overflow: 'hidden'}}></ReactPlayer>
+                           
+                            </div>
+                         </div>
+                         <div className={cl.textBlock}>
+                            <h2 className={cl.textTitle}>Подробнее о релизе:</h2>
+                            <div className={cl.text}>
+                                <span>
+                                    {stateMovieAll.article}
+                                </span> 
+                                <div className={cl.overlayText}></div>
+                            </div>
+                         </div>
+                      
                      </div>
                      {/* <div className={cl.videoBlock}>
                          <p className={cl.trailerText}>Трейлер к фильму:</p>
@@ -193,89 +208,135 @@ export default function MoviePage() {
                     <div className={cl.tabsBody}>
                         {
                             tabsState.filter(e=>e.cardId=='about')[0].active ?
-                                <div className={cl.tabsAbout}>
-                                  
-
-                                    
-                                    <div className={cl.infoAbout}>
-                                        {
-                                            isLoading? 
-                                                <div className={cl.aboutRow}>
-                                                <span className={cl.titleRow}>{'Сред. Время'}</span>
-                                                <span className={cl.valueRow}>{  `${+(stateFilm.filmLength)} мин - ${~~(stateFilm.filmLength/60)} ч. ${stateFilm.filmLength-(~~(stateFilm.filmLength/60)*60)} мин.`}</span>
-                                        </div>
-                                            :''
-                                        }
-                                               
-                                            
-                                       
-                                       <div className={cl.aboutRow}>
-                                            <span className={cl.titleRow}>Год</span>
-                                            <span className={cl.valueRow}>
-                                            {isLoading&&stateFilm.type != 'TV_SERIES' ? 
-                                             isLoading&&stateFilm.year
-                                            :
-                                                `${isLoading&&stateFilm.year} - ${ isLoading&&stateFilm.endYear}`
+                            <div className={cl.tabsAboutBlock}>
+                                   <div className={cl.tabsAbout}>     
+                                    <div className={cl.aboutInfoFilm}>
+                                        <div className={cl.infoAbout}>
+                                            <div className={cl.aboutRow}>
+                                                    <span className={cl.titleRow}>Рейтинг</span>
+                                                    <span className={cl.valueRowRating}>{isLoading&&stateFilm.ratingKinopoisk}</span>
+                                            </div>
+                                            {
+                                                isLoading? 
+                                                    <div className={cl.aboutRow}>
+                                                    <span className={cl.titleRow}>{'Сред. Время'}</span>
+                                                    <span className={cl.valueRow}>{  `${+(stateFilm.filmLength)} мин - ${~~(stateFilm.filmLength/60)} ч. ${stateFilm.filmLength-(~~(stateFilm.filmLength/60)*60)} мин.`}</span>
+                                            </div>
+                                                :''
                                             }
-                                               
-                                            
-                                            </span>
-                                       </div>
-                                       <div className={cl.aboutRow}>
-                                            <span className={cl.titleRow}>Жанр</span>
-                                            <span className={cl.valueRow}>{isLoading&&stateFilm.genres.map(e=>e.genre).join`, `}</span>
-                                       </div>
-                                       <div className={cl.aboutRow}>
-                                            <span className={cl.titleRow}>Страна</span>
-                                            <span className={cl.valueRow}>{isLoading&&stateFilm.countries.map(e=>e.country).join`, `}</span>
-                                       </div>
-                                      
-                                       {isLoading&&stateFilm.type != 'TV_SERIES'&&!Object.values(stateMovieAll.boxJson).length ? 
-                                       <>
-                                            <div className={cl.aboutRow}>
-                                                <span className={cl.titleRow}>Сборы</span>
+                                                
+                                                
+                                        
+                                        <div className={cl.aboutRow}>
+                                                <span className={cl.titleRow}>Год</span>
                                                 <span className={cl.valueRow}>
-                                                    
-                                                    {isLoading&&`${stateMovieAll.boxJson.items[3].symbol}${(stateMovieAll.boxJson.items[3].amount+'').split``.reverse().filter((e,i)=>i>5).reverse().join``} млн`}
-                                                    
+                                                {isLoading&&stateFilm.type != 'TV_SERIES' ? 
+                                                isLoading&&stateFilm.year
+                                                :
+                                                    `${isLoading&&stateFilm.year} - ${ isLoading&&stateFilm.endYear}`
+                                                }
+                                                
+                                                
                                                 </span>
-                                            </div>
-                                            <div className={cl.aboutRow}>
-                                                        <span className={cl.titleRow}>Бюджет</span>
-                                                        <span className={cl.valueRow}>{isLoading&&`${stateMovieAll.boxJson.items[0].symbol}${(stateMovieAll.boxJson.items[0].amount+'').split``.reverse().filter((e,i)=>i>5).reverse().join``} млн`}</span>
-                                            </div>
-                                        </>
-                                       
-                                            :
-                                       ''}
-                                      
-                                       <div className={cl.aboutRow}>
-                                            <span className={cl.titleRow}>Возраст</span>
-                                            <span className={cl.valueRow}>{isLoading&&stateFilm.ratingAgeLimits.match(/\d/g)}+</span>
-                                       </div>
-                                       <div className={cl.aboutRow}>
-                                            <span className={cl.titleRow}>Оценки</span>
-                                            <span className={cl.valueRow}>{isLoading&&stateFilm.ratingKinopoiskVoteCount}</span>
-                                       </div>
-                                       <div className={cl.aboutRow}>
-                                            <span className={cl.titleRow}>Окенка критиков</span>
-                                            <span className={cl.valueRow}>
-                                          
-                                                {isLoading&&stateFilm.ratingImdb}
-                                         
-                                             
+                                        </div>
+                                        <div className={cl.aboutRow}>
+                                                <span className={cl.titleRow}>Жанр</span>
+                                                <span className={cl.valueRow}>{isLoading&&stateFilm.genres&&stateFilm.genres.map(e=>e.genre).join`, `}</span>
+                                        </div>
+                                        <div className={cl.aboutRow}>
+                                                <span className={cl.titleRow}>Страна</span>
+                                                <span className={cl.valueRow}>{isLoading&&stateFilm.countries&&stateFilm.countries.map(e=>e.country).join`, `}</span>
+                                        </div>
+                                        
+                                        {isLoading&&stateFilm.type != 'TV_SERIES'&&Object.values(stateMovieAll.boxJson).length ? 
+                                        <>
+                                                <div className={cl.aboutRow}>
+                                                    <span className={cl.titleRow}>Сборы</span>
+                                                    <span className={cl.valueRow}>
+                                                        
+                                                        {isLoading&&`${stateMovieAll.boxJson.items[3].symbol}${(stateMovieAll.boxJson.items[3].amount+'').split``.reverse().filter((e,i)=>i>5).reverse().join``} млн`}
+                                                        
+                                                    </span>
+                                                </div>
+                                                <div className={cl.aboutRow}>
+                                                            <span className={cl.titleRow}>Бюджет</span>
+                                                            <span className={cl.valueRow}>{isLoading&&`${stateMovieAll.boxJson.items[0].symbol}${(stateMovieAll.boxJson.items[0].amount+'').split``.reverse().filter((e,i)=>i>5).reverse().join``} млн`}</span>
+                                                </div>
+                                            </>
+                                        
+                                                :
+                                        ''}
+                                        
+                                        <div className={cl.aboutRow}>
+                                                <span className={cl.titleRow}>Возраст</span>
+                                                <span className={cl.valueRow}>{isLoading&&stateFilm.ratingAgeLimits.match(/\d/g)}+</span>
+                                        </div>
+                                        <div className={cl.aboutRow}>
+                                                <span className={cl.titleRow}>Оценки</span>
+                                                <span className={cl.valueRow}>{isLoading&&stateFilm.ratingKinopoiskVoteCount}</span>
+                                        </div>
+                                        <div className={cl.aboutRow}>
+                                                <span className={cl.titleRow}>Окенка критиков</span>
+                                                <span className={cl.valueRow}>
                                             
-                                            </span>
-                                       </div>
-                                       <div className={cl.aboutRow}>
-                                            <span className={cl.titleRow}>Отзывов</span>
-                                            <span className={cl.valueRow}>{isLoading&&stateFilm.reviewsCount}</span>
-                                       </div>
+                                                    {isLoading&&stateFilm.ratingImdb}
+                                            
+                                                
+                                                
+                                                </span>
+                                        </div>
+                                        <div className={cl.aboutRow}>
+                                                <span className={cl.titleRow}>Отзывов</span>
+                                                <span className={cl.valueRow}>{isLoading&&stateFilm.reviewsCount}</span>
+                                        </div>
 
+                                        </div>
+                                        <div className={cl.bottomInfoAbout}>
+                                            
+                                        </div>
+                                    </div>                
+                                   
+                                    <div className={cl.rightInfoAbout}>
+                                        <div className={cl.actorsShort}>
+                                            <h2 className={cl.roleTitle}>В главных ролях:</h2>
+                                            <ul className={cl.shortListActors}>
+                                                {isLoading&&stateMovieAll.staffJson.filter((e,i)=>i<=12).filter((e,i)=>e.description).filter((e,i)=>i<26).map((e,i)=>
+                                                    <Link href={'/actors/'+e.staffId} key={i}>
+                                                        {/* <MoviewPageActors key={e.staffId} imgSrc={e.posterUrl} descr={e.description} titleEn={e.nameEn} title={e.nameRu}/> */}
+                                                        <li className={cl.itemActorShort}>
+                                                            <span className={cl.dotList}></span>
+                                                            <p className={cl.actorShort}>{e.nameRu}</p>
+                                                        </li>
+                                                    </Link>
+                                                )}
+                                            </ul>
+                                            <p className={cl.moreRoles} onClick={e=>{window.scrollTo({'behavior':'smooth', 'top': '0px'});dispatch(setActiveBtnsTabs({id:3}))}}>Показать больше...</p>
+                                        </div>
+                                        <div className={cl.reviewsBlock}>
+                                            <button className={cl.reviewAbout} onClick={event=>{event.preventDefault();window.scrollTo({'behavior':'smooth', 'top': '0px'});dispatch(setActiveBtnsTabs({id:2}))}} >
+                                                Оставить отзыв...
+                                            </button>  
+                                            <ul className={cl.reviewsBlockAbout}>
+                                                {commentsState.length?commentsState.filter((e,i)=>i<4).map((e,i)=>
+                                                        <li className={cl.reviewAboutItem} key={i} onClick={event=>{event.preventDefault();window.scrollTo({'behavior':'smooth', 'top': '0px'});dispatch(setActiveBtnsTabs({id:2}))}}>
+                                                            <h3 className={cl.reviewUeserAbout}>{isLoading && e.username}</h3>
+                                                            {e.text &&
+                                                            <p className={cl.reviewTextAbout}>{e.text.length>60 ? `${e.text.slice(0,60)}...` : e.text}</p>
+                                                            
+                                                            }
+                                                        </li>
+                                                    )
+                                                :''}
+                                            </ul>
+                                        </div>
                                     </div>
+                               
                                 </div>
+                              
+                            </div>
+                             
                             : tabsState.filter(e=>e.cardId=='reviews')[0].active ? 
-                                <div className={cl.tabsAbout}>
+                                <div className={cl.tabsREview}>
                                     <div className={cl.filtersBlock}>
                                         <div className={cl.sendReview} onClick={e=>setIsReviewOpen(!isReviewOpen)}>
                                             Оставить отзыв...
@@ -305,7 +366,7 @@ export default function MoviePage() {
                                     <div className={cl.listBlock}>
                                         <ul className={cl.list}>
                                             {commentsState.length?commentsState.map((e,i)=>
-                                                <MoviePageReviews   initialsUser={e.userName}  reviewUser={e.text}  key={i} />
+                                                <MoviePageReviews   initialsUser={e.username}  reviewUser={e.text}  key={i} />
                                             )
                                         :''}
                                         </ul>
@@ -318,7 +379,7 @@ export default function MoviePage() {
                                     <ul className={cl.listActors}>
                                         {isLoading&&stateMovieAll.staffJson.filter((e,i)=>e.description).filter((e,i)=>i<26).map((e,i)=>
                                             <Link href={'/actors/'+e.staffId} key={i}>
-                                                <MoviewPageActors key={e.staffId} imgSrc={e.posterUrl} descr={e.description} titleEn={e.nameEn} title={e.nameRu}/>
+                                                <MoviewPageActors key={e.staffId} imgSrc={e.posterUrl?e.posterUrl:''} descr={e.description} titleEn={e.nameEn} title={e.nameRu}/>
                                             </Link>
                                         )}
                                     </ul>
@@ -348,9 +409,21 @@ export default function MoviePage() {
                 </div>
             </div>
         </div>
+        <div className={cl.framesBlock}>
+            {
+                isLoading ? 
+                    <MovieFrames infoObj={stateMovieAll.photos} />
+                :''
+            }
+        </div>
         <div className={cl.likeMovies}>
-                {/* <BigSwiperList  stateSwiper={isLoading&&stateFilm.similarMovies} similar={true} title={'Вам также могут понравиться'}/>  */}
-            </div>
+            {
+                isLoading ? 
+                    <MovieSimilar genre={stateFilm.genres[0].genre} idState={stateFilm.kinopoiskId} country={ stateFilm.countries[0].country } minYear={ stateFilm.year-3 } maxYear={ (+(stateFilm.year)+3) }/>
+                :''
+            }
+        </div>
+
  </section>
 
   

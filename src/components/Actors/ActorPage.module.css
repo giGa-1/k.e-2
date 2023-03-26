@@ -7,23 +7,34 @@
 
 .content {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: auto 3fr;
     box-sizing: border-box;
     gap: 70px;
     padding: 25px 15px 0;
     width:100%;
-    min-height: 700px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
-
-.actorImg {
-    max-width: 350px;
+.imgBLockActor {
+    position: relative;
+}
+.actorImg, .actorImgBack {
+    max-width: 300px;
     width: 100%;
-    max-height: 450px;
+    max-height: 400px;
     object-fit: cover;
     border-radius: 10px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     margin-bottom: 40px;
 } 
+
+.actorImgBack {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    filter: blur(15px);
+    transform: scale(1.05);
+}
 
 .tabsTextBlock {
     margin-bottom: 35px;
@@ -95,20 +106,24 @@
     padding: 15px;
     display: grid;
     grid-template-rows: repeat(2, auto);
+    height: auto;
+    align-items: start;
+    justify-content: start;
+    align-content: start;
     gap: 25px;
 }
 
 .itemAboutActor {
     display: grid;
     grid-template-columns: 1fr 5fr;
-    gap: 30px;
+    gap: 20px;
     max-width: 800px;
 }
 
 .itemLeft, .itemRight {
     color: #fff;
     font-weight: 500;
-    font-size: 21px;
+    font-size: 18px;
     min-width: 200px;
 }
 
@@ -176,7 +191,7 @@
 }
 
 .factBlock {
-    margin-top: 30px;
+    /* margin-top: 30px; */
     margin-bottom: 20px;
 
 }
@@ -196,4 +211,181 @@
 .factText {
     color: #c5c5c5; 
     line-height: 160%;
+}
+
+.headContent {
+    display: grid;
+    grid-template-columns: 6fr 4fr;
+}
+.factText {
+    display: grid;
+    grid-template-columns: auto 5fr;
+    gap: 10px;
+}
+.factDot {
+    display: inline-block;
+    border-radius: 50%;
+    margin-top: 10px;
+
+    width: 4px;
+    height: 4px;
+    background-color: var(--red);
+}
+.filmsItem {
+    display: grid;
+    justify-content: center;
+    grid-template-rows: repeat(2, auto);
+    gap: 15px;
+}
+
+.imgFilmActor {
+    
+    width: 100%;
+    width: 175px;
+    margin: 0 auto;
+    height: 220px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+.filmsTitle {
+    margin-bottom: 25px;
+}
+.filmsActor {
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+    overflow: hidden;
+}
+
+.swiper {
+    max-width: 1300px;
+}
+
+.linkFilm {
+    display: block;
+    width: 100%;
+}
+.swiper {
+    padding-top: 40px;
+}
+.imgSimilar, .imgSimilarBack {
+    width: 100%;
+    border-radius: 10px;
+    height: 360px;
+}
+
+.imgSimilarBack {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    filter: blur(15px);
+}
+.nameRu {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #fff !important;
+}
+
+.ratingSimilar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border-radius: 4px;
+}
+
+.bioHead {
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 25px;
+}
+
+.bioLine {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: -1;
+    display: inline-block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--red);
+}
+
+.bioTitle {
+    display: inline-block;
+    font-size: 26px;
+    margin-left: 40px;
+    padding: 10px  15px;
+    color: #fff;
+    background-color: #222;
+}
+
+.bioDescr {
+    color: #e8e8e8;
+    line-height: 200%;
+}
+
+.bioBody {
+    position: relative;
+    transition: all .8s ease-in-out;
+    max-height: 230px;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(0deg, rgba(32,32,32,1) 0%, rgba(20, 20, 20, 0) 100%);
+}
+
+.swiperFrame {
+    width: 300px;
+    height: 200px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.frameImg {
+    width: 100%;
+    cursor: pointer;
+    height: 200px;
+    object-fit: cover;
+}
+
+.titleFrame {
+    font-size: 21px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.framesFoter {
+    margin-top: 15px;
+}
+.framesFoter, .framesHead {
+    position: relative;
+}
+
+.nextArrow, .prevArrow {
+    display: inline-block;
+    width: 35px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    bottom: 0;right: 0;left: 0;
+    opacity: .6;
+    margin: auto;
+    
+}
+
+.prevArrow {
+    left: -45px;
+    right: auto;
+    transform: rotate(180deg);
+}
+.nextArrow {
+    right: -45px;
+    left: auto;
 }

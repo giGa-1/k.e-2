@@ -1,0 +1,103 @@
+
+
+.section {
+    padding-top: 125px;
+    padding-bottom: 70px;
+}
+
+.miniCont {
+    max-width: 1300px ;
+
+}
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 25px;
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.itemList {
+    display: grid;
+    grid-template-columns: 130px 5fr;
+    gap: 35px;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 240px;
+    padding: 25px 35px;
+    border-radius: 15px;
+    box-shadow: rgba(79, 81, 83, 0.2) 0px 8px 24px;
+}
+
+.img {
+    height: 100%;
+    border-radius: 5px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.titleFilm {
+    font-size: 26px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.rightItem {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.ratingBlock {
+    height: 100%;
+    padding: 0 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ratingValue {
+    display: inline-block;
+    font-size: 95px;
+    color: var(--red);
+    opacity: .5;
+    font-weight: 700;
+    font-style: italic;
+}
+.enTitle {
+    margin-bottom: 5px;
+    color: #d8d8d8;
+    font-size: 20px;
+}
+
+.textsFilm {
+    color: #b3b3b3;
+}
+
+.pagination {
+    margin-top: 45px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 24px;
+    border-radius: 50%;
+    cursor: pointer;
+
+}
+
+.pagBlock span {
+    height: 27px;
+}
+
+.prevArrow {
+    transform: rotate(180deg);
+}

@@ -7,14 +7,14 @@
 
 
 
-export const getOfficialYandexMovies = async (getUrl, actionFunc, dispatch, isDocs=false)=>{
+export const getOfficialYandexMovies = async (getUrl, actionFunc = false, dispatch, isDocs=false)=>{
 
     
     const response = await fetch('/api/'+getUrl);
     const data =  response.json();
     data.then((data)=>{
         console.log(data);
-        dispatch(actionFunc(data))
+        actionFunc&&dispatch(actionFunc(data))
     }).catch((err)=>console.log(err))
     return data
 }

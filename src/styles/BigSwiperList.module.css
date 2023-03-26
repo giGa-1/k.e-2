@@ -17,7 +17,7 @@
     padding: 0 30px;
 
     transition: all .8s ease-in-out;
-    transform: translateX(100vw);
+    transform: translateX(30vw);
     opacity: 0;
 }
 

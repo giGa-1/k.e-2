@@ -39,7 +39,6 @@ export default function FocusComp() {
       });
     
     const state = useSelector(state=>state['Focus Comp'])
-    console.log(stateNews[0], stateNews[0]!==undefined, stateNews)
     return (
     <div ref={ref} className={inView ? [cl.section, cl.activeSection].join` ` : cl.section}>
           <div className={!isLoader ? ["loaderBLock", "loaderActive"].join` ` :"loaderBLock"}>
@@ -71,28 +70,28 @@ export default function FocusComp() {
                 <MyTitleComp classTitle={cl.title}>Будьте в курсе всех событий!</MyTitleComp>
                 <div className={cl.newsBlock}>
                     <div className={cl.newsLeftBlock}>
-                        <Link href={'/news/'+stateNews[0].date} className={cl.link}>
+                        <Link href={'/news/'+[...stateNews, ...stateNewsN][0].date} className={cl.link}>
                             <div className={[cl.newsTopBlock, cl.newsItem].join` `}>
-                                <img src={stateNews[0].coverUrl} className={cl.imgItem}/>
+                                <img src={[...stateNews, ...stateNewsN][0].coverUrl} className={cl.imgItem}/>
                                 <div className={cl.itemContent}>
-                                    <p className={cl.itemDescr}>{stateNews[0].title.slice(0, 95)}...</p>
+                                    <p className={cl.itemDescr}>{[...stateNews, ...stateNewsN][0].title.slice(0, 95)}...</p>
                                 </div>
                             </div>
                         </Link>
                         <div className={[cl.newsBottomBlock, cl.newsBottomLeft].join` `}>
-                            <Link href={'/news/'+stateNews[1].date} className={cl.link}>
+                            <Link href={'/news/'+[...stateNews, ...stateNewsN][1].date} className={cl.link}>
                                 <div className={cl.newsItem}>
-                                    <img src={stateNews[1].coverUrl} className={cl.imgItem}/>
+                                    <img src={[...stateNews, ...stateNewsN][1].coverUrl} className={cl.imgItem}/>
                                     <div className={cl.itemContent}>
-                                        <p className={cl.itemDescr}>{stateNews[1].title.slice(0, 45)}...</p>
+                                        <p className={cl.itemDescr}>{[...stateNews, ...stateNewsN][1].title.slice(0, 45)}...</p>
                                     </div>
                                 </div>
                             </Link>
-                            <Link href={'/news/'+stateNews[2].date} className={cl.link}>
+                            <Link href={'/news/'+[...stateNews, ...stateNewsN][2].date} className={cl.link}>
                                 <div className={cl.newsItem}>
-                                    <img src={stateNews[2].coverUrl} className={cl.imgItem}/>
+                                    <img src={[...stateNews, ...stateNewsN][2].coverUrl} className={cl.imgItem}/>
                                     <div className={cl.itemContent}>
-                                        <p className={cl.itemDescr}>{stateNews[2].title.slice(0, 45)}...</p>
+                                        <p className={cl.itemDescr}>{[...stateNews, ...stateNewsN][2].title.slice(0, 45)}...</p>
                                     </div>
                                 </div>
                             </Link>
@@ -101,27 +100,27 @@ export default function FocusComp() {
                     <div className={cl.newsRightBlock}>
                         <div className={[cl.newsTopBlock, cl.newsTopRight].join` `}>
                             <div className={cl.newsTopRightContent}>
-                                <Link href={'/news/'+stateNews[3].date} className={cl.link}>
+                                <Link href={'/news/'+[...stateNews, ...stateNewsN][3].date} className={cl.link}>
                                     <div className={cl.newsItem}>
-                                        <img src={stateNews[3].coverUrl} className={cl.imgItem}/>
+                                        <img src={[...stateNews, ...stateNewsN][3].coverUrl} className={cl.imgItem}/>
                                         <div className={cl.itemContent}>
-                                            <p className={cl.itemDescr}>{stateNews[3].title.slice(0, 45)}...</p>
+                                            <p className={cl.itemDescr}>{[...stateNews, ...stateNewsN][3].title.slice(0, 45)}...</p>
                                         </div>
                                     </div>
                                 </Link>
-                                <Link href={'/news/'+stateNews[4].date} className={cl.link}>
+                                <Link href={'/news/'+[...stateNews, ...stateNewsN][4].date} className={cl.link}>
                                     <div className={cl.newsItem}>
-                                        <img src={stateNews[4].coverUrl} className={cl.imgItem}/>
+                                        <img src={[...stateNews, ...stateNewsN][4].coverUrl} className={cl.imgItem}/>
                                         <div className={cl.itemContent}>
-                                            <p className={cl.itemDescr}>{stateNews[4].title.slice(0, 45)}...</p>
+                                            <p className={cl.itemDescr}>{[...stateNews, ...stateNewsN][4].title.slice(0, 45)}...</p>
                                         </div>
                                     </div>
                                 </Link>
                             </div>
-                            <Link href={'/news/'+stateNews[6].date} className={cl.link}>
+                            <Link href={'/news/'+[...stateNews, ...stateNewsN][6].date} className={cl.link}>
                                     <div className={[cl.newsItem, cl.newsText].join` `}>
                                         <p className={cl.textItem}>
-                                            {stateNews[6].text.slice(0, 350)}...
+                                            {[...stateNews, ...stateNewsN][6].text.slice(0, 350)}...
                                         </p>
                                         <div className={cl.textItemBottom}>
                                             <p className={cl.readMoreItem}>Читать далее...</p>
@@ -134,11 +133,11 @@ export default function FocusComp() {
                                     </div>
                             </Link>
                         </div>
-                        <Link href={'/news/'+stateNews[5].date} className={cl.link}>
+                        <Link href={'/news/'+[...stateNews, ...stateNewsN][5].date} className={cl.link}>
                             <div className={[cl.newsBottomBlock, cl.newsItem].join` `}>
-                            <img src={stateNews[5].coverUrl} className={cl.imgItem}/>
+                            <img src={[...stateNews, ...stateNewsN][5].coverUrl} className={cl.imgItem}/>
                                 <div className={cl.itemContent}>
-                                    <p className={cl.itemDescr}>{stateNews[7].title.slice(0, 95)}...</p>
+                                    <p className={cl.itemDescr}>{[...stateNews, ...stateNewsN][5].title.slice(0, 95)}...</p>
                                 </div>
                             </div>
                         </Link>

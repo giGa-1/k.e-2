@@ -20,7 +20,7 @@ export default function MovieFrames({infoObj = [1,1,1,1,1]}) {
 
                     <SwiperSlide key={i} className={cl.swiperSlide}>
                         <div className={cl.imgItem}>
-                           <img src={'/img/back-news.jpg'} className={cl.imgFrame}/>
+                           <img src={e} className={cl.imgFrame}/>
                         </div>
                     </SwiperSlide>
                 )
