@@ -47,7 +47,7 @@ export default function handle(req, res) {
         ]).then(values => {
             let article = "";
 
-            if(values[1].query.pages.length > 0 && !values[1].query.pages[0].missing) {
+            if(values[1].query != undefined && values[1].query.pages.length > 0 && !values[1].query.pages[0].missing) {
                 article = values[1].query.pages[0].extract;
             }
 
